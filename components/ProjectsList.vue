@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const { data } = await useFetch("/api/projects");
-console.log(data);
+import { type IProject } from "@/types/projects.interface";
+const { data: projects } = await useFetch<{ data: IProject[] }>(
+  "/api/projects"
+);
 </script>
 
 <template>
-  <ul v-for="project in data?.data">
-    <li>{{ project.title }}</li>
-  </ul>
+  <div class="grid grid-cols-3 gap-8">
+    <ProjectsListCard v-for="project in projects?.data" :project />
+  </div>
 </template>

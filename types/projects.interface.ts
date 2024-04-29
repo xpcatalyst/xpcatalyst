@@ -1,7 +1,7 @@
-interface Project {
+export interface IProject {
   id: number;
-  date: Date;
-  modified?: Date;
+  date: string;
+  modified?: string;
   title: string;
   headline: string;
   stars: number;
@@ -9,23 +9,23 @@ interface Project {
   abstract?: string;
   language?: string;
   imageUrl?: string;
-  licence?: string;
+  license?: string;
   repoUrl?: string;
   demoUrl?: string;
   readme?: string;
-  source?: Source;
-  workflow: Workflow;
-  features?: Feature[];
-  stack?: Tech[];
-  team?: User[];
+  source?: ISource;
+  workflow: TWorkflow;
+  features?: IFeature[];
+  stack?: ITech[];
+  team?: IUser[];
 }
 
-interface Source {
-  author: string | User;
-  url?: Link;
+interface ISource {
+  author: string | IUser;
+  url?: ILink;
 }
 
-type Workflow =
+type TWorkflow =
   | "draft"
   | "public"
   | "spec"
@@ -36,30 +36,29 @@ type Workflow =
   | "alpha"
   | "archives";
 
-interface Feature {
+interface IFeature {
   name: string;
 }
 
-interface User {
+interface IUser {
   name: string;
 }
 
-interface Tech {
-  category: TechCategory;
+interface ITech {
+  category: TTechCategory;
   name: string;
 }
 
-type TechCategory =
+type TTechCategory =
   | "Rendering"
   | "Hosting"
   | "Front-end"
   | "Back-end"
   | "Tooling"
   | "Design"
-  | "Devops"
-  | "Tooling";
+  | "Devops";
 
-interface Link {
+interface ILink {
   title: string;
   href: string;
 }

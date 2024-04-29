@@ -1,7 +1,5 @@
-import data from "../../public/data.json";
+import projects from "@/data/projects.data.json";
 
-export default defineEventHandler((event) => {
-  return {
-    data,
-  };
+export default defineEventHandler(() => {
+  return { data: projects };
 });
