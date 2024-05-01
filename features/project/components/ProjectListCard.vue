@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { type IProject } from "@/types/projects.interface";
-defineProps<{
-  project?: IProject;
-}>();
+import { type IProject } from "../";
+defineProps<{ project?: IProject }>();
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <AppHeader />
+  <div class="grid min-h-screen grid-rows-[auto_1fr_auto]">
+    <BaseHeader />
     <slot />
-    <AppFooter />
+    <BaseFooter />
   </div>
 </template>

@@ -1,5 +1,5 @@
-import projects from "@/data/projects.data.json";
+import { projectsData } from "@/features/project";
 
 export default defineEventHandler(() => {
-  return { data: projects };
+  return projectsData;
 });

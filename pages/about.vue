@@ -1,5 +1,5 @@
 <template>
   <section>
-    <p>This page will be displayed at the /about route.</p>
+    <BaseH1>About</BaseH1>
   </section>
 </template>
