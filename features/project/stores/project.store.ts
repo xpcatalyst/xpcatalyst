@@ -12,6 +12,12 @@ export const useProjectStore = defineStore("projectStore", {
   state: () => ({
     projects: [] as IProject[],
   }),
+  getters: {
+    getFilteredProjects: (state) => {
+      return (searchTerm: string) =>
+        state.projects.filter((project) => project.title.includes(searchTerm));
+    },
+  },
   actions: {
     async fetch() {
       this.projects = await $fetch("/api/projects");
