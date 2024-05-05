@@ -1,7 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/eslint", "@pinia/nuxt"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxt/eslint",
+    "@pinia/nuxt",
+    "@nuxt/image",
+    "nuxt-icon",
+  ],
   pinia: {
     storesDirs: ["./stores/**", "./features/**/stores/**"],
   },
