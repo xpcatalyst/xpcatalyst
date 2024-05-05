@@ -18,6 +18,8 @@ logs
 .fleet
 .idea
 
+pnpm-lock.yaml
+
 # Local env files
 .env
 .env.*

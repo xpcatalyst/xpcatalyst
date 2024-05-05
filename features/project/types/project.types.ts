@@ -44,7 +44,7 @@ interface IUser {
   name: string;
 }
 
-interface ITech {
+export interface ITech {
   category: TTechCategory;
   name: string;
 }

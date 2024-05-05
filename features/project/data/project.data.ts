@@ -4,9 +4,9 @@ export const projectsData: IProject[] = [
   {
     id: 1,
     date: "2024-04-26T00:00:00.000Z",
-    title: "E-commerce de vêtements",
+    title: "Clothing E-commerce",
     headline:
-      "Plateforme de vente en ligne de vêtements pour hommes, femmes et enfants.",
+      "Online platform for selling clothing for men, women, and children.",
     stars: 102,
     pinned: true,
     workflow: "public",
@@ -18,9 +18,9 @@ export const projectsData: IProject[] = [
       },
     },
     features: [
-      { name: "Recherche de produits" },
-      { name: "Panier d'achat" },
-      { name: "Paiement sécurisé" },
+      { name: "Product search" },
+      { name: "Shopping cart" },
+      { name: "Secure payment" },
     ],
     stack: [
       { category: "Front-end", name: "React" },
@@ -31,9 +31,8 @@ export const projectsData: IProject[] = [
   {
     id: 2,
     date: "2024-04-25T00:00:00.000Z",
-    title: "Gestionnaire de tâches",
-    headline:
-      "Application permettant de gérer les tâches personnelles et professionnelles.",
+    title: "Task Manager",
+    headline: "Application for managing personal and professional tasks.",
     stars: 57,
     pinned: false,
     workflow: "public",
@@ -45,9 +44,9 @@ export const projectsData: IProject[] = [
       },
     },
     features: [
-      { name: "Création de tâches" },
-      { name: "Suivi du statut des tâches" },
-      { name: "Partage de tâches avec d'autres utilisateurs" },
+      { name: "Task creation" },
+      { name: "Task status tracking" },
+      { name: "Task sharing with other users" },
     ],
     stack: [
       { category: "Front-end", name: "Vue.js" },
@@ -58,9 +57,9 @@ export const projectsData: IProject[] = [
   {
     id: 3,
     date: "2024-04-24T00:00:00.000Z",
-    title: "Blog de voyage",
+    title: "Travel Blog",
     headline:
-      "Plateforme permettant aux utilisateurs de partager leurs expériences de voyage à travers des articles et des photos.",
+      "Platform for users to share their travel experiences through articles and photos.",
     stars: 82,
     pinned: true,
     workflow: "public",
@@ -72,9 +71,9 @@ export const projectsData: IProject[] = [
       },
     },
     features: [
-      { name: "Création de publications" },
-      { name: "Commentaires sur les publications" },
-      { name: "Géolocalisation des lieux visités" },
+      { name: "Post creation" },
+      { name: "Post comments" },
+      { name: "Geolocation of visited places" },
     ],
     stack: [
       { category: "Front-end", name: "Angular" },
@@ -85,9 +84,9 @@ export const projectsData: IProject[] = [
   {
     id: 4,
     date: "2024-04-23T00:00:00.000Z",
-    title: "Application de gestion d'événements",
+    title: "Event Management Application",
     headline:
-      "Application permettant aux organisateurs d'événements de planifier, promouvoir et gérer leurs événements.",
+      "Application for event organizers to plan, promote, and manage their events.",
     stars: 123,
     pinned: true,
     workflow: "public",
@@ -99,9 +98,9 @@ export const projectsData: IProject[] = [
       },
     },
     features: [
-      { name: "Création d'événements" },
-      { name: "Gestion des participants" },
-      { name: "Billetterie en ligne" },
+      { name: "Event creation" },
+      { name: "Participant management" },
+      { name: "Online ticketing" },
     ],
     stack: [
       { category: "Front-end", name: "Vue.js" },
@@ -112,9 +111,9 @@ export const projectsData: IProject[] = [
   {
     id: 5,
     date: "2024-04-22T00:00:00.000Z",
-    title: "Plateforme de formation en ligne",
+    title: "Online Learning Platform",
     headline:
-      "Plateforme offrant des cours en ligne dans divers domaines, tels que la programmation, le design et la finance.",
+      "Platform offering online courses in various fields such as programming, design, and finance.",
     stars: 75,
     pinned: false,
     workflow: "draft",
@@ -126,9 +125,9 @@ export const projectsData: IProject[] = [
       },
     },
     features: [
-      { name: "Catalogue de cours" },
-      { name: "Suivi de la progression des étudiants" },
-      { name: "Discussion en ligne entre étudiants et instructeurs" },
+      { name: "Course catalog" },
+      { name: "Student progress tracking" },
+      { name: "Online discussion between students and instructors" },
     ],
     stack: [
       { category: "Front-end", name: "React" },
@@ -139,9 +138,9 @@ export const projectsData: IProject[] = [
   {
     id: 6,
     date: "2024-04-21T00:00:00.000Z",
-    title: "Application de gestion de stocks",
+    title: "Inventory Management Application",
     headline:
-      "Application permettant aux entreprises de gérer leur inventaire de produits et leurs niveaux de stock.",
+      "Application for businesses to manage their product inventory and stock levels.",
     stars: 34,
     pinned: true,
     workflow: "public",
@@ -153,9 +152,9 @@ export const projectsData: IProject[] = [
       },
     },
     features: [
-      { name: "Ajout de produits" },
-      { name: "Suivi des niveaux de stock" },
-      { name: "Génération de rapports sur les ventes et les stocks" },
+      { name: "Product addition" },
+      { name: "Stock level tracking" },
+      { name: "Generation of sales and stock reports" },
     ],
     stack: [
       { category: "Front-end", name: "Angular" },
@@ -166,9 +165,8 @@ export const projectsData: IProject[] = [
   {
     id: 7,
     date: "2024-04-20T00:00:00.000Z",
-    title: "Plateforme de réservation d'hôtels",
-    headline:
-      "Plateforme permettant aux utilisateurs de réserver des chambres d'hôtel dans le monde entier.",
+    title: "Hotel Booking Platform",
+    headline: "Platform for users to book hotel rooms worldwide.",
     stars: 98,
     pinned: false,
     workflow: "public",
@@ -180,9 +178,9 @@ export const projectsData: IProject[] = [
       },
     },
     features: [
-      { name: "Recherche de chambres disponibles" },
-      { name: "Réservation en ligne sécurisée" },
-      { name: "Gestion des réservations utilisateur" },
+      { name: "Search for available rooms" },
+      { name: "Secure online booking" },
+      { name: "User reservation management" },
     ],
     stack: [
       { category: "Front-end", name: "React" },
@@ -193,9 +191,9 @@ export const projectsData: IProject[] = [
   {
     id: 8,
     date: "2024-04-19T00:00:00.000Z",
-    title: "Application de suivi de fitness",
+    title: "Fitness Tracking Application",
     headline:
-      "Application permettant aux utilisateurs de suivre leur activité physique et leur santé.",
+      "Application for users to track their physical activity and health.",
     stars: 63,
     pinned: true,
     workflow: "public",
@@ -207,9 +205,9 @@ export const projectsData: IProject[] = [
       },
     },
     features: [
-      { name: "Suivi des activités physiques" },
-      { name: "Suivi de la consommation alimentaire" },
-      { name: "Génération de rapports sur la santé" },
+      { name: "Physical activity tracking" },
+      { name: "Food consumption tracking" },
+      { name: "Health report generation" },
     ],
     stack: [
       { category: "Front-end", name: "Vue.js" },

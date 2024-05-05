@@ -5,20 +5,15 @@ await callOnce(projectStore.fetch);
 //await useAsyncData("projects", () => projectStore.fetchProjects());
 // const { getFilteredProjects } = storeToRefs(projectStore);
 
-const searchTerm = defineModel<string>({ default: "" });
+const searchTerm = ref("");
 </script>
 
 <template>
   <div>
     <BaseH1>Projects</BaseH1>
-    <div class="flex flex-row gap-8">
-      <div class="w-1/4 border-r pe-8">
-        <input
-          v-model="searchTerm"
-          class="bg-gray-50 border p-4 text-xl w-full"
-          type="text"
-        />
-      </div>
+    <div class="flex flex-col gap-8 py-8">
+      <ProjectFilter v-model="searchTerm" />
+
       <main>
         <ProjectList :projects="projectStore.getFilteredProjects(searchTerm)" />
         <div
