@@ -7,6 +7,8 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxt/image",
     "nuxt-icon",
+    "vuetify-nuxt-module",
+    "shadcn-nuxt",
   ],
   pinia: {
     storesDirs: ["./stores/**", "./features/**/stores/**"],
@@ -15,4 +17,12 @@ export default defineNuxtConfig({
     { path: "~/components" },
     { path: "~/features/project/components" },
   ],
+  shadcn: {
+    prefix: "",
+    /**
+     * Directory that the component lives in.
+     * @default "./components/ui"
+     */
+    componentDir: "./components/ui",
+  },
 });
