@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxt/image",
     "nuxt-icon",
-    "vuetify-nuxt-module",
     "shadcn-nuxt",
   ],
   pinia: {

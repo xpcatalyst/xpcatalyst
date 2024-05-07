@@ -1,11 +1,11 @@
 const animate = require("tailwindcss-animate")
+// const { blackA, green, grass, mauve } = require('@radix-ui/colors')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   safelist: ["dark"],
   prefix: "",
-  
   theme: {
     container: {
       center: true,

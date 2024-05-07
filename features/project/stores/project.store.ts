@@ -37,6 +37,8 @@ function searchInObject(obj, searchTerm) {
 export const useProjectStore = defineStore("projectStore", {
   state: () => ({
     projects: [] as IProject[],
+    filteredProjects: [] as IProject[],
+    searchTerm: "" as string,
   }),
   getters: {
     getFilteredProjects: (state) => {
@@ -67,6 +69,11 @@ export const useProjectStore = defineStore("projectStore", {
   actions: {
     async fetch() {
       this.projects = await $fetch("/api/projects");
+      this.filteredProjects = this.projects;
+    },
+    setSearchTerm(term: string) {
+      this.searchTerm = term;
+      this.filteredProjects = this.getFilteredProjects(this.searchTerm);
     },
   },
 });
