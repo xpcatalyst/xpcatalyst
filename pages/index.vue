@@ -1,3 +1,5 @@
+<script setup lang="ts"></script>
+
 <template>
   <div>
     <BaseH1>Homepage</BaseH1>
