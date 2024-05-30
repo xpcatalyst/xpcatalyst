@@ -16,6 +16,6 @@ pnpm install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# or npm or yarn or bun
-pnpm run dev
+pnpm mockapi # launch first the json server
+pnpm dev
 ```

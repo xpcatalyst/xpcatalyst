@@ -1,0 +1,106 @@
+{
+    "projects": [
+        {
+            "id": 1,
+            "date": "2024-04-26T00:00:00.000Z",
+            "title": "Clothing E-commerce",
+            "stars": 102,
+            "pinned": true,
+            "workflow": "public",
+            "stack": [ "React", "TailwindCSS", "Node.js", "PostgreSQL",  "Supabase", "Netlify",  "Resend", "Stripe"]
+        },
+        {
+            "id": 2,
+            "date": "2023-10-15T00:00:00.000Z",
+            "title": "Recipe Sharing Platform",
+            "stars": 87,
+            "pinned": false,
+            "workflow": "mvp",
+            "stack": ["Vue.js", "Bootstrap", "Express.js", "MongoDB",  "Heroku",  "SendGrid", "Stripe"]
+        },
+        {
+            "id": 3,
+            "date": "2024-01-10T00:00:00.000Z",
+            "title": "Real Estate Marketplace",
+            "stars": 45,
+            "pinned": false,
+            "workflow": "draft",
+            "stack": [ "Angular", "Bootstrap", "Django", "MySQL", "AWS", "Twilio", "PayPal"]
+        },
+        {
+            "id": 4,
+            "date": "2023-08-20T00:00:00.000Z",
+            "title": "Fitness Tracker App",
+            "stars": 64,
+            "pinned": false,
+            "workflow": "prototype",
+            "stack": ["React Native", "Expo", "Firebase", "Firestore", "Firebase", "SendGrid"]
+        },
+        {
+            "id": 5,
+            "date": "2022-12-05T00:00:00.000Z",
+            "title": "Event Management System",
+            "stars": 92,
+            "pinned": true,
+            "workflow": "public",
+            "stack": ["React", "Material-UI", "Spring Boot", "MySQL", "MySQL", "AWS", "Twilio", "PayPal"]
+        },
+        {
+            "id": 6,
+            "date": "2023-05-28T00:00:00.000Z",
+            "title": "Online Learning Platform",
+            "stars": 78,
+            "pinned": false,
+            "workflow": "public",
+            "stack": ["Angular", "MaterializeCSS", "Laravel", "MySQL", "DigitalOcean", "SendGrid", "PayPal"]
+
+        },
+        {
+            "id": 7,
+            "date": "2023-03-15T00:00:00.000Z",
+            "title": "Social Media Analytics Dashboard",
+            "stars": 55,
+            "pinned": false,
+            "workflow": "draft",
+            "stack": ["React", "Semantic UI", "Flask", "MongoDB", "Heroku", "SendGrid", "Stripe"]
+
+        },
+        {
+            "id": 8,
+            "date": "2024-02-18T00:00:00.000Z",
+            "title": "E-commerce Marketplace for Handmade Crafts",
+            "stars": 36,
+            "pinned": false,
+            "workflow": "mvp",
+            "stack": ["Vue.js", "Vuetify", "Express.js", "MongoDB", "MongoDB", "Heroku", "SendGrid", "PayPal"]
+
+        },
+        {
+            "id": 9,
+            "date": "2023-07-10T00:00:00.000Z",
+            "title": "Task Management App",
+            "stars": 41,
+            "pinned": false,
+            "workflow": "draft",
+            "stack": ["React Native", "Expo", "Node.js", "MongoDB", "MongoDB", "Heroku", "SendGrid"]
+        },
+        {
+            "id": 10,
+            "date": "2024-03-05T00:00:00.000Z",
+            "title": "Travel Blogging Platform",
+            "stars": 73,
+            "pinned": false,
+            "workflow": "public",
+            "stack": ["React", "Material-UI", "Express.js", "MongoDB", "MongoDB", "Heroku", "SendGrid"]
+        },
+        {
+            "id": 11,
+            "date": "2023-11-22T00:00:00.000Z",
+            "title": "Online Marketplace for Freelancers",
+            "stars": 58,
+            "pinned": false,
+            "workflow": "prototype",
+            "stack": ["React", "Bootstrap", "Node.js", "Express.js", "MongoDB", "Heroku", "SendGrid", "Stripe"]
+        }
+    ]
+}
