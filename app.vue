@@ -5,7 +5,7 @@ const { data : projects} = await useFetch<Project[]>('http://localhost:3001/proj
 
 <template>
   <div>
-    <h1>Projects</h1>
+    <BaseH1>Projects</BaseH1>
     <div class="grid grid-cols-3 gap-8">
       <ProjectCard v-for="project in projects" :key="project.id" :project="project"/>
     </div>
