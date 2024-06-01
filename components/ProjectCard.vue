@@ -7,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+
 
 import { type Project } from '@/data/types';
 defineProps<{project: Project}>()
@@ -18,11 +20,13 @@ defineProps<{project: Project}>()
       <CardTitle>{{ project.title }}</CardTitle>
       <CardDescription>{{ project.description }}</CardDescription>
     </CardHeader>
-    <CardContent>
-      {{ project.stack.join(", ")}}
+    <CardContent class="">
+    <StarRate :rate="project.stars" />
     </CardContent>
-    <CardFooter>
-      {{ project.stars }}
+    <CardFooter class="flex gap-2 flex-wrap items-end">
+      <Badge variant="secondary" v-for="(tech, index) in project.stack" :key="`tech-${index}`">
+      {{ tech }}
+      </Badge>
     </CardFooter>
   </Card>
 </template>

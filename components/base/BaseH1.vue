@@ -1,3 +1,5 @@
 <template>
-  <h1 class="text-3xl uppercase font-bold tracking-wider"><slot /></h1>
+  <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+  <slot />
+</h1> 
 </template>
