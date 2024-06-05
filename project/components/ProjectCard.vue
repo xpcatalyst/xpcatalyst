@@ -10,14 +10,14 @@ import {
 import { Badge } from '@/components/ui/badge'
 
 
-import { type Project } from '@/data/types';
+import { type Project } from '..';
 defineProps<{project: Project}>()
 </script>
 
 <template>
   <Card>
     <CardHeader>
-      <CardTitle>{{ project.title }}</CardTitle>
+      <CardTitle>{{ project.name }}</CardTitle>
       <CardDescription>{{ project.description }}</CardDescription>
     </CardHeader>
     <CardContent class="">

@@ -8,7 +8,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "mockapi": "json-server data/db.json -p 3001"
+    "mock-api": "json-server data/db.json -p 3001",
+    "test": "vitest",
+    "test:junit": "vitest --run --reporter=junit"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
@@ -22,9 +24,15 @@
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@nuxt/test-utils": "^3.13.1",
     "@nuxtjs/tailwindcss": "^6.12.0",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^14.12.0",
     "json-server": "1.0.0-beta.0",
     "nuxt-icon": "^0.6.10",
-    "shadcn-nuxt": "^0.10.4"
+    "playwright-core": "^1.44.1",
+    "shadcn-nuxt": "^0.10.4",
+    "vitest": "^1.6.0"
   }
 }
