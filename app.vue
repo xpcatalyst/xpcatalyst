@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Project } from '@/data/types';
+import { type Project } from '@/project';
 const { data : projects} = await useFetch<Project[]>('http://localhost:3001/projects')
 </script>
 
