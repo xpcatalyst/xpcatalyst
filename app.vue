@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import { type Project } from '@/project';
-const { data : projects} = await useFetch<Project[]>('http://localhost:3001/projects')
+import { ProjectList, type Project, mockProjects } from '@/project';
+const { data : projects } = await useFetch<Project[]>('http://localhost:3001/projects')
 </script>
 
 <template>
-  <div>
     <BaseH1>Projects</BaseH1>
-    <div class="grid grid-cols-3 gap-8">
-      <ProjectCard v-for="project in projects" :key="project.id" :project="project"/>
-    </div>
-  </div>
+    <ProjectList :projects="projects ?? undefined" />
 </template>

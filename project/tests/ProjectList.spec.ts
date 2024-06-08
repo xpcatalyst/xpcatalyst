@@ -2,8 +2,15 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 
-import {type Project, mockProjects } from '@/project'
-import ProjectList from '../components/ProjectList.vue'
+import {type Project, mockProjects, ProjectList, NO_PROJECTS_MESSAGE } from '@/project'
+
+
+/*
+let wrapper: ReturnType<typeof mount>
+beforeEach(() => {
+  wrapper = mount(WordleBoard, {props: {wordOfTheDay}})
+    })
+*/
 
 describe('ProjectList', () => { 
 
@@ -22,5 +29,14 @@ describe('ProjectList', () => {
         expect(projectItems.length).toBe(mockProjects.length)
 
     })
-    it.todo('Should display a message when no projects are available')
+    it('Should display an alert component with a message when no projects are available', () => {
+        const wrapper = mount(ProjectList, {
+            props: {
+                projects: []
+            }
+        })
+
+        // expect(wrapper.find('[data-test="no-projects"]').exists()).toBe(true)
+        expect(wrapper.text()).toContain(NO_PROJECTS_MESSAGE)
+    })
 })
