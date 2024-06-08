@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "mock-api": "json-server data/db.json -p 3001",
+    "mock-api": "json-server db.json -p 3001",
     "test": "vitest",
     "test:junit": "vitest --run --reporter=junit"
   },
