@@ -30,6 +30,9 @@
  
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 89%;
  
     --ring: 0 0% 3.9%;
  
@@ -63,11 +66,15 @@
  
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
+
+    --warning: 48 96% 89%;
+    --warning-foreground: 38 92% 50%;
  
     --ring: 0 0% 83.1%;
   }
 }
- 
+
+
 @layer base {
   * {
     @apply border-border;
