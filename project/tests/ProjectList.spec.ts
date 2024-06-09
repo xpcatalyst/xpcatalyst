@@ -29,14 +29,13 @@ describe('ProjectList', () => {
         expect(projectItems.length).toBe(mockProjects.length)
 
     })
-    it('Should display an alert component with a message when no projects are available', () => {
-        const wrapper = mount(ProjectList, {
-            props: {
-                projects: []
-            }
-        })
-
+    it('Should display a message when projects are empty', () => {
+        const wrapperWithEmptyProject = mount(ProjectList, { props: {projects: []}})
         // expect(wrapper.find('[data-test="no-projects"]').exists()).toBe(true)
-        expect(wrapper.text()).toContain(NO_PROJECTS_MESSAGE)
+        expect(wrapperWithEmptyProject.text()).toContain(NO_PROJECTS_MESSAGE)
+
+        const wrapperWithNoProps = mount(ProjectList)
+        expect(wrapperWithNoProps.text()).toContain(NO_PROJECTS_MESSAGE)
+
     })
 })
