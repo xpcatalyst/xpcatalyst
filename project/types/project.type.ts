@@ -8,3 +8,5 @@ export type Project = {
     workflow: string;
     stack: string[];
 };
+
+export type ProjectSummary = Omit<Project, 'date' | 'pinned'>;
