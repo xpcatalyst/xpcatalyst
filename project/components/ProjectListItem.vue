@@ -8,9 +8,19 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { ref } from 'vue'
+import { type ProjectSummary, useProjectStore } from '@/project'
 
-import { type ProjectSummary } from '@/project'
-defineProps<{project: ProjectSummary}>()
+defineProps<{ project: ProjectSummary }>()
+
+const projectStore = useProjectStore()
+
+const isStarred = ref(false)
+
+const toggleStar = () => {
+  isStarred.value = !isStarred.value
+  projectStore.incrementStars()
+}
 </script>
 
 <template>
@@ -21,7 +31,10 @@ defineProps<{project: ProjectSummary}>()
     </CardHeader>
     <CardContent class="">
       <div class="flex items-center gap-1 text-xs">
-        <Icon name="fe:star" />{{ project.stars }}
+        <button @click="toggleStar" :class="{ 'text-yellow-500': isStarred }" aria-label="star">
+          <Icon name="fe:star" />
+        </button>
+        {{ projectStore.stars }}
       </div>
     </CardContent>
     <CardFooter class="flex gap-2 flex-wrap items-end">
