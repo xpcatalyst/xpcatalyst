@@ -10,10 +10,6 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { type ProjectSummary, useProjectStore } from '@/project'
 import { ref } from 'vue'
-<<<<<<< HEAD
-=======
-
->>>>>>> 0d16dbf (style: add content to tailwind config, enabling colors on svg)
 const props = defineProps<{ project: ProjectSummary }>()
 const isStarred = ref(false)
 const projectStore = useProjectStore()
@@ -47,10 +43,3 @@ const incrementStar = () => {
     </CardFooter>
   </Card>
 </template>
-
-<style scoped>
-.iconify {
-    /* @apply fill-red-500 */
-  }
-
-</style>
