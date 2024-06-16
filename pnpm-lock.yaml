@@ -42,6 +42,12 @@ importers:
         specifier: ^4.3.2
         version: 4.3.2(vue@3.4.27)
     devDependencies:
+      '@iconify-json/fe':
+        specifier: ^1.1.10
+        version: 1.1.10
+      '@iconify-json/uil':
+        specifier: ^1.1.8
+        version: 1.1.8
       '@nuxt/test-utils':
         specifier: ^3.13.1
         version: 3.13.1(@vue/test-utils@2.4.6)(h3@1.11.1)(happy-dom@14.12.0)(nitropack@2.9.6(@opentelemetry/api@1.8.0)(encoding@0.1.13))(playwright-core@1.44.1)(rollup@4.18.0)(vite@5.2.12(@types/node@20.12.13)(terser@5.31.0))(vitest@1.6.0(@types/node@20.12.13)(happy-dom@14.12.0)(terser@5.31.0))(vue-router@4.3.2(vue@3.4.27))(vue@3.4.27)
@@ -448,6 +454,12 @@ packages:
 
   '@floating-ui/vue@1.0.6':
     resolution: {integrity: sha512-EdrOljjkpkkqZnrpqUcPoz9NvHxuTjUtSInh6GMv3+Mcy+giY2cE2pHh9rpacRcZ2eMSCxel9jWkWXTjLmY55w==}
+
+  '@iconify-json/fe@1.1.10':
+    resolution: {integrity: sha512-ePFSmtnDTk+PtsmGsPtmLXPQNV/V3iC/Kr7E/yv0PANiwVwqY5JJcaAVyWlVIvB7qaLEhncVhvXp7TwcM9bPpw==}
+
+  '@iconify-json/uil@1.1.8':
+    resolution: {integrity: sha512-zkWB8XImzb1gfi5kN9xAfDXF5OqzxbKvtZq9xRUplEWEJYOoDB1RpbbQpCwJQ41j8Nf0ag0LFJr++qhYmvxftQ==}
 
   '@iconify/collections@1.0.427':
     resolution: {integrity: sha512-gY4a3w7Tttpsn5qTjaUQ6q+2ObU90ncMlRxbFwUdJG5XQ/cr4irCzKUdLtq6JvQ/VDrvlaxapxWWBNyt93M+ng==}
@@ -4740,6 +4752,14 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+
+  '@iconify-json/fe@1.1.10':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/uil@1.1.8':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify/collections@1.0.427':
     dependencies:

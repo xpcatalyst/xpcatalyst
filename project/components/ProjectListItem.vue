@@ -8,19 +8,20 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ref } from 'vue'
 import { type ProjectSummary, useProjectStore } from '@/project'
 
-defineProps<{ project: ProjectSummary }>()
+const props = defineProps<{ project: ProjectSummary }>()
 
 const projectStore = useProjectStore()
 
-const isStarred = ref(false)
-
-const toggleStar = () => {
-  isStarred.value = !isStarred.value
-  projectStore.incrementStars()
+// function incrementStars() {
+//   projectStore.incrementStars(props.project.id);
+// }
+const incrementStar = () => {
+  projectStore.incrementStars(props.project.id)
 }
+
+//:class="{ 'text-yellow-500': isStarred }"
 </script>
 
 <template>
@@ -31,10 +32,10 @@ const toggleStar = () => {
     </CardHeader>
     <CardContent class="">
       <div class="flex items-center gap-1 text-xs">
-        <button @click="toggleStar" :class="{ 'text-yellow-500': isStarred }" aria-label="star">
-          <Icon name="fe:star" />
+        <button @click="incrementStar" class="h-4 w-4 text-yellow-500" aria-label="star">
+          <Icon  name="uil:github" />
         </button>
-        {{ projectStore.stars }}
+        {{ project.stars }}
       </div>
     </CardContent>
     <CardFooter class="flex gap-2 flex-wrap items-end">
