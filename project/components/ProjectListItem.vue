@@ -9,19 +9,17 @@ import {
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { type ProjectSummary, useProjectStore } from '@/project'
-
+import { ref } from 'vue'
 const props = defineProps<{ project: ProjectSummary }>()
-
+const isStarred = ref(false)
 const projectStore = useProjectStore()
 
-// function incrementStars() {
-//   projectStore.incrementStars(props.project.id);
-// }
 const incrementStar = () => {
-  projectStore.incrementStars(props.project.id)
+  if(!isStarred.value) {
+    isStarred.value = true
+    projectStore.incrementStars(props.project.id)
+  }
 }
-
-//:class="{ 'text-yellow-500': isStarred }"
 </script>
 
 <template>
@@ -30,10 +28,10 @@ const incrementStar = () => {
       <CardTitle>{{ project.name }}</CardTitle>
       <CardDescription>{{ project.description }}</CardDescription>
     </CardHeader>
-    <CardContent class="">
-      <div class="flex items-center gap-1 text-xs">
-        <button @click="incrementStar" class="h-4 w-4 text-yellow-500" aria-label="star">
-          <Icon  name="uil:github" />
+    <CardContent>
+      <div class=" flex items-center text-xs gap-1">
+        <button @click="incrementStar" :class="{ 'text-green-500': isStarred }" aria-label="star">
+          <Icon name="material-symbols:star-rate-rounded" size="24"  />
         </button>
         {{ project.stars }}
       </div>
@@ -45,3 +43,10 @@ const incrementStar = () => {
     </CardFooter>
   </Card>
 </template>
+
+<style scoped>
+.iconify {
+    /* @apply fill-red-500 */
+  }
+
+</style>

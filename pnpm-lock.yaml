@@ -45,6 +45,9 @@ importers:
       '@iconify-json/fe':
         specifier: ^1.1.10
         version: 1.1.10
+      '@iconify-json/material-symbols':
+        specifier: ^1.1.82
+        version: 1.1.82
       '@iconify-json/uil':
         specifier: ^1.1.8
         version: 1.1.8
@@ -457,6 +460,9 @@ packages:
 
   '@iconify-json/fe@1.1.10':
     resolution: {integrity: sha512-ePFSmtnDTk+PtsmGsPtmLXPQNV/V3iC/Kr7E/yv0PANiwVwqY5JJcaAVyWlVIvB7qaLEhncVhvXp7TwcM9bPpw==}
+
+  '@iconify-json/material-symbols@1.1.82':
+    resolution: {integrity: sha512-E67LgMFiAbEVF7rE38ulZU6NeXcPvayFF4hUUqt3g33tWrLsDNqEFTSsPt03l34rH5uGGtHIakTqtBlZ+/hRkw==}
 
   '@iconify-json/uil@1.1.8':
     resolution: {integrity: sha512-zkWB8XImzb1gfi5kN9xAfDXF5OqzxbKvtZq9xRUplEWEJYOoDB1RpbbQpCwJQ41j8Nf0ag0LFJr++qhYmvxftQ==}
@@ -4754,6 +4760,10 @@ snapshots:
       - vue
 
   '@iconify-json/fe@1.1.10':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/material-symbols@1.1.82':
     dependencies:
       '@iconify/types': 2.0.0
 

@@ -2,10 +2,17 @@ const animate = require("tailwindcss-animate")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  content: [
+    'project/components/**/*.vue',
+    'components/**/*.vue',
+    'layouts/**/*.vue',
+    'pages/**/*.vue',
+    'plugins/**/*.js',
+    'nuxt.config.js'
+  ],
   darkMode: ["class"],
   safelist: ["dark"],
   prefix: "",
-  
   theme: {
     container: {
       center: true,
