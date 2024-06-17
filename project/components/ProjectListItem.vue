@@ -10,6 +10,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { type ProjectSummary, useProjectStore } from '@/project'
 import { ref } from 'vue'
+
 const props = defineProps<{ project: ProjectSummary }>()
 const isStarred = ref(false)
 const projectStore = useProjectStore()
@@ -29,7 +30,7 @@ const incrementStar = () => {
       <CardDescription>{{ project.description }}</CardDescription>
     </CardHeader>
     <CardContent>
-      <div class=" flex items-center text-xs gap-1">
+      <div class="flex items-center text-xs gap-1">
         <button @click="incrementStar" :class="{ 'text-green-500': isStarred }" aria-label="star">
           <Icon name="material-symbols:star-rate-rounded" size="24"  />
         </button>
