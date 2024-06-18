@@ -41,6 +41,6 @@ describe('ProjectList', () => {
         const alert = wrapper.findComponent({ name: 'Alert' })
         expect(alert.exists()).toBe(false)
       })
-
-      it.todo('Should display skeleton on loading state')
+      it.todo('Should display N projects at initialization')
+      it.todo('Should display N more projects when the user clicks on "More" button')
 })

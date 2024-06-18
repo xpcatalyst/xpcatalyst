@@ -41,17 +41,16 @@ describe('ProjectListItem', () => {
 
     const starButton = wrapper.find('button[aria-label="star"]');
 
-    // Simulate rapid multiple clicks
     await starButton.trigger('click');
     await starButton.trigger('click');
     await nextTick(); 
     await starButton.trigger('click');
     await nextTick();
 
-    expect(projectStore.incrementStars).toHaveBeenCalledTimes(1);
+    expect(projectStore.incrementStars).toHaveBeenCalledOnce(); 
   });
 
-  it("Should increment the star's number for each project0 individually when a user clicks on it", async () => {
+  it("Should increment the star's number when a user clicks on it", async () => {
     const { wrapper, projectStore } = await setupStoreAndWrapper();
 
     const starButton = wrapper.find('button[aria-label="star"]');
@@ -62,5 +61,13 @@ describe('ProjectListItem', () => {
     expect(projectStore.projects[0].stars).toBe(project0.stars + 1);
   });
 
+  it('Should display skeleton on loading state', async () => {
+    const { wrapper, projectStore } = await setupStoreAndWrapper();
+    projectStore.loading = true;
+    await nextTick();
+    const skeleton = wrapper.find('[data-test="project-item-skeleton"]')
+    expect(skeleton.exists()).toBe(true)
+  });  
+  
   it.todo('Should open a new page for the project when you click on it');
 });

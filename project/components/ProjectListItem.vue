@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Badge } from '@/components/ui/badge'
 import { type ProjectSummary, useProjectStore } from '@/project'
 import { ref } from 'vue'
@@ -24,7 +25,19 @@ const incrementStar = () => {
 </script>
 
 <template>
-  <Card>
+
+  <div 
+    v-if="projectStore.loading" 
+    data-test="project-item-skeleton" 
+    class="flex flex-col space-y-3">
+    <Skeleton class="h-[125px] rounded-xl" />
+    <div class="space-y-2">
+      <Skeleton class="h-4" />
+      <Skeleton class="h-4" />
+    </div>
+  </div>
+
+  <Card v-else>
     <CardHeader>
       <CardTitle>{{ project.name }}</CardTitle>
       <CardDescription>{{ project.description }}</CardDescription>
