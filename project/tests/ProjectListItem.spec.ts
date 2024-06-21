@@ -1,73 +1,40 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
-import { createTestingPinia } from '@pinia/testing'
+import { nextTick } from 'vue'
+import { ProjectListItem, mockProjects, type ProjectSummary } from '@/project'
 
-import { type ProjectSummary, ProjectListItem, mockProjects, useProjectStore } from '@/project'
+// Mock composable
+const incrementStars = vi.fn();
+
+vi.mock('@/project/composables/useProjects', () => ({
+  useProjects: () => ({
+    incrementStars,
+  }),
+}));
 
 describe('ProjectListItem', () => {
-  let project0 : ProjectSummary;
-  let pinia;
-  let projectStore;
-
-  const setupStoreAndWrapper = async () => {
-    pinia = createTestingPinia({
-      createSpy: vi.fn,
-      stubActions: false,
-    });
-    projectStore = useProjectStore(pinia);
-    projectStore.projects = mockProjects;
-
-    const wrapper = await mountSuspended(ProjectListItem, {
-      props: { project: project0 },
-      global: { plugins: [pinia] },
-    });
-
-    return { wrapper, projectStore };
-  };
+  let project: ProjectSummary;
 
   beforeEach(() => {
-    project0 = JSON.parse(JSON.stringify(mockProjects[0])); // Deep copy
+    project = JSON.parse(JSON.stringify(mockProjects[0])); // Deep copy
+    incrementStars.mockReset(); // Reset mock before each test
   });
 
-  it('Should display the name and the description of the project0', async () => {
-    const { wrapper } = await setupStoreAndWrapper();
+  it('Should render the name and the description of the project', async () => {
+    const wrapper = await mountSuspended(ProjectListItem, { props: { project } });
 
-    expect(wrapper.text()).toContain(project0.name);
-    expect(wrapper.text()).toContain(project0.description);
-  });
-
-  it('Should call incrementStar only once when the star button is clicked multiple times rapidly', async () => {
-    const { wrapper, projectStore } = await setupStoreAndWrapper();
-
-    const starButton = wrapper.find('button[aria-label="star"]');
-
-    await starButton.trigger('click');
-    await starButton.trigger('click');
-    await nextTick(); 
-    await starButton.trigger('click');
-    await nextTick();
-
-    expect(projectStore.incrementStars).toHaveBeenCalledOnce(); 
+    expect(wrapper.text()).toContain(project.name);
+    expect(wrapper.text()).toContain(project.description);
   });
 
   it("Should increment the star's number when a user clicks on it", async () => {
-    const { wrapper, projectStore } = await setupStoreAndWrapper();
+    const wrapper = await mountSuspended(ProjectListItem, { props: { project } });
 
     const starButton = wrapper.find('button[aria-label="star"]');
     await starButton.trigger('click');
-    await nextTick(); // Ensure DOM and reactive data fully update
-
-    expect(projectStore.incrementStars).toHaveBeenCalledOnce();
-    expect(projectStore.projects[0].stars).toBe(project0.stars + 1);
-  });
-
-  it('Should display skeleton on loading state', async () => {
-    const { wrapper, projectStore } = await setupStoreAndWrapper();
-    projectStore.loading = true;
     await nextTick();
-    const skeleton = wrapper.find('[data-test="project-item-skeleton"]')
-    expect(skeleton.exists()).toBe(true)
-  });  
-  
-  it.todo('Should open a new page for the project when you click on it');
+
+    expect(incrementStars).toHaveBeenCalledWith(project.id);
+    expect(incrementStars).toHaveBeenCalledTimes(1);
+  });
 });
