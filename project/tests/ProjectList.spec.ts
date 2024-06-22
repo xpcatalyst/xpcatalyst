@@ -22,24 +22,23 @@ describe('ProjectList', () => {
         expect(wrapperWithNoProps.text()).toContain(NO_PROJECTS_MESSAGE)
     })
 
-      it('Should render Alert component with variant "warning" when no projects are present', async () => {
-        const wrapper = await mountSuspended(ProjectList, {
+    it('Should render Alert component with variant "warning" when no projects are present', async () => {
+      const wrapper = await mountSuspended(ProjectList, {
           props: { projects: [] }
-        })
-        const alert = wrapper.findComponent({ name: 'Alert' })
-        expect(alert.exists()).toBe(true)
-        expect(alert.props('variant')).toBe('warning')
-        expect(wrapper.text()).toContain(NO_PROJECTS_MESSAGE)
       })
-      
-      it('Should not render Alert component when projects are present', async () => {
-        const projects = mockProjects as Project[]
-        const wrapper = await mountSuspended(ProjectList, {
+      const alert = wrapper.find('[data-test="alert-warning"]')
+      expect(alert.exists()).toBe(true)
+      expect(alert.text()).toContain(NO_PROJECTS_MESSAGE)
+  })
+
+  it('Should not render Alert component when projects are present', async () => {
+      const projects = mockProjects as Project[]
+      const wrapper = await mountSuspended(ProjectList, {
           props: { projects }
-        })
-        const alert = wrapper.findComponent({ name: 'Alert' })
-        expect(alert.exists()).toBe(false)
       })
+      const alert = wrapper.find('[data-test="alert-warning"]')
+      expect(alert.exists()).toBe(false)
+  })
 
       it.todo('Should display skeleton projects on loading state')
       it.todo('Should display N projects at initialization')

@@ -7,7 +7,9 @@ defineProps<{ projects?: Project[]}>()
 
 <template>
     <div v-if="!projects || projects?.length === 0">
-      <Alert variant="warning">
+      <Alert 
+        variant="warning"
+        data-test="alert-warning">
         <AlertCircle class="w-4 h-4" />
         <AlertTitle>Warning</AlertTitle>
         <AlertDescription>{{ NO_PROJECTS_MESSAGE }}</AlertDescription>
