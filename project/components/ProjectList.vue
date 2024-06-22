@@ -1,11 +1,20 @@
 <script lang="ts" setup>
 import { AlertCircle } from 'lucide-vue-next'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { type Project, NO_PROJECTS_MESSAGE, ProjectListItem } from "@/project"
-defineProps<{ projects?: Project[]}>()
+import { type Project, NO_PROJECTS_MESSAGE, PROJECTS_NB, ProjectListItem, ProjectListSkeleton } from "@/project"
+defineProps<{ projects?: Project[], loading?: boolean}>()
 </script>
 
 <template>
+
+  <div v-if="loading" class="grid grid-cols-3 gap-8">
+    <ProjectListSkeleton 
+     v-for="n in PROJECTS_NB" 
+     :key="`skeleton-${n}`"
+      data-test="skeleton-project-item" />
+  </div>
+
+  <template v-else>
     <div v-if="!projects || projects?.length === 0">
       <Alert 
         variant="warning"
@@ -22,4 +31,5 @@ defineProps<{ projects?: Project[]}>()
         :project="project"
         data-test="project-item" />
   </div>
+</template>
 </template>

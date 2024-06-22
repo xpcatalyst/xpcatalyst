@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
-import { type ProjectSummary, useProjectStore, useProjects } from '@/project'
+import { type ProjectSummary, useProjects } from '@/project'
 import { ref } from 'vue'
 
 defineProps<{ project: ProjectSummary }>()

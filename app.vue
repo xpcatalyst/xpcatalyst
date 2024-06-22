@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import { ProjectList, useProjects } from '@/project';
 
-// const projectStore = useProjectStore();
-// if (!projectStore.projects.length) {
-//   await projectStore.fetchProjects();
-// }
-//v-if="projectStore.projects.length > 0"
+const { projects, loading, fetchProjects, displayedProjects, loadMoreProjects } = useProjects();
 
-const { projects, loading, error, fetchProjects } = useProjects();
 if (!projects.value.length) {
   await fetchProjects();
 }
@@ -15,5 +10,17 @@ if (!projects.value.length) {
 
 <template>
     <BaseH1>Projects</BaseH1>
-    <ProjectList :projects="projects" />
+
+    <div class="flex flex-col gap-8">
+    
+    <ProjectList :projects="displayedProjects" :loading="loading"/>
+
+    <button 
+    class="px-3 py-2 bg-purple-900 text-white rounded"
+      v-if="projects.length > displayedProjects.length" 
+      @click="loadMoreProjects" 
+      data-test="load-more-button">
+        Load More
+      </button>
+    </div>
 </template>
