@@ -7,6 +7,7 @@ export * from "./composables/useProjects";
 import ProjectList from "./components/ProjectList.vue";
 import ProjectListItem from "./components/ProjectListItem.vue";
 import ProjectListSkeleton from "./components/ProjectListSkeleton.vue";
+import ProjectSection from "./views/ProjectSection.vue";
 
-export { ProjectList, ProjectListItem, ProjectListSkeleton };
+export { ProjectList, ProjectListItem, ProjectListSkeleton, ProjectSection};
 

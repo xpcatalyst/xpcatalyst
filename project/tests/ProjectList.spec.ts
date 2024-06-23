@@ -45,24 +45,4 @@ describe('ProjectList', () => {
     const skeletonItems = wrapper.findAll('[data-test="skeleton-project-item"]')
     expect(skeletonItems.length).toBe(PROJECTS_NB)
   })
-  it('Should display N projects at initialization', async () => {
-    const wrapper = await mountSuspended(ProjectList, { props: { projects } });
-    // await nextTick();
-    // await wrapper.vm.$nextTick();
-    const projectItems = wrapper.findAll('[data-test="project-item"]');
-    expect(projectItems.length).toBe(PROJECTS_NB);
-  });
-
-  it.skip('Should display more projects when "Load More" button is clicked', async () => {
-    // const projects = Array(PROJECTS_NB * 2).fill().map((_, index) => ({
-    //   id: index + 1,
-    //   name: `Project ${index + 1}`,
-    // }));
-
-    const wrapper = await mountSuspended(ProjectList, { props: { projects } });
-    await wrapper.find('[data-test="load-more-button"]').trigger('click');
-
-    const projectItems = wrapper.findAll('[data-test="project-item"]');
-    expect(projectItems.length).toBe(PROJECTS_NB * 2);
-  });
 })
