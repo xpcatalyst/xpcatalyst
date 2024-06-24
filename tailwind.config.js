@@ -3,6 +3,7 @@ const animate = require("tailwindcss-animate")
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    'project/views/**/*.vue',
     'project/components/**/*.vue',
     'components/**/*.vue',
     'layouts/**/*.vue',

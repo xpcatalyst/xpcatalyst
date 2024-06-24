@@ -23,9 +23,11 @@ if (!projects.value.length) {
 
       <ProjectList :projects="displayedProjects" :loading="loading" />
 
-      <Button v-if="projects.length > displayedProjects.length" data-test="load-more-button" @click="loadMoreProjects">
+      <button v-if="projects.length > displayedProjects.length"
+        class="py-2 text-base w-fit rounded-lg px-8 bg-primary text-primary-foreground hover:bg-primary/90"
+        data-test="load-more-button" @click="loadMoreProjects">
         Load More
-      </Button>
+      </button>
     </div>
   </section>
 </template>
