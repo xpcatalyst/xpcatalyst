@@ -6,6 +6,7 @@ const {
   error,
   projects,
   displayedProjects,
+  hasMoreProjects,
   fetchProjects,
   loadMoreProjects
 } = useProjects();
@@ -27,10 +28,11 @@ if (!projects.value.length) {
 
       <ProjectList :projects="displayedProjects" :loading="loading" />
 
-      <button :disabled="displayedProjects.length >= projects.length"
+      <button :disabled="!hasMoreProjects || loading"
         class="py-2 text-base w-fit rounded-lg px-8 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-20 disabled:pointer-events-none"
-        data-test="load-more-button" @click="loadMoreProjects">
-        Load More
+        data-test="load-more-button" @click="loadMoreProjects" aria-label="Load more projects">
+        <span v-if="loading">Loading...</span>
+        <span v-else>Load More</span>
       </button>
     </div>
   </section>

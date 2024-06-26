@@ -1,4 +1,3 @@
-import { computed } from 'vue';
 import { useProjectStore, PROJECTS_NB, type Project } from '@/project';
 
 export const useProjects = () => {
@@ -13,6 +12,7 @@ export const useProjects = () => {
 
   const displayedProjects = ref<Project[]>([]);
   const displayCount = ref(PROJECTS_NB);
+  const hasMoreProjects = computed(() => projects.value.length > displayedProjects.value.length);
 
   const loadMoreProjects = () => {
     if (projects.value) {
@@ -21,7 +21,6 @@ export const useProjects = () => {
     }
   };
 
-  // Initialize displayed projects
   if (projects.value.length) {
     displayedProjects.value = projects.value.slice(0, PROJECTS_NB);
   }
@@ -31,6 +30,7 @@ export const useProjects = () => {
     displayedProjects,
     loading,
     error,
+    hasMoreProjects,
     fetchProjects,
     incrementStars,
     loadMoreProjects
