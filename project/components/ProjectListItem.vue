@@ -16,8 +16,8 @@ defineProps<{ project: ProjectSummary }>()
 const isStarred = ref(false)
 const { incrementStars } = useProjects();
 
-const incrementStar = (id:number) => {
-  if(!isStarred.value) {
+const incrementStar = (id: number) => {
+  if (!isStarred.value) {
     isStarred.value = true
     incrementStars(id)
   }
@@ -33,14 +33,14 @@ const incrementStar = (id:number) => {
     <CardContent>
       <div class="flex items-center text-xs gap-1">
         <button @click="incrementStar(project.id)" :class="{ 'text-green-500': isStarred }" aria-label="star">
-          <Icon name="material-symbols:star-rate-rounded" size="24"  />
+          <Icon name="material-symbols:star-rate-rounded" size="24" />
         </button>
         {{ project.stars }}
       </div>
     </CardContent>
     <CardFooter class="flex gap-2 flex-wrap items-end">
       <Badge variant="secondary" v-for="(tech, index) in project.stack" :key="`tech-${index}`">
-      {{ tech }}
+        {{ tech }}
       </Badge>
     </CardFooter>
   </Card>
