@@ -2,14 +2,12 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { ProjectListItem, type ProjectSummary } from '@/project'
 
-
 // Mock the composable's function
 const incrementStars = vi.fn();
 
 vi.mock('../composables/useProjects', () => ({
   useProjects: () => ({ incrementStars }),
 }));
-
 
 describe('ProjectListItem', () => {
   beforeEach(() => {
@@ -24,38 +22,45 @@ describe('ProjectListItem', () => {
     expect(wrapper.text()).toContain('DESCRIPTION');
   });
 
-  it("Should call the composable star's function when a user clicks on it", async () => {
+  it("Should call the composable's incrementStars function when the button is clicked", async () => {
     const project = { id: 9 } as ProjectSummary;
     const wrapper = await mountSuspended(ProjectListItem, { props: { project } });
 
     const button = wrapper.find('button[aria-label="star"]');
     await button.trigger('click');
 
-    expect(incrementStars).toHaveBeenCalledWith(9)
+    expect(incrementStars).toHaveBeenCalledWith(9);
 
-    const isStarred = (wrapper.vm as any).isStarred //internal state
-    expect(isStarred.value).toBe(true)
+    const isStarred = (wrapper.vm as any).isStarred; //internal state
+    expect(isStarred.value).toBe(true);
   });
 
-    it("Should not call the star's function when already starred", async () => {
-      const project = { id: 9 } as ProjectSummary;
-      const wrapper = await mountSuspended(ProjectListItem, { props: { project } });
+  it("Should not call incrementStars when already starred", async () => {
+    const project = { id: 9 } as ProjectSummary;
+    const wrapper = await mountSuspended(ProjectListItem, { props: { project } });
 
-      const isStarred = (wrapper.vm as any).isStarred //internal state
-      isStarred.value = true;
+    const isStarred = (wrapper.vm as any).isStarred;
+    isStarred.value = true;
 
-      const button = wrapper.find('button[aria-label="star"]');
-      await button.trigger('click');
+    const button = wrapper.find('button[aria-label="star"]');
+    await button.trigger('click');
 
-      expect(incrementStars).not.toHaveBeenCalled();
-      //expect(button.attributes('disabled')).toBe('disabled');
-      //expect(button.attributes('disabled')).toBe('true')
-      //expect(button.classes()).toContain('text-green-500');
-  });});
+    expect(incrementStars).not.toHaveBeenCalled();
+  });
 
+  it('Should disable the button when isStarred is true', async () => {
+    const project = { id: 9 } as ProjectSummary;
+    const wrapper = await mountSuspended(ProjectListItem, { props: { project } });
 
+    const button = wrapper.find('button[aria-label="star"]');
 
+    // Initially, the button should not be disabled
+    expect(button.attributes('disabled')).toBeUndefined();
 
-     // const isStarred = wrapper.vm.$data.isStarred;
-    //  const isStarred = (wrapper.vm as any).isStarred //internal state
-    //  expect(isStarred).toBe(true)
+    await button.trigger('click');
+
+    // After clicking, the button should be disabled
+    expect(button.attributes('disabled')).toBeDefined(); // or .toBe('')
+  });
+
+});
