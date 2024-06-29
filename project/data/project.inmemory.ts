@@ -1,6 +1,23 @@
 
 import { type Project } from '..';
 
+export const generateMockProjects = (count: number): Project[] => {
+    const projects: Project[] = [];
+    for (let i = 1; i <= count; i++) {
+      projects.push({
+        id: i,
+        date: `2023-01-${i.toString().padStart(2, '0')}`,
+        name: `Project ${i}`,
+        description: `Description ${i}`,
+        stars: Math.floor(Math.random() * 5) + 1,
+        pinned: Math.random() > 0.5,
+        workflow: `Workflow ${i}`,
+        stack: [`Tech ${i}`]
+      } as Project);
+    }
+    return projects;
+  }
+
 export const mockProjects: Project[] = [
     {
         "id": 1,
