@@ -8,7 +8,7 @@ defineProps<{ projects?: Project[], loading?: boolean }>()
 
 <template>
   <div v-if="loading" class="grid grid-cols-3 gap-8">
-    <ProjectListSkeleton v-for="n in PROJECTS_NB" :key="`skeleton-${n}`" data-test="skeleton-project-item" />
+    <ProjectListSkeleton v-for="n in PROJECTS_NB" :key="`project-skeleton-${n}`" data-test="project-skeleton" />
   </div>
 
   <div v-else class="grid grid-cols-3 gap-8">
@@ -17,7 +17,7 @@ defineProps<{ projects?: Project[], loading?: boolean }>()
   </div>
 
   <div v-if="(!projects || projects?.length === 0) && !loading">
-    <Alert variant="warning" data-test="alert-warning">
+    <Alert variant="warning" data-test="project-warning">
       <AlertCircle class="w-4 h-4" />
       <AlertTitle>Warning</AlertTitle>
       <AlertDescription>{{ NO_PROJECTS_MESSAGE }}</AlertDescription>
