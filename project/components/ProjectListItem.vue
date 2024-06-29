@@ -32,7 +32,10 @@ const incrementStar = (id: number) => {
     </CardHeader>
     <CardContent>
       <div class="flex items-center text-xs gap-1">
-        <button @click="incrementStar(project.id)" :class="{ 'text-green-500': isStarred }" aria-label="star">
+        <button :disabled="isStarred" @click="incrementStar(project.id)" :class="[
+        'disabled:opacity-20 disabled:pointer-events-none',
+        { 'text-green-500': isStarred },
+      ]" aria-label="star">
           <Icon name="material-symbols:star-rate-rounded" size="24" />
         </button>
         {{ project.stars }}
