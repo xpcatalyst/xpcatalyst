@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProjectSection } from '@/project';
+import { ProjectSection } from '@/features/project';
 </script>
 
 <template>

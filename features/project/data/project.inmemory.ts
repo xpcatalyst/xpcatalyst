@@ -1,4 +1,3 @@
-
 import { type Project } from '..';
 
 export const generateMockProjects = (count: number): Project[] => {
