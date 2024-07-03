@@ -12,3 +12,4 @@ const props = defineProps<SkeletonProps>()
 <template>
   <div :class="cn('animate-pulse rounded-md bg-muted', props.class)" />
 </template>
+~/app/lib/utils
