@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { ProjectSection } from '@/features/project';
+import ProjectList from '../layers/project/components/ProjectList.vue';
 </script>
 
 <template>
-   <ProjectSection />
+  <div>
+    <h1>Hello</h1>
+    <ProjectList />
+  </div>
 </template>
