@@ -1,0 +1,1 @@
+export const NO_PROJECT_MESSAGE = "No projects found, please try again."
