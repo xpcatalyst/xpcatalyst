@@ -5,5 +5,10 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   compatibilityDate: "2024-07-03",
-  modules: ['@nuxt/test-utils/module', "@nuxtjs/tailwindcss", "shadcn-nuxt"]
+  modules: [
+    '@nuxt/test-utils/module',
+    "@nuxtjs/tailwindcss",
+    "shadcn-nuxt",
+    "@nuxt/icon"
+  ]
 })

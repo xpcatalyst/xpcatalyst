@@ -5,8 +5,10 @@ export type Project = {
     description: string;
     stars: number;
     pinned: boolean;
-    workflow: string;
+    workflow: Workflow;
     stack: string[];
 };
+
+type Workflow = 'draft' | 'public' | 'spec' | 'prototype' | 'challenge' | 'mvp' | 'beta' | 'alpha' | 'archives'
 
 export type ProjectSummary = Omit<Project, 'date' | 'pinned'>;
