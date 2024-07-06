@@ -11,7 +11,7 @@
   },
   "framework": "nuxt",
   "aliases": {
-    "components": "@/app/components",
-    "utils": "@/app/utils"
+    "components": "@/components",
+    "utils": "@/lib"
   }
 }
