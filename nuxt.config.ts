@@ -10,5 +10,9 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
     "@nuxt/icon"
-  ]
+  ],
+  shadcn: {
+    prefix: '',
+    componentDir: 'app/components/ui'
+  }
 })
