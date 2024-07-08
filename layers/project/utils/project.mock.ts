@@ -10,7 +10,7 @@ export const generateMockProjects = (count: number): Project[] => {
             description: `Description ${i}`,
             stars: Math.floor(Math.random() * 5) + 1,
             pinned: Math.random() > 0.5,
-            workflow: `Workflow ${i}`,
+            workflow: `draft`,
             stack: [`Tech ${i}`]
         } as Project);
     }
