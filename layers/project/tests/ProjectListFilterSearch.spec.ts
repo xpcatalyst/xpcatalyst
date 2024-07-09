@@ -1,11 +1,11 @@
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import ProjectListSearch from "../components/ProjectListSearch.vue"
+import ProjectListFilterSearch from "../components/ProjectListFilterSearch.vue"
 
-describe("ProjectListSearch", () => { 
+describe("ProjectListFilterSearch", () => { 
 
     it('Should render the input element', async () => {
-        const wrapper = await mountSuspended(ProjectListSearch);
+        const wrapper = await mountSuspended(ProjectListFilterSearch);
         const input = wrapper.find('input[type="text"]');
 
         expect(input.exists()).toBe(true);
@@ -14,7 +14,7 @@ describe("ProjectListSearch", () => {
 
 
     it("Should emit the search term when input changes", async () => {
-        const wrapper = await mountSuspended(ProjectListSearch);
+        const wrapper = await mountSuspended(ProjectListFilterSearch);
         const input = wrapper.find('input[type="text"]');
 
         await input.setValue('commerce');

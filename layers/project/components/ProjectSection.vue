@@ -2,12 +2,15 @@
 import { mockProjects } from "../utils/project.mock";
 import { useProjects } from '../composables/useProjects';
 
-const { filteredProjects, updateSearchTerm } = useProjects(mockProjects);
+const { filteredProjects, updateSearchTerm, updateWorkflowFilter } = useProjects(mockProjects);
 </script>
 
 <template>
   <section class="container my-8">
-    <ProjectListSearch @update:search="updateSearchTerm" />
+    <div class="flex gap-8">
+      <ProjectListFilterSearch @update:search="updateSearchTerm" />
+      <ProjectListFilterWorkflow @update:workflow="updateWorkflowFilter" />
+    </div>
     <ProjectList :projects="filteredProjects" />
   </section>
 </template>

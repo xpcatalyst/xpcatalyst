@@ -18,8 +18,29 @@ describe("useProjects", () => {
         // Should filter to only include projects with 'web' or 'design' in name or description
         updateSearchTerm('web');
         expect(filteredProjects.value.length).toEqual(2);
+
         updateSearchTerm('design');
         expect(filteredProjects.value.length).toEqual(1);
     });
+
+    it("Should filter projects by workflow status", () => { 
+        const projects: Project[] = [
+            { workflow: "draft" } as Project,
+            { workflow: "draft" } as Project,
+            { workflow: "alpha" } as Project,
+            { workflow: "beta" } as Project,
+        ];
+        
+        const { filteredProjects, updateWorkflowFilter } = useProjects(projects);
+
+        updateWorkflowFilter('draft');
+        expect(filteredProjects.value.length).toEqual(2);
+
+        updateWorkflowFilter('alpha');
+        expect(filteredProjects.value).toEqual([{ workflow: "alpha" }]);
+
+        updateWorkflowFilter('');
+        expect(filteredProjects.value).toEqual(projects);
+    })
 });
 
