@@ -9,6 +9,6 @@ export type Project = {
     stack: string[];
 };
 
-type Workflow = 'draft' | 'public' | 'spec' | 'prototype' | 'challenge' | 'mvp' | 'beta' | 'alpha' | 'archives'
+export type Workflow = 'draft' | 'public' | 'spec' | 'prototype' | 'challenge' | 'mvp' | 'beta' | 'alpha' | 'archives'
 
 export type ProjectSummary = Omit<Project, 'date' | 'pinned'>;

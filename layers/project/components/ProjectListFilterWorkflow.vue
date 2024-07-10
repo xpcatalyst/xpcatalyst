@@ -1,25 +1,47 @@
 <script lang="ts" setup>
-const emit = defineEmits(['update:workflow'])
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
-const updateWorkflow = (event: Event) => {
-  emit('update:workflow', (event.target as HTMLSelectElement).value)
-}
+import { type Workflow } from '../types/project.types.js'
+
+const emit = defineEmits(['update:workflow'])
+const workflow = ref('')
+const workflowValues = ref<Workflow[]>([
+  'draft',
+  'public',
+  'spec',
+  'prototype',
+  'challenge',
+  'mvp',
+  'beta',
+  'alpha',
+  'archives'
+])
+
+// Watch for changes in the selected workflow value
+watch(workflow, (newValue) => {
+  emit('update:workflow', newValue === 'all' ? '' : newValue)
+})
 </script>
 
 <template>
-  <div>
-    <label for="workflow-filter">Filter by Workflow:</label>
-    <select id="workflow-filter" @change="updateWorkflow">
-      <option value="">All</option>
-      <option value="draft">Draft</option>
-      <option value="public">Public</option>
-      <option value="spec">Spec</option>
-      <option value="prototype">Prototype</option>
-      <option value="challenge">Challenge</option>
-      <option value="mvp">MVP</option>
-      <option value="beta">Beta</option>
-      <option value="alpha">Alpha</option>
-      <option value="archives">Archives</option>
-    </select>
-  </div>
+  <Select v-model="workflow">
+    <SelectTrigger class="w-[180px]">
+      <SelectValue placeholder="Select a workflow" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectGroup>
+        <SelectLabel>Workflow</SelectLabel>
+        <SelectItem value="all">All</SelectItem>
+        <SelectItem v-for="(item, index) in workflowValues" :key="index" :value="item">{{ item }}</SelectItem>
+      </SelectGroup>
+    </SelectContent>
+  </Select>
 </template>
