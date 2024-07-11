@@ -17,7 +17,7 @@ const emit = defineEmits(['update:workflow']);
 const workflow = ref('');
 
 watch(workflow, (newValue) => {
-  emit('update:workflow', newValue === 'all' ? '' : newValue);
+  emit('update:workflow', newValue === 'ALL' ? '' : newValue);
 });
 </script>
 
@@ -29,7 +29,7 @@ watch(workflow, (newValue) => {
     <SelectContent>
       <SelectGroup>
         <SelectLabel>Workflow</SelectLabel>
-        <SelectItem value="all">All</SelectItem>
+        <SelectItem value="ALL">ALL</SelectItem>
         <SelectItem v-for="(option, index) in options" :key="index" :value="option">
           {{ option }}
         </SelectItem>
