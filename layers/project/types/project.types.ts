@@ -9,6 +9,18 @@ export type Project = {
     stack: string[];
 };
 
-export type Workflow = 'draft' | 'public' | 'spec' | 'prototype' | 'challenge' | 'mvp' | 'beta' | 'alpha' | 'archives'
+export enum Workflow {
+    Draft = 'draft',
+    Public = 'public',
+    Spec = 'spec',
+    Prototype = 'prototype',
+    Challenge = 'challenge',
+    MVP = 'mvp',
+    Beta = 'beta',
+    Alpha = 'alpha',
+    Archives = 'archives',
+}
+
+// export type Workflow = 'draft' | 'public' | 'spec' | 'prototype' | 'challenge' | 'mvp' | 'beta' | 'alpha' | 'archives'
 
 export type ProjectSummary = Omit<Project, 'date' | 'pinned'>;
