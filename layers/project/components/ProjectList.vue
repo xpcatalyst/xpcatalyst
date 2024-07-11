@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { AlertCircle } from 'lucide-vue-next'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+
 import { type Project } from "../types/project.types.js"
 import { NO_PROJECT_MESSAGE } from "../utils/project.constants";
 
@@ -10,7 +13,11 @@ defineProps<{ projects: Project[] }>()
     <ProjectListCard v-for="(project) in projects" :key="`${project.id}-project-item`" :project="project"
       data-test="project-item" />
   </div>
-  <div v-else>
-    <p>{{ NO_PROJECT_MESSAGE }}</p>
+  <div v-else class="py-8">
+    <Alert data-test="project-warning">
+      <AlertCircle class="w-4 h-4" />
+      <AlertTitle>Oups ..</AlertTitle>
+      <AlertDescription>{{ NO_PROJECT_MESSAGE }}</AlertDescription>
+    </Alert>
   </div>
 </template>
