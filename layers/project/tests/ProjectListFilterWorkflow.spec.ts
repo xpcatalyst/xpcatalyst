@@ -4,42 +4,25 @@ import ProjectListFilterWorkflow from "../components/ProjectListFilterWorkflow.v
 
 describe("ProjectListFilterWorkflow", () => {
 
+    it('Select component renders with provided options', async () => {
+        const options = ['Option1', 'Option2', 'Option3']
+        const wrapper = await mountSuspended(ProjectListFilterWorkflow, { props: { options } })
+
+        expect(wrapper.find('option[value="Option1"]').exists()).toBe(true)
+        expect(wrapper.find('option[value="Option2"]').exists()).toBe(true)
+        expect(wrapper.find('option[value="Option3"]').exists()).toBe(true)
+    })
+
+
     it('Should emit an update event with selected workflow', async () => {
-        const wrapper = await mountSuspended(ProjectListFilterWorkflow);
+        const options = ['Option1', 'Option2', 'Option3']
+        const wrapper = await mountSuspended(ProjectListFilterWorkflow, { props: { options } });
+        const selectElement = wrapper.find('select[data-test="select-workflow"]');
 
-        // Check initial state
-        const select = wrapper.find('select');
-        expect(select.exists()).toBe(true);
+        await selectElement.setValue('Option2');
 
-        // Set value and trigger change event
-        await select.setValue('draft');
-        
-        // Verify the event is emitted
         const emittedEvents = wrapper.emitted('update:workflow');
         expect(emittedEvents).toBeDefined();
-        expect(emittedEvents?.length).toBeGreaterThan(0);
-        expect(emittedEvents?.[0]).toEqual(['draft']);
-    });
+        expect(emittedEvents?.[0]).toEqual(['Option2']);
+      });
 })
-
-
-/*
-const initialProjects = [
-            { id: 1, name: 'Project 1', description: 'Desc 1', workflow: 'draft' },
-            { id: 2, name: 'Project 2', description: 'Desc 2', workflow: 'public' },
-            { id: 3, name: 'Project 3', description: 'Desc 3', workflow: 'alpha' },
-        ];
-
-        const wrapper = await mountSuspended(ProjectListFilterWorkflow, {
-            props: { initialProjects },
-        });
-
-        expect(wrapper.html()).toContain('Project 1');
-        expect(wrapper.html()).toContain('Project 2');
-        expect(wrapper.html()).toContain('Project 3');
-
-        await wrapper.find('select').setValue('public');
-        expect(wrapper.html()).toContain('Project 2');
-        expect(wrapper.html()).not.toContain('Project 1');
-        expect(wrapper.html()).not.toContain('Project 3');
-*/

@@ -1,3 +1,4 @@
+<!-- ProjectListFilterWorkflow.vue -->
 <script lang="ts" setup>
 import {
   Select,
@@ -7,32 +8,21 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+} from '@/components/ui/select';
 
-import { type Workflow } from '../types/project.types.js'
+defineProps<{ options: string[] }>();
 
-const emit = defineEmits(['update:workflow'])
-const workflow = ref('')
-const workflowValues = ref<Workflow[]>([
-  'draft',
-  'public',
-  'spec',
-  'prototype',
-  'challenge',
-  'mvp',
-  'beta',
-  'alpha',
-  'archives'
-])
+const emit = defineEmits(['update:workflow']);
 
-// Watch for changes in the selected workflow value
+const workflow = ref('');
+
 watch(workflow, (newValue) => {
-  emit('update:workflow', newValue === 'all' ? '' : newValue)
-})
+  emit('update:workflow', newValue === 'all' ? '' : newValue);
+});
 </script>
 
 <template>
-  <Select v-model="workflow">
+  <Select v-model="workflow" data-test="select-workflow">
     <SelectTrigger class="w-[180px]">
       <SelectValue placeholder="Select a workflow" />
     </SelectTrigger>
@@ -40,7 +30,9 @@ watch(workflow, (newValue) => {
       <SelectGroup>
         <SelectLabel>Workflow</SelectLabel>
         <SelectItem value="all">All</SelectItem>
-        <SelectItem v-for="(item, index) in workflowValues" :key="index" :value="item">{{ item }}</SelectItem>
+        <SelectItem v-for="(option, index) in options" :key="index" :value="option">
+          {{ option }}
+        </SelectItem>
       </SelectGroup>
     </SelectContent>
   </Select>
