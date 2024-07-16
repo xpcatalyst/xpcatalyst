@@ -1,5 +1,29 @@
 
-import { type Project } from "../types/project.types"
+import { type Project, type Workflow, type Option } from "../types/project.types"
+
+function countWorkflows(projects: Project[]): Option[] {
+  // Utilisation d'un objet pour compter les occurrences de chaque workflow
+  const workflowCount: { [key in Workflow]?: number } = {};
+
+  projects.forEach(project => {
+      const workflow = project.workflow;
+      if (workflowCount[workflow]) {
+          workflowCount[workflow]++;
+      } else {
+          workflowCount[workflow] = 1;
+      }
+  });
+
+  // Transformation de l'objet workflowCount en tableau d'objets Option
+  const options: Option[] = (Object.keys(workflowCount) as Workflow[]).map(workflow => ({
+      label: workflow,
+      nb: workflowCount[workflow] ?? 0 // évite undefined
+  }));
+
+  return options;
+}
+
+
 export const useProjects = (initialProject: Project[]) => {
 
     const projects = ref(initialProject);
@@ -25,10 +49,15 @@ export const useProjects = (initialProject: Project[]) => {
         return filtered;
       });
 
+    const workflowOptions = computed(() : Option[] => {
+      return countWorkflows(projects.value)
+    })
+
     return {
         updateSearchTerm,
         updateWorkflowFilter,
         filteredProjects,
+        workflowOptions
     }
     
 }

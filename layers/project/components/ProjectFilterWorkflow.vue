@@ -9,8 +9,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { type Option } from '../types/project.types.js'
 
-defineProps<{ options: string[] }>();
+defineProps<{ options: Option[] }>();
 
 const emit = defineEmits(['update:workflow']);
 
@@ -30,8 +31,8 @@ watch(workflow, (newValue) => {
       <SelectGroup>
         <SelectLabel>Workflow</SelectLabel>
         <SelectItem value="ALL">ALL</SelectItem>
-        <SelectItem v-for="(option, index) in options" :key="index" :value="option">
-          {{ option }}
+        <SelectItem v-for="(option, index) in options" :key="index" :value="option.label">
+          {{ option.label }} ({{ option.nb }})
         </SelectItem>
       </SelectGroup>
     </SelectContent>

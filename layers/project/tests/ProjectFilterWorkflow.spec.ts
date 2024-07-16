@@ -1,11 +1,16 @@
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime"
 import ProjectFilterWorkflow from "../components/ProjectFilterWorkflow.vue"
+import { type Option } from "../types/project.types";
 
 describe("ProjectFilterWorkflow", () => {
 
     it('Select component renders with provided options', async () => {
-        const options = ['Option1', 'Option2', 'Option3']
+        const options = [
+            { label: 'Option1', nb:1 },
+            { label: 'Option2', nb:10 },
+            { label: 'Option3', nb:100 },
+        ]
         const wrapper = await mountSuspended(ProjectFilterWorkflow, { props: { options } })
 
         expect(wrapper.find('option[value="Option1"]').exists()).toBe(true)
@@ -14,7 +19,11 @@ describe("ProjectFilterWorkflow", () => {
     })
 
     it('Should emit an update event with selected workflow', async () => {
-        const options = ['Option1', 'Option2', 'Option3']
+        const options = [
+            { label: 'Option1', nb:1 },
+            { label: 'Option2', nb:10 },
+            { label: 'Option3', nb:100 },
+        ]
         const wrapper = await mountSuspended(ProjectFilterWorkflow, { props: { options } });
         const selectElement = wrapper.find('select[data-test="select-workflow"]');
 

@@ -42,5 +42,20 @@ describe("useProjects", () => {
         updateWorkflowFilter('');
         expect(filteredProjects.value).toEqual(projects);
     })
+
+    it("Should return a list of workflow options", () => { 
+
+        const projects: Project[] = [
+            { workflow: "draft" } as Project,
+            { workflow: "draft" } as Project,
+            { workflow: "alpha" } as Project,
+            { workflow: "beta" } as Project,
+        ];
+
+        const { workflowOptions } = useProjects(projects);
+
+        expect(workflowOptions.value.length).toEqual(4);
+    })
+
 });
 
