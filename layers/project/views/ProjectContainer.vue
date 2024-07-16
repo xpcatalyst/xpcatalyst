@@ -11,8 +11,8 @@ const { filteredProjects, updateSearchTerm, updateWorkflowFilter } = useProjects
 <template>
   <section class="container my-8">
     <div class="flex gap-8">
-      <ProjectListFilterSearch @update:search="updateSearchTerm" :placeholder="MESSAGE.SEARCH_PLACEHOLDER" />
-      <ProjectListFilterWorkflow @update:workflow="updateWorkflowFilter" :options="workflowValues" />
+      <ProjectFilterSearch @update:search="updateSearchTerm" :placeholder="MESSAGE.SEARCH_PLACEHOLDER" />
+      <ProjectFilterWorkflow @update:workflow="updateWorkflowFilter" :options="workflowValues" />
     </div>
     <ProjectList :projects="filteredProjects" :message="MESSAGE.NO_PROJECTS" />
   </section>
