@@ -3,9 +3,8 @@ import { AlertCircle } from 'lucide-vue-next'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 import { type Project } from "../types/project.types.js"
-import { NO_PROJECT_MESSAGE } from "../utils/project.constants";
 
-defineProps<{ projects: Project[] }>()
+defineProps<{ projects: Project[], message?: string }>()
 </script>
 
 <template>
@@ -17,7 +16,7 @@ defineProps<{ projects: Project[] }>()
     <Alert data-test="project-warning">
       <AlertCircle class="w-4 h-4" />
       <AlertTitle>Oups ..</AlertTitle>
-      <AlertDescription>{{ NO_PROJECT_MESSAGE }}</AlertDescription>
+      <AlertDescription>{{ message }}</AlertDescription>
     </Alert>
   </div>
 </template>

@@ -2,7 +2,6 @@ import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import { type Project } from "../types/project.types";
 import ProjectList from "../components/ProjectList.vue";
-import { NO_PROJECT_MESSAGE } from "../utils/project.constants";
 
 describe("ProjectList", () => {
 
@@ -20,8 +19,8 @@ describe("ProjectList", () => {
     })
 
     it("Should display a message when no projects are specified", async () => {
-        const wrapper = await mountSuspended(ProjectList, { props : { projects: [] } })
-        expect(wrapper.text()).toContain(NO_PROJECT_MESSAGE)
+        const wrapper = await mountSuspended(ProjectList, { props : { projects: [], message: "MESSAGE" } })
+        expect(wrapper.text()).toContain("MESSAGE")
     })
 })
 

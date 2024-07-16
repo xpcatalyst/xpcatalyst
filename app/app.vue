@@ -3,6 +3,6 @@
 
 <template>
   <div>
-    <ProjectSection />
+    <ProjectContainer />
   </div>
 </template>
