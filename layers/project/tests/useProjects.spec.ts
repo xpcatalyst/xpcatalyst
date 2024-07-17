@@ -56,9 +56,9 @@ describe("useProjects", () => {
 
         expect(workflowOptions.value.length).toEqual(3);
         expect(workflowOptions.value).toEqual( [
-            { label: "draft", nb: 2 },
-            { label: "alpha", nb: 1 },
-            { label: "beta", nb: 1 },
+            { value: "draft", nb: 2 },
+            { value: "alpha", nb: 1 },
+            { value: "beta", nb: 1 },
         ]);
     })
 

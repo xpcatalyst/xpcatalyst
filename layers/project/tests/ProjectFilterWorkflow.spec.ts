@@ -6,10 +6,10 @@ import { type Option } from "../types/project.types";
 describe("ProjectFilterWorkflow", () => {
 
     it('Select component renders with provided options', async () => {
-        const options = [
-            { label: 'Option1', nb:1 },
-            { label: 'Option2', nb:10 },
-            { label: 'Option3', nb:100 },
+        const options: Option[] = [
+            { value: 'Option1', nb:1 },
+            { value: 'Option2', nb:10 },
+            { value: 'Option3', nb:100 },
         ]
         const wrapper = await mountSuspended(ProjectFilterWorkflow, { props: { options } })
 
@@ -19,10 +19,10 @@ describe("ProjectFilterWorkflow", () => {
     })
 
     it('Should emit an update event with selected workflow', async () => {
-        const options = [
-            { label: 'Option1', nb:1 },
-            { label: 'Option2', nb:10 },
-            { label: 'Option3', nb:100 },
+        const options : Option[]= [
+            { value: 'Option1', nb:1 },
+            { value: 'Option2', nb:10 },
+            { value: 'Option3', nb:100 },
         ]
         const wrapper = await mountSuspended(ProjectFilterWorkflow, { props: { options } });
         const selectElement = wrapper.find('select[data-test="select-workflow"]');

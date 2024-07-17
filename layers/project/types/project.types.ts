@@ -26,6 +26,6 @@ export type Workflow = 'draft' | 'public' | 'spec' | 'prototype' | 'challenge' |
 export type ProjectSummary = Omit<Project, 'date' | 'pinned'>;
 
 export type Option = {
-    label: string;
+    value: string;
     nb: number;
 }

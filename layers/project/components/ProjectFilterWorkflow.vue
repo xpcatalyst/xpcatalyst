@@ -31,8 +31,8 @@ watch(workflow, (newValue) => {
       <SelectGroup>
         <SelectLabel>Workflow</SelectLabel>
         <SelectItem value="ALL">ALL</SelectItem>
-        <SelectItem v-for="(option, index) in options" :key="index" :value="option.label">
-          {{ option.label }} ({{ option.nb }})
+        <SelectItem v-for="(option, index) in options" :key="index" :value="option.value">
+          {{ option.value }} ({{ option.nb }})
         </SelectItem>
       </SelectGroup>
     </SelectContent>
