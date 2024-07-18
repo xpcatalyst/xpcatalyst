@@ -11,6 +11,7 @@ const { filteredProjects, updateSearchTerm, updateWorkflowFilter, workflowOption
     <div class="flex gap-8">
       <ProjectFilterSearch @update:search="updateSearchTerm" :placeholder="MESSAGE.SEARCH_PLACEHOLDER" />
       <ProjectFilterWorkflow @update:workflow="updateWorkflowFilter" :options="workflowOptions" />
+      <ProjectFilterStack />
     </div>
     <ProjectList :projects="filteredProjects" :message="MESSAGE.NO_PROJECTS" />
   </section>

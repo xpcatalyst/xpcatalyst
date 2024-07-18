@@ -41,6 +41,9 @@ importers:
       vue:
         specifier: latest
         version: 3.4.31(typescript@5.5.3)
+      vue-multiselect:
+        specifier: 3.0.0-beta.3
+        version: 3.0.0-beta.3
     devDependencies:
       '@iconify-json/uil':
         specifier: ^1.1.8
@@ -4022,6 +4025,10 @@ packages:
 
   vue-devtools-stub@0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}
+
+  vue-multiselect@3.0.0-beta.3:
+    resolution: {integrity: sha512-P7Fx+ovVF7WMERSZ0lw6N3p4H4bnQ3NcaY3ORjzFPv0r/6lpIqvFWmK9Xnwze9mgAvmNV1foI1VWrBmjnfBTLQ==}
+    engines: {node: '>= 4.0.0', npm: '>= 3.0.0'}
 
   vue-router@4.4.0:
     resolution: {integrity: sha512-HB+t2p611aIZraV2aPSRNXf0Z/oLZFrlygJm+sZbdJaW6lcFqEDQwnzUBXn+DApw+/QzDU/I9TeWx9izEjTmsA==}
@@ -8525,6 +8532,8 @@ snapshots:
       vue: 3.4.31(typescript@5.5.3)
 
   vue-devtools-stub@0.1.0: {}
+
+  vue-multiselect@3.0.0-beta.3: {}
 
   vue-router@4.4.0(vue@3.4.31(typescript@5.5.3)):
     dependencies:
