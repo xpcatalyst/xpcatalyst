@@ -17,6 +17,7 @@ function countWorkflows(projects: Project[]): Option[] {
   // Transformation de l'objet workflowCount en tableau d'objets Option
   const options: Option[] = (Object.keys(workflowCount) as Workflow[]).map(workflow => ({
       value: workflow,
+      label: workflow.charAt(0).toUpperCase() + workflow.slice(1),
       nb: workflowCount[workflow] ?? 0 // évite undefined
   }));
 

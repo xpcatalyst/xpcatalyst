@@ -17,7 +17,7 @@ defineProps<{ project: ProjectSummary }>()
 <template>
   <Card>
     <CardHeader>
-      <Badge variant="outline" class="w-fit mb-4">{{ project.workflow }}</Badge>
+      <Badge variant="outline" class="w-fit mb-4">{{ project.workflow.charAt(0).toUpperCase() + project.workflow.slice(1) }}</Badge>
       <div class="flex justify-between">
         <CardTitle>{{ project.name }}</CardTitle>
         <ProjectStar :star="project.stars" />

@@ -7,16 +7,10 @@ import { Separator } from '@/components/ui/separator'
 // import { cn } from '@/lib/utils'
 import { Checkbox } from '@/components/ui/checkbox'
 import { ChevronDown } from 'lucide-vue-next'
+import { type Option } from '../types/project.types.js'
 
-// import { type Option } from '../types/project.types.js'
-//const selectedValues = new Set(["React", "Vue", "Angular"])
 const title = "Select a Tech"
 
-type Option = {
-  label: string,
-  value: string,
-  nb: number
-}
 const options: Option [] = [
   { label: "React", value: "react", nb: 12 },
   { label: "Vue", value: "vue", nb: 2 },
