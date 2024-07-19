@@ -11,10 +11,10 @@ describe("ProjectFilterStack", () => {
             { value: 'option3', label:"OPTION 3", nb:100 },
         ]
         
-        const wrapper = await mountSuspended(ProjectFilterStack, { props: { title:"TITLE", options }});
+        const wrapper = await mountSuspended(ProjectFilterStack, { props: { options }});
 
         
-        expect(wrapper.text()).toContain("TITLE")
+        expect(wrapper.text()).toContain("Select a Tech")
     })
 
 })

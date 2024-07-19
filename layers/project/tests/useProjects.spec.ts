@@ -44,7 +44,6 @@ describe("useProjects", () => {
     })
 
     it("Should return a list of workflow options", () => { 
-
         const projects: Project[] = [
             { workflow: "draft" } as Project,
             { workflow: "draft" } as Project,
@@ -60,6 +59,42 @@ describe("useProjects", () => {
             { value: "alpha", label: "Alpha", nb: 1 },
             { value: "beta", label: "Beta", nb: 1 },
         ]);
+    })
+
+    it("Should return a list of stack options", () => { 
+        const projects: Project[] = [
+            { stack: ["React", "Supabase"] } as Project,
+            { stack: ["Vue", "Supabase"] } as Project,
+            { stack: ["Vue", "Supabase"] } as Project,
+        ];
+
+        const { stackOptions } = useProjects(projects);
+
+        expect(stackOptions.value.length).toEqual(3);
+        expect(stackOptions.value).toEqual( [
+            { value: "React", label: "React", nb: 1 },
+            { value: "Supabase", label: "Supabase", nb: 3 },
+            { value: "Vue", label: "Vue", nb: 2 },
+        ]);
+    })
+
+    it("Should filter projects by stack", () => { 
+        const projects: Project[] = [
+            { stack: ["React", "Supabase"] } as Project,
+            { stack: ["Vue", "Supabase"] } as Project,
+            { stack: ["Vue", "Supabase"] } as Project,
+        ];
+
+        const { filteredProjects, updateStackFilter } = useProjects(projects);
+
+        updateStackFilter(['Vue']);
+        expect(filteredProjects.value.length).toEqual(2);
+        
+        updateStackFilter(['React']);
+        expect(filteredProjects.value).toEqual([{ stack: ["React", "Supabase"] }]);
+
+        updateStackFilter([]);
+        expect(filteredProjects.value).toEqual(projects);
     })
 
 });

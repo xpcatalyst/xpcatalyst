@@ -9,23 +9,36 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { ChevronDown } from 'lucide-vue-next'
 import { type Option } from '../types/project.types.js'
 
-defineProps<{title: string, options: Option[]}>()
+defineProps<{options: Option[]}>()
+
+const title = "Select a Tech"
 
 const selectedOptions = ref<Option[]>([])
 
+const emit = defineEmits(['update:stack']);
+
+watch(selectedOptions, () => {
+  emit('update:stack', selectedOptions.value.map(it => it.value));
+});
+
 const isOptionSelected = (option: Option): boolean => {
-  return selectedOptions.value?.some(it => it.value === option.value);
+  return selectedOptions.value.some(it => it.value === option.value);
 };
 
-const handleClear = () => selectedOptions.value = []
+const handleClear = () => {
+  selectedOptions.value = [];
+};
 
 const handleOptionUnselected = (option: Option): void => {
-  selectedOptions.value = selectedOptions.value.filter(i => i !== option);
+  selectedOptions.value = selectedOptions.value.filter(i => i.value !== option.value);
 };
 
 const handleOptionSelected = (option: Option): void => {
-  if( !isOptionSelected(option) ) selectedOptions.value.push(option)
-  else selectedOptions.value = selectedOptions.value.filter(i => i.value !== option.value);  
+  if (!isOptionSelected(option)) {
+    selectedOptions.value = [...selectedOptions.value, option];
+  } else {
+    selectedOptions.value = selectedOptions.value.filter(i => i.value !== option.value);
+  }
 };
 </script>
 

@@ -24,15 +24,38 @@ function countWorkflows(projects: Project[]): Option[] {
   return options;
 }
 
+function countStack(projects: Project[]): Option[] {
+  const counts: { [key: string]: number } = {};
+
+  projects.forEach(project => {
+      project.stack.forEach(tech => {
+          if (counts[tech]) {
+              counts[tech]++;
+          } else {
+              counts[tech] = 1;
+          }
+      });
+  });
+
+  const result = Object.keys(counts).map(key => ({
+      value: key,
+      label: key,
+      nb: counts[key] ?? 0 
+  }));
+
+  return result;
+}
 
 export const useProjects = (initialProject: Project[]) => {
 
     const projects = ref(initialProject);
     const searchTerm = ref('');
     const workflowFilter = ref('');
+    const stackFilter = ref<string[]>([]);
 
     const updateSearchTerm = (newTerm: string) => searchTerm.value = newTerm;
     const updateWorkflowFilter = (newWorkflow: string) => workflowFilter.value = newWorkflow;
+    const updateStackFilter = (newStack: string[]) => stackFilter.value = newStack;
 
     const filteredProjects = computed(() => {
         let filtered = projects.value;
@@ -47,6 +70,11 @@ export const useProjects = (initialProject: Project[]) => {
           filtered = filtered.filter(project => project.workflow === workflowFilter.value);
         }
 
+        if(stackFilter.value.length > 0) {
+          filtered = filtered.filter(project => 
+            project.stack?.some(stack => stackFilter.value.includes(stack)));
+        }
+
         return filtered;
       });
 
@@ -54,11 +82,17 @@ export const useProjects = (initialProject: Project[]) => {
       return countWorkflows(projects.value)
     })
 
+    const stackOptions = computed(() : Option[] => {
+      return countStack(projects.value)
+    })
+
     return {
         updateSearchTerm,
         updateWorkflowFilter,
+        updateStackFilter,
         filteredProjects,
-        workflowOptions
+        workflowOptions,
+        stackOptions
     }
     
 }
