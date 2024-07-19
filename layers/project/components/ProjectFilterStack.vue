@@ -9,16 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { ChevronDown } from 'lucide-vue-next'
 import { type Option } from '../types/project.types.js'
 
-const title = "Select a Tech"
-
-const options: Option [] = [
-  { label: "React", value: "react", nb: 12 },
-  { label: "Vue", value: "vue", nb: 2 },
-  { label: "Angular", value: "angular", nb: 4 },
-  { label: "Vercel", value: "vercel", nb: 5 },
-  { label: "Astro", value: "astro", nb: 1 },
-  { label: "Nuxt", value: "nuxt", nb: 6 }
-]
+defineProps<{title: string, options: Option[]}>()
 
 const selectedOptions = ref<Option[]>([])
 

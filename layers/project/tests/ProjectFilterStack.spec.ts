@@ -11,11 +11,10 @@ describe("ProjectFilterStack", () => {
             { value: 'option3', label:"OPTION 3", nb:100 },
         ]
         
-        const wrapper = await mountSuspended(ProjectFilterStack, { props: { options }});
+        const wrapper = await mountSuspended(ProjectFilterStack, { props: { title:"TITLE", options }});
 
-        // expect(wrapper.find('option[value="Option1"]').exists()).toBe(true)
-        // expect(wrapper.find('option[value="Option2"]').exists()).toBe(true)
-        // expect(wrapper.find('option[value="Option3"]').exists()).toBe(true)
+        
+        expect(wrapper.text()).toContain("TITLE")
     })
 
 })
