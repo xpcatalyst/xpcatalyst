@@ -11,7 +11,7 @@ describe('ProjectListCard', () => {
       expect(wrapper.text()).toContain('NAME');
       expect(wrapper.text()).toContain('DESCRIPTION');
       expect(wrapper.text()).toContain('10');
-      expect(wrapper.text()).toContain('alpha');
+      expect(wrapper.text()).toContain('Alpha');
       expect(wrapper.text()).toContain('STACK1');
       expect(wrapper.text()).toContain('STACK2');
     });
