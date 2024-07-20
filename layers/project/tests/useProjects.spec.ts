@@ -143,5 +143,29 @@ describe("useProjects", () => {
             { name: "Project A" }
           ]); 
     })
+
+
+    it("Should sort projects by popularity", () => {
+        const projects: Project[] = [
+            { stars: 1 } as Project,
+            { stars: 3 } as Project,
+            { stars: 2 } as Project
+          ]
+        const { sortedProjects, updateSort } = useProjects(projects);
+
+        updateSort({ value: 'stars', order: 'asc' } as SortOption);
+        expect(sortedProjects.value).toEqual([
+            { stars: 1 },
+            { stars: 2 },
+            { stars: 3 }
+          ]);
+
+        updateSort({ value: 'stars', order: 'desc' } as SortOption);
+        expect(sortedProjects.value).toEqual([
+            { stars: 3 },
+            { stars: 2 },
+            { stars: 1 }
+          ]); 
+    })
 });
 
