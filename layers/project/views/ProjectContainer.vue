@@ -12,6 +12,7 @@ const { filteredProjects, updateSearchTerm, updateWorkflowFilter, updateStackFil
       <ProjectFilterSearch @update:search="updateSearchTerm" :placeholder="MESSAGE.SEARCH_PLACEHOLDER" />
       <ProjectFilterWorkflow @update:workflow="updateWorkflowFilter" :options="workflowOptions" />
       <ProjectFilterStack  @update:stack="updateStackFilter" :options="stackOptions" />
+      <!-- TODO: add a sort component -->
     </div>
     <ProjectList :projects="filteredProjects" :message="MESSAGE.NO_PROJECTS" />
   </section>

@@ -96,9 +96,7 @@ export const useProjects = (initialProject: Project[]) => {
         });
       };
 
-
-      const sortedProjects = computed(() => sortProjects(filteredProjects.value, sortOption.value));
-
+    const sortedProjects = computed(() => sortProjects(filteredProjects.value, sortOption.value));
       
     const workflowOptions = computed(() : Option[] => {
       return countWorkflows(projects.value)
