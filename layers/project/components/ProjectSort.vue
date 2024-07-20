@@ -5,7 +5,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -27,13 +26,15 @@ watch(sortValue, (newSort) => {
 <template>
   <Select v-model="sortValue" data-test="select-sort">
     <SelectTrigger class="w-[180px]">
-      <SelectValue placeholder="Sort" />
+      <SelectValue placeholder="Sort By" />
     </SelectTrigger>
     <SelectContent>
       <SelectGroup>
-        <SelectLabel>Workflow</SelectLabel>
+      <SelectLabel>Sort By</SelectLabel>
         <SelectItem v-for="option in options" :key="`${option.value}-${option.order}`" :value="`${option.value}-${option.order}`">
-          {{ option.label }} ({{ option.order }})
+          <span>{{ option.label }}</span>
+          <Icon v-if="option.order === 'asc'" name="mdi:arrow-up" class="size-4 opacity-50 align-middle ms-2" />
+          <Icon v-else name="mdi:arrow-down" class="size-4 opacity-50 align-middle ms-2" />
         </SelectItem>
       </SelectGroup>
     </SelectContent>

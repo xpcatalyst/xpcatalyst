@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { mockProjects } from "../utils/project.mock";
-import { MESSAGE } from '../utils/project.constants.js';
+import { MESSAGE, SORT_OPTIONS } from '../utils/project.constants.js';
 import { useProjects } from '../composables/useProjects';
 
-const { filteredProjects, updateSearchTerm, updateWorkflowFilter, updateStackFilter, workflowOptions, stackOptions } = useProjects(mockProjects);
+const { sortedProjects, updateSearchTerm, updateWorkflowFilter, updateStackFilter, updateSort, workflowOptions, stackOptions } = useProjects(mockProjects);
 </script>
 
 <template>
@@ -12,8 +12,8 @@ const { filteredProjects, updateSearchTerm, updateWorkflowFilter, updateStackFil
       <ProjectFilterSearch @update:search="updateSearchTerm" :placeholder="MESSAGE.SEARCH_PLACEHOLDER" />
       <ProjectFilterWorkflow @update:workflow="updateWorkflowFilter" :options="workflowOptions" />
       <ProjectFilterStack  @update:stack="updateStackFilter" :options="stackOptions" />
-      <!-- TODO: add a sort component -->
+      <ProjectSort  @update:sort="updateSort" :options="SORT_OPTIONS" />
     </div>
-    <ProjectList :projects="filteredProjects" :message="MESSAGE.NO_PROJECTS" />
+    <ProjectList :projects="sortedProjects" :message="MESSAGE.NO_PROJECTS" />
   </section>
 </template>

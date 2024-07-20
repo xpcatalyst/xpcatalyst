@@ -5,7 +5,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -25,12 +24,12 @@ watch(workflow, (newValue) => {
 <template>
   <Select v-model="workflow" data-test="select-workflow">
     <SelectTrigger class="w-[180px]">
-      <SelectValue placeholder="Select a workflow" />
+      <SelectValue placeholder="Select a Workflow" />
     </SelectTrigger>
     <SelectContent>
       <SelectGroup>
-        <SelectLabel>Workflow</SelectLabel>
-        <SelectItem value="ALL">ALL</SelectItem>
+      <SelectLabel>Workflow</SelectLabel>
+        <SelectItem value="ALL">All</SelectItem>
         <SelectItem v-for="(option, index) in options" :key="index" :value="option.value">
           {{ option.label }} ({{ option.nb }})
         </SelectItem>
