@@ -1,5 +1,5 @@
 
-import { type Project, type Workflow, type Option } from "../types/project.types"
+import { type Project, type Workflow, type Option, type SortOption } from "../types/project.types"
 
 function countWorkflows(projects: Project[]): Option[] {
   // Utilisation d'un objet pour compter les occurrences de chaque workflow
@@ -52,10 +52,12 @@ export const useProjects = (initialProject: Project[]) => {
     const searchTerm = ref('');
     const workflowFilter = ref('');
     const stackFilter = ref<string[]>([]);
+    const sortOption = ref<SortOption>({ label:"Date", value:"date", order:"desc" });
 
     const updateSearchTerm = (newTerm: string) => searchTerm.value = newTerm;
     const updateWorkflowFilter = (newWorkflow: string) => workflowFilter.value = newWorkflow;
     const updateStackFilter = (newStack: string[]) => stackFilter.value = newStack;
+    const updateSort = (newSort: SortOption) => sortOption.value = newSort;
 
     const filteredProjects = computed(() => {
         let filtered = projects.value;
@@ -78,6 +80,26 @@ export const useProjects = (initialProject: Project[]) => {
         return filtered;
       });
 
+      const sortProjects = (projects: Project[], sortOption: SortOption) => {
+        return projects.slice().sort((a, b) => {
+          let result = 0;
+      
+          if (sortOption.value === "date") {
+            result = new Date(a.date).getTime() - new Date(b.date).getTime();
+          } else if (sortOption.value === "stars") {
+            result = a.stars - b.stars;
+          } else if (sortOption.value === "name") {
+            result = a.name.localeCompare(b.name);
+          }
+      
+          return sortOption.order === "asc" ? result : -result;
+        });
+      };
+
+
+      const sortedProjects = computed(() => sortProjects(filteredProjects.value, sortOption.value));
+
+      
     const workflowOptions = computed(() : Option[] => {
       return countWorkflows(projects.value)
     })
@@ -90,7 +112,9 @@ export const useProjects = (initialProject: Project[]) => {
         updateSearchTerm,
         updateWorkflowFilter,
         updateStackFilter,
+        updateSort,
         filteredProjects,
+        sortedProjects,
         workflowOptions,
         stackOptions
     }

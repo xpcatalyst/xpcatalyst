@@ -30,3 +30,9 @@ export type Option = {
     value: string,
     nb: number
   }
+  
+export type SortOption = {
+    label: "Date" | "Popularity" | "Name",
+    value: "date" | "stars" | "name",
+    order: "asc" | "desc"
+}

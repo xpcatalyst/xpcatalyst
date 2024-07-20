@@ -97,5 +97,28 @@ describe("useProjects", () => {
         expect(filteredProjects.value).toEqual(projects);
     })
 
+
+    it("Should sort projects by date", () => {
+        const projects: Project[] = [
+            { date: "2021-01-01" } as Project,
+            { date: "2022-01-01" } as Project,
+            { date: "2020-01-01" } as Project
+          ]
+        const { sortedProjects, updateSort } = useProjects(projects);
+
+        updateSort({ value: 'date', label: 'Date', order: 'asc' },);
+        expect(sortedProjects.value).toEqual([
+            { date: "2020-01-01" },
+            { date: "2021-01-01" },
+            { date: "2022-01-01" },
+          ]);
+
+        updateSort({ value: 'date', label: 'Date', order: 'desc' },);
+        expect(sortedProjects.value).toEqual([
+            { date: "2022-01-01" },
+            { date: "2021-01-01" },
+            { date: "2020-01-01" },
+          ]); 
+    })
 });
 

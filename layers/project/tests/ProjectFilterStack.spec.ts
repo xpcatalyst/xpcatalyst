@@ -13,7 +13,6 @@ describe("ProjectFilterStack", () => {
         
         const wrapper = await mountSuspended(ProjectFilterStack, { props: { options }});
 
-        
         expect(wrapper.text()).toContain("Select a Tech")
     })
 
