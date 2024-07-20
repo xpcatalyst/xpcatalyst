@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { useProjects } from '../composables/useProjects';
-import { type Project } from "../types/project.types";
+import { type Project, type SortOption } from "../types/project.types";
 
 describe("useProjects", () => {
 
@@ -106,18 +106,41 @@ describe("useProjects", () => {
           ]
         const { sortedProjects, updateSort } = useProjects(projects);
 
-        updateSort({ value: 'date', label: 'Date', order: 'asc' },);
+        updateSort({ value: 'date', order: 'asc' } as SortOption,);
         expect(sortedProjects.value).toEqual([
             { date: "2020-01-01" },
             { date: "2021-01-01" },
             { date: "2022-01-01" },
           ]);
 
-        updateSort({ value: 'date', label: 'Date', order: 'desc' },);
+        updateSort({ value: 'date', order: 'desc' } as SortOption,);
         expect(sortedProjects.value).toEqual([
             { date: "2022-01-01" },
             { date: "2021-01-01" },
             { date: "2020-01-01" },
+          ]); 
+    })
+
+    it("Should sort projects by name", () => {
+        const projects: Project[] = [
+            { name: "Project B" } as Project,
+            { name: "Project A" } as Project,
+            { name: "Project C" } as Project
+          ]
+        const { sortedProjects, updateSort } = useProjects(projects);
+
+        updateSort({ value: 'name', order: 'asc' } as SortOption);
+        expect(sortedProjects.value).toEqual([
+            { name: "Project A" },
+            { name: "Project B" },
+            { name: "Project C" }
+          ]);
+
+        updateSort({ value: 'name', order: 'desc' } as SortOption);
+        expect(sortedProjects.value).toEqual([
+            { name: "Project C" },
+            { name: "Project B" },
+            { name: "Project A" }
           ]); 
     })
 });
