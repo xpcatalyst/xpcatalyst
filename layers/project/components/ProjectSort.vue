@@ -32,9 +32,9 @@ watch(sortValue, (newSort) => {
       <SelectGroup>
       <SelectLabel>Sort By</SelectLabel>
         <SelectItem v-for="option in options" :key="`${option.value}-${option.order}`" :value="`${option.value}-${option.order}`">
-          <span>{{ option.label }}</span>
-          <Icon v-if="option.order === 'asc'" name="mdi:arrow-up" class="size-4 opacity-50 align-middle ms-2" />
-          <Icon v-else name="mdi:arrow-down" class="size-4 opacity-50 align-middle ms-2" />
+          <Icon v-if="option.order === 'asc'" name="mdi:arrow-up" class="size-4 opacity-50 align-middle" />
+          <Icon v-else name="mdi:arrow-down" class="size-4 opacity-50 align-middle" />
+          <span class="ms-2">{{ option.label }}</span>
         </SelectItem>
       </SelectGroup>
     </SelectContent>
