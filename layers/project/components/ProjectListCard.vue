@@ -27,10 +27,10 @@ const handleIncrementStar = () => {
   <Card>
     <CardHeader>
       <Badge variant="outline" class="w-fit mb-4">{{ project.workflow?.charAt(0).toUpperCase() + project.workflow?.slice(1) }}</Badge>
-      <div class="flex justify-between">
+      <div class="flex justify-between gap-8">
         <CardTitle>{{ project.name }}</CardTitle>
-        <button class="flex items-center text-xs gap-1" :class="{ 'text-blue-500': isIncremented }"  @click="handleIncrementStar">
-          <Icon name="uil:star" size="24" />
+        <button class="flex items-center text-xs gap-1" :class="{ 'text-pink-500': isIncremented }"  @click="handleIncrementStar">
+          <Icon :name="isIncremented ? 'mdi:star' : 'mdi:star-outline'" size="24" />
           <span>{{ project.stars ?? 0 }}</span>
        </button>
       </div>
