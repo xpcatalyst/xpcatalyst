@@ -7,11 +7,20 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-
 import { Badge } from '@/components/ui/badge'
-
 import { type ProjectSummary } from "../types/project.types"
-defineProps<{ project: ProjectSummary }>()
+
+const props = defineProps<{ project: ProjectSummary }>()
+
+
+const emit = defineEmits(['incrementStar'])
+const isIncremented = ref(false);
+const handleIncrementStar = () => {
+  if(!isIncremented.value) {
+    emit('incrementStar', props.project.id)
+    isIncremented.value = true
+  }
+}
 </script>
 
 <template>
@@ -20,7 +29,10 @@ defineProps<{ project: ProjectSummary }>()
       <Badge variant="outline" class="w-fit mb-4">{{ project.workflow?.charAt(0).toUpperCase() + project.workflow?.slice(1) }}</Badge>
       <div class="flex justify-between">
         <CardTitle>{{ project.name }}</CardTitle>
-        <ProjectStar :star="project.stars" />
+        <button class="flex items-center text-xs gap-1" :class="{ 'text-blue-500': isIncremented }"  @click="handleIncrementStar">
+          <Icon name="uil:star" size="24" />
+          <span>{{ project.stars ?? 0 }}</span>
+       </button>
       </div>
       <CardDescription>{{ project.description }}</CardDescription>
     </CardHeader>

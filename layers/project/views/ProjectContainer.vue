@@ -3,7 +3,15 @@ import { mockProjects } from "../utils/project.mock";
 import { MESSAGE, SORT_OPTIONS } from '../utils/project.constants.js';
 import { useProjects } from '../composables/useProjects';
 
-const { sortedProjects, updateSearchTerm, updateWorkflowFilter, updateStackFilter, updateSort, workflowOptions, stackOptions } = useProjects(mockProjects);
+const { sortedProjects, 
+        updateSearchTerm, 
+        updateWorkflowFilter,
+        updateStackFilter, 
+        updateSort, 
+        workflowOptions, 
+        stackOptions, 
+        incrementStar 
+        } = useProjects(mockProjects);
 </script>
 
 <template>
@@ -14,6 +22,6 @@ const { sortedProjects, updateSearchTerm, updateWorkflowFilter, updateStackFilte
       <ProjectFilterStack  @update:stack="updateStackFilter" :options="stackOptions" />
       <ProjectSort  @update:sort="updateSort" :options="SORT_OPTIONS" />
     </div>
-    <ProjectList :projects="sortedProjects" :message="MESSAGE.NO_PROJECTS" />
+    <ProjectList :projects="sortedProjects" :message="MESSAGE.NO_PROJECTS" @incrementStar="incrementStar" />
   </section>
 </template>

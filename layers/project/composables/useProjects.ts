@@ -53,6 +53,7 @@ export const useProjects = (initialProject: Project[]) => {
     const workflowFilter = ref('');
     const stackFilter = ref<string[]>([]);
     const sortOption = ref<SortOption>({ label:"Date", value:"date", order:"desc" });
+    const incrementedProjects = ref(new Set<number>());
 
     const updateSearchTerm = (newTerm: string) => searchTerm.value = newTerm;
     const updateWorkflowFilter = (newWorkflow: string) => workflowFilter.value = newWorkflow;
@@ -106,11 +107,22 @@ export const useProjects = (initialProject: Project[]) => {
       return countStack(projects.value)
     })
 
+    const incrementStar = (projectId: number) => {
+      if(!incrementedProjects.value.has(projectId)) {
+        const project = projects.value.find(p => p.id === projectId)
+        if (project) {
+          project.stars = (project.stars || 0) + 1;
+          incrementedProjects.value.add(projectId);
+        }
+      }
+    }
+
     return {
         updateSearchTerm,
         updateWorkflowFilter,
         updateStackFilter,
         updateSort,
+        incrementStar,
         filteredProjects,
         sortedProjects,
         workflowOptions,

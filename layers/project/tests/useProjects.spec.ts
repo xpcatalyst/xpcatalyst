@@ -167,5 +167,36 @@ describe("useProjects", () => {
             { stars: 1 }
           ]); 
     })
+
+    it("Should increment star count for the specified project only once", () => { 
+        const projects: Project[] = [
+            { id: 1, name: 'Project 1', stars: 0 } as Project,
+            { id: 2, name: 'Project 2', stars: 10 } as Project,
+          ]
+        const { incrementStar, sortedProjects } = useProjects(projects);
+
+        incrementStar(1);
+        expect(sortedProjects.value.find(p => p.id === 1)?.stars).toBe(1)
+
+        incrementStar(2);
+        expect(sortedProjects.value.find(p => p.id === 2)?.stars).toBe(11)
+
+        incrementStar(2);
+        expect(sortedProjects.value.find(p => p.id === 2)?.stars).toBe(11)  // Should not change
+    })
+
+    it('Should do nothing if project ID is not found', () => {
+        const projects = [
+          { id: 1, name: 'Project 1', stars: 0 } as Project,
+          { id: 2, name: 'Project 2', stars: 1 } as Project,
+        ]
+    
+        const { incrementStar, sortedProjects } = useProjects(projects)
+    
+        // Attempt to increment stars for a non-existent project
+        incrementStar(3)
+        expect(sortedProjects.value.find(p => p.id === 1)?.stars).toBe(0)
+        expect(sortedProjects.value.find(p => p.id === 2)?.stars).toBe(1)
+      })
 });
 
