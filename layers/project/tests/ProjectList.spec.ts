@@ -25,3 +25,12 @@ describe("ProjectList", () => {
 })
 
 //Should render N skeleton projects on loading state
+/*
+  it.todo('fetches projects on init.todo load if projects list is empty');
+  it.todo('shows loading indicator when projects are being fetched');
+  it.todo('disables "Load More" button when loading or no more projects available');
+  it.todo('displays error message when there is an error fetching projects');
+  it.todo('loads more projects on "Load More" button click');
+  it.todo('does not call loadMoreProjects if hasMoreProjects is false');
+  it.todo('updates displayedProjects after loadMoreProjects')
+  */

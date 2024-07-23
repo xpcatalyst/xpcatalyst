@@ -25,6 +25,7 @@
     "vue-multiselect": "3.0.0-beta.3"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.1.67",
     "@iconify-json/uil": "^1.1.8",
     "@nuxt/test-utils": "^3.13.1",
     "@nuxtjs/tailwindcss": "^6.12.0",
