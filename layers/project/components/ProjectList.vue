@@ -7,7 +7,7 @@ import { type Project } from "../types/project.types.js"
 defineProps<{ projects: Project[], message?: string }>()
 
 const emit = defineEmits(['trigger:like'])
-const handleLike = (projectId: string) => {
+const handleLike = (projectId: number) => {
   emit('trigger:like', projectId)
 }
 </script>
