@@ -38,7 +38,7 @@ import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { ProjectListItem, type ProjectSummary } from '..'
 
 describe('ProjectListItem', () => {
-  const project: ProjectSummary = { id: 1, name: 'NAME', description: 'DESCRIPTION', stars: 10, workflow: 'FLOW', stack: ['STACK1', 'STACK2']}
+  const project: ProjectSummary = { id: 1, name: 'NAME', description: 'DESCRIPTION', like: 10, workflow: 'FLOW', stack: ['STACK1', 'STACK2']}
 
   it('Should render the details of the project', async () => {
     const wrapper = await mountSuspended(ProjectListItem, { props: { project }})

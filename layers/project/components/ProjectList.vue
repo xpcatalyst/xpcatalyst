@@ -6,9 +6,9 @@ import { type Project } from "../types/project.types.js"
 
 defineProps<{ projects: Project[], message?: string }>()
 
-const emit = defineEmits(['incrementStar'])
-const handleIncrementStar = (projectId: string) => {
-  emit('incrementStar', projectId)
+const emit = defineEmits(['trigger:like'])
+const handleLike = (projectId: string) => {
+  emit('trigger:like', projectId)
 }
 </script>
 
@@ -19,7 +19,7 @@ const handleIncrementStar = (projectId: string) => {
       :key="`${project.id}-project-item`" 
       :project="project"
       data-test="project-item" 
-      @incrementStar="handleIncrementStar" />
+      @trigger:like="handleLike" />
   </div>
   <div v-else class="py-8">
     <Alert data-test="project-warning">

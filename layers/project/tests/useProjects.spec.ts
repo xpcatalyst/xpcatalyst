@@ -12,7 +12,7 @@ describe("useProjects", () => {
         ];
         const { filteredProjects, updateSearchTerm } = useProjects(projects);
 
-        // Ensure all projects are included at startup
+        // Ensure all projects are included at liketup
         expect(filteredProjects.value.length).toEqual(projects.length);
 
         // Should filter to only include projects with 'web' or 'design' in name or description
@@ -168,21 +168,21 @@ describe("useProjects", () => {
           ]); 
     })
 
-    it("Should increment star count for the specified project only once", () => { 
+    it("Should toggle the like count for the specified project", () => { 
         const projects: Project[] = [
             { id: 1, name: 'Project 1', like: 0 } as Project,
             { id: 2, name: 'Project 2', like: 10 } as Project,
           ]
-        const { incrementStar, sortedProjects } = useProjects(projects);
+        const { triggerLike, sortedProjects } = useProjects(projects);
 
-        incrementStar(1);
+        triggerLike(1);
         expect(sortedProjects.value.find(p => p.id === 1)?.like).toBe(1)
 
-        incrementStar(2);
-        expect(sortedProjects.value.find(p => p.id === 2)?.like).toBe(11)
+        triggerLike(2);
+        expect(sortedProjects.value.find(p => p.id === 2)?.like).toBe(11) // increment
 
-        incrementStar(2);
-        expect(sortedProjects.value.find(p => p.id === 2)?.like).toBe(11)  // Should not change
+        triggerLike(2);
+        expect(sortedProjects.value.find(p => p.id === 2)?.like).toBe(10)  // decrement
     })
 
     it('Should do nothing if project ID is not found', () => {
@@ -191,10 +191,10 @@ describe("useProjects", () => {
           { id: 2, name: 'Project 2', like: 1 } as Project,
         ]
     
-        const { incrementStar, sortedProjects } = useProjects(projects)
+        const { triggerLike, sortedProjects } = useProjects(projects)
     
         // Attempt to increment like for a non-existent project
-        incrementStar(3)
+        triggerLike(3)
         expect(sortedProjects.value.find(p => p.id === 1)?.like).toBe(0)
         expect(sortedProjects.value.find(p => p.id === 2)?.like).toBe(1)
       })

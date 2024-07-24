@@ -107,12 +107,15 @@ export const useProjects = (initialProject: Project[]) => {
       return countStack(projects.value)
     })
 
-    const incrementStar = (projectId: number) => {
-      if(!incrementedProjects.value.has(projectId)) {
-        const project = projects.value.find(p => p.id === projectId)
-        if (project) {
-          project.like = (project.like || 0) + 1;
+    const triggerLike = (projectId: number) => {
+      const project = projects.value.find(p => p.id === projectId)
+      if (project) {
+        if(!incrementedProjects.value.has(projectId)) {
           incrementedProjects.value.add(projectId);
+          project.like = (project.like || 0) + 1;
+        } else {
+          incrementedProjects.value.delete(projectId);
+          project.like = project.like  - 1;
         }
       }
     }
@@ -122,7 +125,7 @@ export const useProjects = (initialProject: Project[]) => {
         updateWorkflowFilter,
         updateStackFilter,
         updateSort,
-        incrementStar,
+        triggerLike,
         filteredProjects,
         sortedProjects,
         workflowOptions,

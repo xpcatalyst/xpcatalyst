@@ -7,8 +7,8 @@ describe("ProjectSort", () => {
     const options: SortOption[] = [
         { value: 'date', label:"Date", order: "asc" },
         { value: 'date', label:"Date", order: "desc" },
-        { value: 'stars', label:"Popularity", order: "asc" },
-        { value: 'stars', label:"Popularity", order: "desc" },
+        { value: 'like', label:"Popularity", order: "asc" },
+        { value: 'like', label:"Popularity", order: "desc" },
         { value: 'name', label:"Name", order: "asc" },
         { value: 'name', label:"Name", order: "desc" },
     ]
@@ -19,8 +19,8 @@ describe("ProjectSort", () => {
 
         expect(wrapper.find('option[value="date-asc"]').exists()).toBe(true)
         expect(wrapper.find('option[value="date-desc"]').exists()).toBe(true)
-        expect(wrapper.find('option[value="stars-asc"]').exists()).toBe(true)
-        expect(wrapper.find('option[value="stars-desc"]').exists()).toBe(true)
+        expect(wrapper.find('option[value="like-asc"]').exists()).toBe(true)
+        expect(wrapper.find('option[value="like-desc"]').exists()).toBe(true)
         expect(wrapper.find('option[value="name-asc"]').exists()).toBe(true)
         expect(wrapper.find('option[value="name-desc"]').exists()).toBe(true)
     })
@@ -30,10 +30,10 @@ describe("ProjectSort", () => {
        
         const selectElement = wrapper.find('select[data-test="select-sort"]');
 
-        await selectElement.setValue('stars-desc');
+        await selectElement.setValue('like-desc');
 
         const emittedEvents = wrapper.emitted('update:sort');
         expect(emittedEvents).toBeDefined();
-        expect(emittedEvents?.[0]).toEqual([{ value: 'stars', label:"Popularity", order: "desc" }]);
+        expect(emittedEvents?.[0]).toEqual([{ value: 'like', label:"Popularity", order: "desc" }]);
       });
 })

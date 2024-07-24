@@ -10,7 +10,7 @@ const { sortedProjects,
         updateSort, 
         workflowOptions, 
         stackOptions, 
-        incrementStar 
+        triggerLike 
         } = useProjects(mockProjects);
 </script>
 
@@ -22,6 +22,6 @@ const { sortedProjects,
       <ProjectFilterStack  @update:stack="updateStackFilter" :options="stackOptions" />
       <ProjectSort  @update:sort="updateSort" :options="SORT_OPTIONS" />
     </div>
-    <ProjectList :projects="sortedProjects" :message="MESSAGE.NO_PROJECTS" @incrementStar="incrementStar" />
+    <ProjectList :projects="sortedProjects" :message="MESSAGE.NO_PROJECTS" @trigger:like="triggerLike" />
   </section>
 </template>

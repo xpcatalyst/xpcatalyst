@@ -8,8 +8,8 @@ export const MESSAGE = {
 export const SORT_OPTIONS: SortOption[] = [
     { value: 'date', label:"Date", order: "asc" },
     { value: 'date', label:"Date", order: "desc" },
-    { value: 'stars', label:"Popularity", order: "asc" },
-    { value: 'stars', label:"Popularity", order: "desc" },
+    { value: 'like', label:"Popularity", order: "asc" },
+    { value: 'like', label:"Popularity", order: "desc" },
     { value: 'name', label:"Name", order: "asc" },
     { value: 'name', label:"Name", order: "desc" },
 ]
