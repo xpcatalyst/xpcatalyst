@@ -147,56 +147,56 @@ describe("useProjects", () => {
 
     it("Should sort projects by popularity", () => {
         const projects: Project[] = [
-            { stars: 1 } as Project,
-            { stars: 3 } as Project,
-            { stars: 2 } as Project
+            { like: 1 } as Project,
+            { like: 3 } as Project,
+            { like: 2 } as Project
           ]
         const { sortedProjects, updateSort } = useProjects(projects);
 
-        updateSort({ value: 'stars', order: 'asc' } as SortOption);
+        updateSort({ value: 'like', order: 'asc' } as SortOption);
         expect(sortedProjects.value).toEqual([
-            { stars: 1 },
-            { stars: 2 },
-            { stars: 3 }
+            { like: 1 },
+            { like: 2 },
+            { like: 3 }
           ]);
 
-        updateSort({ value: 'stars', order: 'desc' } as SortOption);
+        updateSort({ value: 'like', order: 'desc' } as SortOption);
         expect(sortedProjects.value).toEqual([
-            { stars: 3 },
-            { stars: 2 },
-            { stars: 1 }
+            { like: 3 },
+            { like: 2 },
+            { like: 1 }
           ]); 
     })
 
     it("Should increment star count for the specified project only once", () => { 
         const projects: Project[] = [
-            { id: 1, name: 'Project 1', stars: 0 } as Project,
-            { id: 2, name: 'Project 2', stars: 10 } as Project,
+            { id: 1, name: 'Project 1', like: 0 } as Project,
+            { id: 2, name: 'Project 2', like: 10 } as Project,
           ]
         const { incrementStar, sortedProjects } = useProjects(projects);
 
         incrementStar(1);
-        expect(sortedProjects.value.find(p => p.id === 1)?.stars).toBe(1)
+        expect(sortedProjects.value.find(p => p.id === 1)?.like).toBe(1)
 
         incrementStar(2);
-        expect(sortedProjects.value.find(p => p.id === 2)?.stars).toBe(11)
+        expect(sortedProjects.value.find(p => p.id === 2)?.like).toBe(11)
 
         incrementStar(2);
-        expect(sortedProjects.value.find(p => p.id === 2)?.stars).toBe(11)  // Should not change
+        expect(sortedProjects.value.find(p => p.id === 2)?.like).toBe(11)  // Should not change
     })
 
     it('Should do nothing if project ID is not found', () => {
         const projects = [
-          { id: 1, name: 'Project 1', stars: 0 } as Project,
-          { id: 2, name: 'Project 2', stars: 1 } as Project,
+          { id: 1, name: 'Project 1', like: 0 } as Project,
+          { id: 2, name: 'Project 2', like: 1 } as Project,
         ]
     
         const { incrementStar, sortedProjects } = useProjects(projects)
     
-        // Attempt to increment stars for a non-existent project
+        // Attempt to increment like for a non-existent project
         incrementStar(3)
-        expect(sortedProjects.value.find(p => p.id === 1)?.stars).toBe(0)
-        expect(sortedProjects.value.find(p => p.id === 2)?.stars).toBe(1)
+        expect(sortedProjects.value.find(p => p.id === 1)?.like).toBe(0)
+        expect(sortedProjects.value.find(p => p.id === 2)?.like).toBe(1)
       })
 });
 

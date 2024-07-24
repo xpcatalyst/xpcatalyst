@@ -87,8 +87,8 @@ export const useProjects = (initialProject: Project[]) => {
       
           if (sortOption.value === "date") {
             result = new Date(a.date).getTime() - new Date(b.date).getTime();
-          } else if (sortOption.value === "stars") {
-            result = a.stars - b.stars;
+          } else if (sortOption.value === "like") {
+            result = a.like - b.like;
           } else if (sortOption.value === "name") {
             result = a.name.localeCompare(b.name);
           }
@@ -111,7 +111,7 @@ export const useProjects = (initialProject: Project[]) => {
       if(!incrementedProjects.value.has(projectId)) {
         const project = projects.value.find(p => p.id === projectId)
         if (project) {
-          project.stars = (project.stars || 0) + 1;
+          project.like = (project.like || 0) + 1;
           incrementedProjects.value.add(projectId);
         }
       }

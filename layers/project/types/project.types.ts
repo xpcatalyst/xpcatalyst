@@ -3,7 +3,7 @@ export type Project = {
     date: string;
     name: string;
     description: string;
-    stars: number;
+    like: number;
     pinned: boolean;
     workflow: Workflow;
     stack: string[];
@@ -33,6 +33,6 @@ export type Option = {
   
 export type SortOption = {
     label: "Date" | "Popularity" | "Name",
-    value: "date" | "stars" | "name",
+    value: "date" | "like" | "name",
     order: "asc" | "desc"
 }

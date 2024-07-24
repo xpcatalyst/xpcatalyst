@@ -31,7 +31,7 @@ const handleIncrementStar = () => {
         <CardTitle>{{ project.name }}</CardTitle>
         <button class="flex items-center text-xs gap-1" :class="{ 'text-pink-500': isIncremented }"  @click="handleIncrementStar">
           <Icon :name="isIncremented ? 'mdi:star' : 'mdi:star-outline'" size="24" />
-          <span>{{ project.stars ?? 0 }}</span>
+          <span>{{ project.like ?? 0 }}</span>
        </button>
       </div>
       <CardDescription>{{ project.description }}</CardDescription>
