@@ -5,11 +5,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { type Project } from "../types/project.types.js"
 
 defineProps<{ projects: Project[], message?: string }>()
-
-const emit = defineEmits(['trigger:like'])
-const handleLike = (projectId: number) => {
-  emit('trigger:like', projectId)
-}
 </script>
 
 <template>
@@ -18,8 +13,7 @@ const handleLike = (projectId: number) => {
       v-for="(project) in projects" 
       :key="`${project.id}-project-item`" 
       :project="project"
-      data-test="project-item" 
-      @trigger:like="handleLike" />
+      data-test="project-item" />
   </div>
   <div v-else class="py-8">
     <Alert data-test="project-warning">

@@ -12,6 +12,8 @@ const { sortedProjects,
         stackOptions, 
         triggerLike 
         } = useProjects(mockProjects);
+
+provide('triggerLike', triggerLike as (projectId: number) => void);
 </script>
 
 <template>
@@ -22,6 +24,6 @@ const { sortedProjects,
       <ProjectFilterStack  @update:stack="updateStackFilter" :options="stackOptions" />
       <ProjectSort  @update:sort="updateSort" :options="SORT_OPTIONS" />
     </div>
-    <ProjectList :projects="sortedProjects" :message="MESSAGE.NO_PROJECTS" @trigger:like="triggerLike" />
+    <ProjectList :projects="sortedProjects" :message="MESSAGE.NO_PROJECTS" />
   </section>
 </template>
