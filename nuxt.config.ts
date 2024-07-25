@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
-    "@nuxt/icon"
+    "@nuxt/icon",
+    "@nuxt/image"
   ],
   shadcn: {
     prefix: '',

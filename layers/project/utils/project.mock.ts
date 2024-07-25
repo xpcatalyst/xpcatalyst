@@ -7,6 +7,7 @@ export const generateMockProjects = (count: number): Project[] => {
             id: i,
             date: `2023-01-${i.toString().padStart(2, '0')}`,
             name: `Project ${i}`,
+            image:"test.jpg",
             description: `Description ${i}`,
             like: Math.floor(Math.random() * 5) + 1,
             pinned: Math.random() > 0.5,
@@ -26,7 +27,8 @@ export const mockProjects: Project[] = [
         "like": 102,
         "pinned": true,
         "workflow": "public",
-        "stack": ["React", "TailwindCSS", "Node.js", "PostgreSQL", "Supabase", "Netlify", "Resend", "Stripe"]
+        "stack": ["React", "TailwindCSS", "Node.js", "PostgreSQL", "Supabase", "Netlify", "Resend", "Stripe"],
+        "image": "photo-1655474396177-e727349f44dc.jpeg"
     },
     {
         "id": 2,
@@ -36,7 +38,8 @@ export const mockProjects: Project[] = [
         "like": 87,
         "pinned": false,
         "workflow": "mvp",
-        "stack": ["Vue.js", "Bootstrap", "Express.js", "MongoDB", "Heroku", "SendGrid", "Stripe"]
+        "stack": ["Vue.js", "Bootstrap", "Express.js", "MongoDB", "Heroku", "SendGrid", "Stripe"],
+         "image": "photo-1655993810480-c15dccf9b3a0.jpeg"
     },
     {
         "id": 3,
@@ -46,7 +49,8 @@ export const mockProjects: Project[] = [
         "like": 45,
         "pinned": false,
         "workflow": "draft",
-        "stack": ["Angular", "Bootstrap", "Django", "MySQL", "AWS", "Twilio", "PayPal"]
+        "stack": ["Angular", "Bootstrap", "Django", "MySQL", "AWS", "Twilio", "PayPal"],
+         "image": "photo-1656331797721-b593b8f00297.jpeg"
     },
     {
         "id": 4,
@@ -56,7 +60,8 @@ export const mockProjects: Project[] = [
         "like": 64,
         "pinned": false,
         "workflow": "prototype",
-        "stack": ["React Native", "Expo", "Firebase", "Firestore", "SendGrid"]
+        "stack": ["React Native", "Expo", "Firebase", "Firestore", "SendGrid"],
+         "image": "photo-1658246944389-9e9ac0a85dda.jpeg"
     },
     {
         "id": 5,
@@ -66,7 +71,8 @@ export const mockProjects: Project[] = [
         "like": 92,
         "pinned": true,
         "workflow": "public",
-        "stack": ["React", "Material-UI", "Spring Boot", "MySQL", "AWS", "Twilio", "PayPal"]
+        "stack": ["React", "Material-UI", "Spring Boot", "MySQL", "AWS", "Twilio", "PayPal"],
+         "image": "photo-1658963633165-e317a3f0f4bb.jpeg"
     },
     {
         "id": 6,
@@ -76,7 +82,8 @@ export const mockProjects: Project[] = [
         "like": 78,
         "pinned": false,
         "workflow": "public",
-        "stack": ["Angular", "MaterializeCSS", "Laravel", "MySQL", "DigitalOcean", "SendGrid", "PayPal"]
+        "stack": ["Angular", "MaterializeCSS", "Laravel", "MySQL", "DigitalOcean", "SendGrid", "PayPal"],
+         "image": "photo-1658963639400-73e05b964203.jpeg"
 
     },
     {
@@ -87,7 +94,8 @@ export const mockProjects: Project[] = [
         "like": 55,
         "pinned": false,
         "workflow": "draft",
-        "stack": ["React", "Semantic UI", "Flask", "MongoDB", "Heroku", "SendGrid", "Stripe"]
+        "stack": ["React", "Semantic UI", "Flask", "MongoDB", "Heroku", "SendGrid", "Stripe"],
+         "image": "photo-1658963642269-0a36c9eb5d66.jpeg"
 
     },
     {
@@ -98,7 +106,8 @@ export const mockProjects: Project[] = [
         "like": 36,
         "pinned": false,
         "workflow": "mvp",
-        "stack": ["Vue.js", "Vuetify", "Express.js", "MongoDB", "Heroku", "SendGrid", "PayPal"]
+        "stack": ["Vue.js", "Vuetify", "Express.js", "MongoDB", "Heroku", "SendGrid", "PayPal"],
+         "image": "photo-1683780777629-7b75e7016acc.jpeg"
 
     },
     {
@@ -109,7 +118,8 @@ export const mockProjects: Project[] = [
         "like": 41,
         "pinned": false,
         "workflow": "draft",
-        "stack": ["React Native", "Expo", "Node.js", "MongoDB", "Heroku", "SendGrid"]
+        "stack": ["React Native", "Expo", "Node.js", "MongoDB", "Heroku", "SendGrid"],
+         "image": "photo-1659117296097-6347168cea00.jpeg"
     },
     {
         "id": 10,
@@ -119,7 +129,8 @@ export const mockProjects: Project[] = [
         "like": 73,
         "pinned": false,
         "workflow": "public",
-        "stack": ["React", "Material-UI", "Express.js", "MongoDB", "Heroku", "SendGrid"]
+        "stack": ["React", "Material-UI", "Express.js", "MongoDB", "Heroku", "SendGrid"],
+         "image": "photo-1659462014159-ea4576af8c8a.jpeg"
     },
     {
         "id": 11,
@@ -129,6 +140,7 @@ export const mockProjects: Project[] = [
         "like": 58,
         "pinned": false,
         "workflow": "prototype",
-        "stack": ["React", "Bootstrap", "Node.js", "Express.js", "MongoDB", "Heroku", "SendGrid", "Stripe"]
+        "stack": ["React", "Bootstrap", "Node.js", "Express.js", "MongoDB", "Heroku", "SendGrid", "Stripe"],
+         "image": "photo-1659974708151-e90f42518dd0.jpeg"
     }
 ]

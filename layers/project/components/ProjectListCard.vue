@@ -14,9 +14,11 @@ defineProps<{ project: ProjectSummary }>()
 </script>
 
 <template>
-  <Card>
+  <Card class="rounded-3xl overflow-hidden relative">
+    <Badge variant="outline" class="absolute top-4 left-4 w-fit bg-white border-none">{{ project.workflow?.charAt(0).toUpperCase() + project.workflow?.slice(1) }}</Badge>
+
+    <NuxtImg :src="`images/${project.image}`" class="w-full h-44 object-cover rounded-3xl"/>
     <CardHeader>
-      <Badge variant="outline" class="w-fit mb-4">{{ project.workflow?.charAt(0).toUpperCase() + project.workflow?.slice(1) }}</Badge>
       <div class="flex justify-between gap-8">
         <CardTitle>{{ project.name }}</CardTitle>
         <ProjectLikes :likes="project.like" :projectId="project.id" />
