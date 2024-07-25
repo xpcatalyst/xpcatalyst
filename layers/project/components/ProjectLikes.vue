@@ -2,7 +2,7 @@
 const props = defineProps<{likes: number, projectId: number}>()
 
 const isLiked = ref(false);
-const triggerLike = inject('triggerLike') as ((projectId: number) => void) | undefined;
+const triggerLike = inject('triggerLike') as ((projectId: number) => void);
 
 const handleLike = () => {
     if (triggerLike) {

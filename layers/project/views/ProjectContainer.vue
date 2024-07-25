@@ -13,7 +13,7 @@ const { sortedProjects,
         triggerLike 
         } = useProjects(mockProjects);
 
-provide('triggerLike', triggerLike as (projectId: number) => void);
+provide('triggerLike', triggerLike);
 </script>
 
 <template>
