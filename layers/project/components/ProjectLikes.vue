@@ -13,7 +13,7 @@ const handleLike = () => {
 </script>
 
 <template>
-  <button class="flex items-center text-xs gap-1" :class="{ 'text-pink-500': isLiked }"  @click="handleLike">
+  <button class="flex items-center text-xs gap-1" :class="{ 'text-pink-500': isLiked }"  @mousedown.stop="handleLike">
     <Icon v-if="!isLiked" name="mdi:heart-outline" size="24" />
     <Icon v-else name="mdi:heart" size="24" />
     <span>{{ likes ?? 0 }}</span>

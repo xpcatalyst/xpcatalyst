@@ -15,20 +15,21 @@ defineProps<{ project: ProjectSummary }>()
 
 <template>
   <NuxtLink :to="{ name: 'project-id', params: { id: project.id } }">
-    <Card class="rounded-3xl overflow-hidden relative">
-      <Badge variant="outline" class="absolute top-4 left-4 w-fit bg-white border-none">{{ project.workflow?.charAt(0).toUpperCase() + project.workflow?.slice(1) }}</Badge>
-
+    <Card class="rounded-3xl overflow-hidden relative hover:drop-shadow-xl hover:scale-[1.02] transition-all flex flex-col h-full">
+      <Badge variant="outline" class="absolute top-4 left-4 w-fit bg-white border-none">
+        {{ project.workflow?.charAt(0).toUpperCase() + project.workflow?.slice(1) }}
+      </Badge>
       <NuxtImg :src="`images/${project.image}`" class="w-full h-44 object-cover rounded-3xl"/>
       <CardHeader>
         <div class="flex justify-between gap-8">
           <CardTitle>{{ project.name }}</CardTitle>
-          <ProjectLikes :likes="project.like" :projectId="project.id" />
+          <ProjectLikes :likes="project.like" :projectId="project.id" class="z-20"/>
         </div>
         <CardDescription>{{ project.description }}</CardDescription>
       </CardHeader>
       <CardContent>
       </CardContent>
-      <CardFooter class="flex gap-2 flex-wrap items-end">
+      <CardFooter class="flex gap-2 flex-wrap">
         <Badge variant="secondary" v-for="(tech, index) in project.stack" :key="`tech-${tech}-${index}`">
           {{ tech }}
         </Badge>

@@ -8,7 +8,7 @@ defineProps<{ projects: Project[], message?: string }>()
 </script>
 
 <template>
-  <div v-if="projects.length > 0" class="grid grid-cols-3 gap-8 py-8">
+  <div v-if="projects.length > 0" class="grid grid-cols-3 gap-8 py-8 auto-rows-fr">
     <ProjectListCard 
       v-for="(project) in projects" 
       :key="`${project.id}-project-item`" 
