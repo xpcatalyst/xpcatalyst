@@ -10,6 +10,13 @@ export type Project = {
     stack: string[];
 };
 
+
+export type User = {
+    id: number;
+    name: string;
+    image: string;
+}
+
 export type Workflow = 'draft' | 'public' | 'spec' | 'prototype' | 'challenge' | 'mvp' | 'beta' | 'alpha' | 'archives'
 
 export type ProjectSummary = Omit<Project, 'date' | 'pinned'>;

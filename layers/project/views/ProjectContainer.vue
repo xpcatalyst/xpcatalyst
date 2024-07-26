@@ -17,7 +17,7 @@ provide('triggerLike', triggerLike);
 </script>
 
 <template>
-  <section class="container my-8">
+  <section>
     <div class="flex gap-8">
       <ProjectFilterSearch @update:search="updateSearchTerm" :placeholder="MESSAGE.SEARCH_PLACEHOLDER" />
       <ProjectFilterWorkflow @update:workflow="updateWorkflowFilter" :options="workflowOptions" />
