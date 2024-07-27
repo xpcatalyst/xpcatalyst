@@ -17,6 +17,5 @@ const handleLike = () => {
     <Icon v-if="!isLiked" name="mdi:heart-outline" size="24" />
     <Icon v-else name="mdi:heart" size="24" />
     <span>{{ likes ?? 0 }}</span>
-    <!-- <span>{{ message }}</span> -->
   </button>
 </template>

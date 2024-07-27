@@ -14,12 +14,12 @@ defineProps<{ project: ProjectSummary }>()
 </script>
 
 <template>
-  <NuxtLink :to="{ name: 'project-id', params: { id: project.id } }">
+  <NuxtLink :to="{ name: 'project-id', params: { id: project.id } }" class="group">
     <Card class="rounded-3xl overflow-hidden relative hover:drop-shadow-xl hover:scale-[1.02] transition-all flex flex-col h-full">
-      <Badge variant="outline" class="absolute top-4 left-4 w-fit bg-white border-none">
+      <Badge variant="outline" class="absolute top-4 left-4 w-fit bg-white border-none z-20">
         {{ project.workflow?.charAt(0).toUpperCase() + project.workflow?.slice(1) }}
       </Badge>
-      <NuxtImg :src="`images/${project.image}`" class="w-full h-44 object-cover rounded-3xl"/>
+      <NuxtImg :src="`images/${project.image}`" class="w-full h-44 object-cover rounded-3xl opacity-85 group-hover:opacity-100"/>
       <CardHeader>
         <div class="flex justify-between gap-8">
           <CardTitle>{{ project.name }}</CardTitle>
