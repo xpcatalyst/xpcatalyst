@@ -36,7 +36,16 @@ describe('ProjectListCard', () => {
     expect(projectLikes.props('likes')).toBe(10);
     expect(projectLikes.props('projectId')).toBe(1);
   })
-})
 
-    // Should render Badges for stack
-    // Should link to a Project Page
+  it("Should link to a Project Page", async () => {
+    const wrapper = await mountSuspended(ProjectListCard, {
+      props: { project },  
+      global: { 
+        provide: { triggerLike: vi.fn() },
+      }
+    })
+
+    const projectLink = wrapper.findComponent({name: 'NuxtLink'})
+    expect(projectLink.exists()).toBe(true)
+    expect(projectLink.props('to')).toEqual({ name: 'project-id', params: { id: 1 } })  })
+})
