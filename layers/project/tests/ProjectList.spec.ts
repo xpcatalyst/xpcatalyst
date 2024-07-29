@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import { type Project } from "../types/project.types";
 import ProjectList from "../components/ProjectList.vue";
@@ -13,13 +13,19 @@ describe("ProjectList", () => {
     ]
 
     it("Should render correct number of project items", async () => {
-       const wrapper = await mountSuspended(ProjectList, { props : { projects } })
+       const wrapper = await mountSuspended(ProjectList, { 
+        props : { projects },
+        global: { provide: { triggerLike: vi.fn()} }
+    })
        const projectItems = wrapper.findAll("[data-test=project-item]")
        expect(projectItems.length).toBe(projects.length)
     })
 
     it("Should display a message when no projects are specified", async () => {
-        const wrapper = await mountSuspended(ProjectList, { props : { projects: [], message: "MESSAGE" } })
+        const wrapper = await mountSuspended(ProjectList, { 
+            props : { projects: [], message: "MESSAGE" },
+            global: { provide: { triggerLike: vi.fn()} }
+        })
         expect(wrapper.text()).toContain("MESSAGE")
     })
 })
