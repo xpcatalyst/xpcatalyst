@@ -23,9 +23,23 @@ describe('ProjectListCard', () => {
     expect(wrapper.text()).toContain('STACK1');
     expect(wrapper.text()).toContain('STACK2');
   });
+  it("Passes project likes and ID to ProjectLikes component", async () => {
+    const wrapper = await mountSuspended(ProjectListCard, {
+      props: { project },  
+      global: { provide: { triggerLike: vi.fn()} }
+    })
+    const projectLikes = wrapper.findComponent(ProjectLikes)
+    expect(projectLikes.props('likes')).toBe(10);
+    expect(projectLikes.props('projectId')).toBe(1);
+  })
 
   it("Should link to a Project Page", async () => {
-    const wrapper = await mountSuspended(ProjectListCard, { props: { project } })
+    const wrapper = await mountSuspended(ProjectListCard, {
+      props: { project },  
+      global: { 
+        provide: { triggerLike: vi.fn() },
+      }
+    })
 
     const projectLink = wrapper.findComponent({name: 'NuxtLink'})
     expect(projectLink.exists()).toBe(true)
