@@ -13,7 +13,11 @@ defineProps<{ projects: Project[], message?: string }>()
       v-for="(project) in projects" 
       :key="`${project.id}-project-item`" 
       :project="project"
-      data-test="project-item" />
+      data-test="project-item">
+      <template #likes>
+        <ProjectLikes :likes="project.like" :projectId="project.id"/>
+      </template>
+      </ProjectListCard>
   </div>
   <div v-else class="py-8">
     <Alert data-test="project-warning">
