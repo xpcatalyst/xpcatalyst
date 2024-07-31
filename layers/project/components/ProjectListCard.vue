@@ -23,7 +23,7 @@ defineProps<{ project: ProjectSummary }>()
       <CardHeader>
         <div class="flex justify-between gap-8">
           <CardTitle>{{ project.name }}</CardTitle>
-          <ProjectLikes :likes="project.like" :projectId="project.id" class="z-20"/>
+          <slot name="likes" />
         </div>
         <CardDescription>{{ project.description }}</CardDescription>
       </CardHeader>

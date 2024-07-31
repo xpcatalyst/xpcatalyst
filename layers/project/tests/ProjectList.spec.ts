@@ -14,9 +14,9 @@ describe("ProjectList", () => {
 
     it("Should render correct number of project items", async () => {
        const wrapper = await mountSuspended(ProjectList, { 
-        props : { projects },
-        global: { provide: { triggerLike: vi.fn()} }
-    })
+            props : { projects },
+            global: { provide: { triggerLike: vi.fn()} }
+        })
        const projectItems = wrapper.findAll("[data-test=project-item]")
        expect(projectItems.length).toBe(projects.length)
     })
