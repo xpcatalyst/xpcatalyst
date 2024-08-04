@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import { type Project } from "../types/project.types";
-import ProjectList from "../components/ProjectList.vue";
+import { type Project } from "../../types/project.types";
+import ProjectList from "../../components/ProjectList.vue";
 
 describe("ProjectList", () => {
 

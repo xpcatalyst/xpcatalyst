@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
 import ProjectListCard from '../components/ProjectListCard.vue';
-import { type ProjectSummary } from '../types/project.types';
+import { type ProjectSummary } from '../../types/project.types';
 
 describe('ProjectListCard', () => { 
   const project: ProjectSummary = { 

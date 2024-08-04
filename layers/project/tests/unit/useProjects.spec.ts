@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { useProjects } from '../composables/useProjects';
-import { type Project, type SortOption } from "../types/project.types";
+import { useProjects } from '../../composables/useProjects';
+import { type Project, type SortOption } from "../../types/project.types";
 
 describe("useProjects", () => {
 

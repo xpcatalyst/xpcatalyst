@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import ProjectFilterSearch from "../components/ProjectFilterSearch.vue"
+import ProjectFilterSearch from "../../components/ProjectFilterSearch.vue"
 
 describe("ProjectFilterSearch", () => { 
 

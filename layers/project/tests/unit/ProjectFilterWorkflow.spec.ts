@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime"
 import ProjectFilterWorkflow from "../components/ProjectFilterWorkflow.vue"
-import { type Option } from "../types/project.types";
+import { type Option } from "../../types/project.types";
 
 describe("ProjectFilterWorkflow", () => {
     const options: Option[] = [
