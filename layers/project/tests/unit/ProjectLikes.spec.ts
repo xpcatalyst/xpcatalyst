@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import ProjectLikes from '../components/ProjectLikes.vue'; 
+import ProjectLikes from '../../components/ProjectLikes.vue'; 
 import { mountSuspended } from '@nuxt/test-utils/runtime';
 
 describe('ProjectLikes', () => {

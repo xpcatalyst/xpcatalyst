@@ -1,7 +1,8 @@
 import { type SortOption } from "../types/project.types.js"
 
 export const MESSAGE = {
-    NO_PROJECTS: "No products found, please try again",
+    NO_PROJECTS: "No projects found, please try again",
+    NO_PROJECT: "No project found, the page Id might not be valid",
     SEARCH_PLACEHOLDER: "Search projects..."
 };
 

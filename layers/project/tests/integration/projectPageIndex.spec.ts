@@ -3,7 +3,7 @@ import { mountSuspended } from "@nuxt/test-utils/runtime";
 import projectPage from "../../pages/project/index.vue";
 import ProjectList from "../../components/ProjectList.vue";
 
-describe("ProjectPage Integration tests", () => { 
+describe("ProjectPage (integration)", () => { 
 
     it('renders the ProjectList component', async () => {
         const wrapper = await mountSuspended(projectPage);

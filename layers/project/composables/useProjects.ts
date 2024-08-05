@@ -59,6 +59,7 @@ export const useProjects = (initialProject: Project[]) => {
     const updateWorkflowFilter = (newWorkflow: string) => workflowFilter.value = newWorkflow;
     const updateStackFilter = (newStack: string[]) => stackFilter.value = newStack;
     const updateSort = (newSort: SortOption) => sortOption.value = newSort;
+    const getProject = (id: number) => filteredProjects.value.find( (project: Project) => project.id === id)
 
     const filteredProjects = computed(() => {
         let filtered = projects.value;
@@ -126,6 +127,7 @@ export const useProjects = (initialProject: Project[]) => {
         updateStackFilter,
         updateSort,
         triggerLike,
+        getProject,
         filteredProjects,
         sortedProjects,
         workflowOptions,

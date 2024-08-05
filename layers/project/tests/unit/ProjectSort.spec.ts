@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { mountSuspended } from "@nuxt/test-utils/runtime"
-import ProjectSort from "../components/ProjectSort.vue"
+import ProjectSort from "../../components/ProjectSort.vue"
 import { type SortOption } from "../../types/project.types";
 
 describe("ProjectSort", () => {

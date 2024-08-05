@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { mountSuspended } from "@nuxt/test-utils/runtime";
-import ProjectFilterStack from "../components/ProjectFilterStack.vue"
+import ProjectFilterStack from "../../components/ProjectFilterStack.vue"
 import { type Option } from "../../types/project.types.js"
 describe("ProjectFilterStack", () => { 
 
