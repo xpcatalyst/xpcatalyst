@@ -1,0 +1,34 @@
+name: Staging Lint, Test, and Deploy to Netlify
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  lint-test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up pnpm
+        run: corepack enable pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint code
+        run: pnpm run lint
+
+      - name: Run tests
+        run: pnpm run test
+
+      - name: Build the project
+        run: pnpm run build
+
+      # Deploy to Netlify staging
+      - name: Deploy to Netlify
+        run: netlify deploy --site=$NETLIFY_SITE_ID --dir=dist --auth=$NETLIFY_AUTH_TOKEN --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

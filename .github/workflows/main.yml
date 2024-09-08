@@ -1,0 +1,28 @@
+name: Production Deploy to Netlify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up pnpm
+        run: corepack enable pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build the project
+        run: pnpm run build
+
+      # Deploy to Netlify production
+      - name: Deploy to Netlify
+        run: netlify deploy --site=$NETLIFY_SITE_ID --dir=dist --auth=$NETLIFY_AUTH_TOKEN --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
