@@ -1,39 +1,38 @@
-import { describe, it, expect } from "vitest";
-import { mountSuspended } from "@nuxt/test-utils/runtime"
-import ProjectSort from "../../components/ProjectSort.vue"
-import { type SortOption } from "../../types/project.types";
+import { describe, it, expect } from 'vitest'
+import { mountSuspended } from '@nuxt/test-utils/runtime'
+import ProjectSort from '../../components/ProjectSort.vue'
+import type { SortOption } from '../../types/project.types'
 
-describe("ProjectSort", () => {
-    const options: SortOption[] = [
-        { value: 'date', label:"Date", order: "asc" },
-        { value: 'date', label:"Date", order: "desc" },
-        { value: 'like', label:"Popularity", order: "asc" },
-        { value: 'like', label:"Popularity", order: "desc" },
-        { value: 'name', label:"Name", order: "asc" },
-        { value: 'name', label:"Name", order: "desc" },
-    ]
-    
-    it('Select component renders with provided options', async () => {
+describe('ProjectSort', () => {
+  const options: SortOption[] = [
+    { value: 'date', label: 'Date', order: 'asc' },
+    { value: 'date', label: 'Date', order: 'desc' },
+    { value: 'like', label: 'Popularity', order: 'asc' },
+    { value: 'like', label: 'Popularity', order: 'desc' },
+    { value: 'name', label: 'Name', order: 'asc' },
+    { value: 'name', label: 'Name', order: 'desc' },
+  ]
 
-        const wrapper = await mountSuspended(ProjectSort, { props: { options } })
+  it('Select component renders with provided options', async () => {
+    const wrapper = await mountSuspended(ProjectSort, { props: { options } })
 
-        expect(wrapper.find('option[value="date-asc"]').exists()).toBe(true)
-        expect(wrapper.find('option[value="date-desc"]').exists()).toBe(true)
-        expect(wrapper.find('option[value="like-asc"]').exists()).toBe(true)
-        expect(wrapper.find('option[value="like-desc"]').exists()).toBe(true)
-        expect(wrapper.find('option[value="name-asc"]').exists()).toBe(true)
-        expect(wrapper.find('option[value="name-desc"]').exists()).toBe(true)
-    })
+    expect(wrapper.find('option[value="date-asc"]').exists()).toBe(true)
+    expect(wrapper.find('option[value="date-desc"]').exists()).toBe(true)
+    expect(wrapper.find('option[value="like-asc"]').exists()).toBe(true)
+    expect(wrapper.find('option[value="like-desc"]').exists()).toBe(true)
+    expect(wrapper.find('option[value="name-asc"]').exists()).toBe(true)
+    expect(wrapper.find('option[value="name-desc"]').exists()).toBe(true)
+  })
 
-    it('Should emit an update event with selected workflow', async () => {
-        const wrapper = await mountSuspended(ProjectSort, { props: { options } })
-       
-        const selectElement = wrapper.find('select[data-test="select-sort"]');
+  it('Should emit an update event with selected workflow', async () => {
+    const wrapper = await mountSuspended(ProjectSort, { props: { options } })
 
-        await selectElement.setValue('like-desc');
+    const selectElement = wrapper.find('select[data-test="select-sort"]')
 
-        const emittedEvents = wrapper.emitted('update:sort');
-        expect(emittedEvents).toBeDefined();
-        expect(emittedEvents?.[0]).toEqual([{ value: 'like', label:"Popularity", order: "desc" }]);
-      });
+    await selectElement.setValue('like-desc')
+
+    const emittedEvents = wrapper.emitted('update:sort')
+    expect(emittedEvents).toBeDefined()
+    expect(emittedEvents?.[0]).toEqual([{ value: 'like', label: 'Popularity', order: 'desc' }])
+  })
 })

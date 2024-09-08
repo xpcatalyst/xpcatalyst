@@ -2,13 +2,21 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "version": "0.0.1",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest",
+    "test:once": "vitest --run",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.js": ["pnpm lint", "pnpm test", "git add"]
   },
   "dependencies": {
     "@nuxt/eslint": "^0.5.6",
@@ -40,6 +48,5 @@
     "typescript": "^5.5.4",
     "vitest": "^2.0.5",
     "vitest-environment-nuxt": "^1.0.1"
-  },
-  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
+  }
 }

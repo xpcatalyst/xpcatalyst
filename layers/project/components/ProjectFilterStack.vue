@@ -1,52 +1,60 @@
 <script setup lang="ts">
+import { ChevronDown } from 'lucide-vue-next'
+import type { Option } from '../types/project.types.js'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Separator } from '@/components/ui/separator'
 import { Checkbox } from '@/components/ui/checkbox'
-import { ChevronDown } from 'lucide-vue-next'
-import { type Option } from '../types/project.types.js'
 
-defineProps<{options: Option[]}>()
+defineProps<{ options: Option[] }>()
 
-const title = "Select a Tech"
+const title = 'Select a Tech'
 
 const selectedOptions = ref<Option[]>([])
 
-const emit = defineEmits(['update:stack']);
+const emit = defineEmits(['update:stack'])
 
 watch(selectedOptions, () => {
-  emit('update:stack', selectedOptions.value.map(it => it.value));
-});
+  emit('update:stack', selectedOptions.value.map(it => it.value))
+})
 
 const isOptionSelected = (option: Option): boolean => {
-  return selectedOptions.value.some(it => it.value === option.value);
-};
+  return selectedOptions.value.some(it => it.value === option.value)
+}
 
 const handleClear = () => {
-  selectedOptions.value = [];
-};
+  selectedOptions.value = []
+}
 
 const handleOptionUnselected = (option: Option): void => {
-  selectedOptions.value = selectedOptions.value.filter(i => i.value !== option.value);
-};
+  selectedOptions.value = selectedOptions.value.filter(i => i.value !== option.value)
+}
 
 const handleOptionSelected = (option: Option): void => {
   if (!isOptionSelected(option)) {
-    selectedOptions.value = [...selectedOptions.value, option];
-  } else {
-    selectedOptions.value = selectedOptions.value.filter(i => i.value !== option.value);
+    selectedOptions.value = [...selectedOptions.value, option]
   }
-};
+  else {
+    selectedOptions.value = selectedOptions.value.filter(i => i.value !== option.value)
+  }
+}
 </script>
 
 <template>
   <Popover>
-    <PopoverTrigger as-child class="hover:bg-transparent px-3">
-      <Button variant="outline">{{ title }}
+    <PopoverTrigger
+      as-child
+      class="hover:bg-transparent px-3"
+    >
+      <Button variant="outline">
+        {{ title }}
         <template v-if="selectedOptions.length > 0">
-          <Separator orientation="vertical" class="mx-2 h-4" />
+          <Separator
+            orientation="vertical"
+            class="mx-2 h-4"
+          />
           <Badge
             variant="secondary"
             class="rounded-sm px-1 font-normal lg:hidden"
@@ -69,23 +77,41 @@ const handleOptionSelected = (option: Option): void => {
                 class="rounded-sm px-1 font-normal flex space-x-1 hover:bg-secondary"
                 @click.stop="handleOptionUnselected(option)"
               >
-               <span>{{ option.label }}</span>
-               <Icon name="uil:times" class="size-4" />
+                <span>{{ option.label }}</span>
+                <Icon
+                  name="uil:times"
+                  class="size-4"
+                />
               </Badge>
             </template>
           </div>
-        </template> 
-        <ChevronDown v-else class="w-4 h-4 ms-3 opacity-50" />
-    </Button> 
+        </template>
+        <ChevronDown
+          v-else
+          class="w-4 h-4 ms-3 opacity-50"
+        />
+      </Button>
     </PopoverTrigger>
-    <PopoverContent class="w-[200px] p-0" align="start">
+    <PopoverContent
+      class="w-[200px] p-0"
+      align="start"
+    >
       <Command>
         <CommandInput :placeholder="title" />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup>
-            <CommandItem  class="flex items-center space-x-2" v-for="option in options" :key="option.value" :value="option.value" @select="handleOptionSelected(option)">
-              <Checkbox id="option.value" :checked="isOptionSelected(option)"/>
+            <CommandItem
+              v-for="option in options"
+              :key="option.value"
+              class="flex items-center space-x-2"
+              :value="option.value"
+              @select="handleOptionSelected(option)"
+            >
+              <Checkbox
+                id="option.value"
+                :checked="isOptionSelected(option)"
+              />
               <label>{{ option.label }} ({{ option.nb }})</label>
             </CommandItem>
           </CommandGroup>
