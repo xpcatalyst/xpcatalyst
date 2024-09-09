@@ -6,29 +6,101 @@ on:
       - staging
 
 jobs:
-  lint-test-build:
+  # Lint job
+  lint:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      
+      # Cache node_modules and pnpm-store
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
       - name: Set up pnpm
         run: corepack enable pnpm
 
       - name: Install dependencies
         run: pnpm install
 
+      # Lint code
       - name: Lint code
         run: pnpm run lint
 
+  # Test job (runs in parallel with lint)
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Cache node_modules and pnpm-store
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Set up pnpm
+        run: corepack enable pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # Run tests
       - name: Run tests
         run: pnpm run test
 
+  # Build job (runs after lint and test)
+  build:
+    runs-on: ubuntu-latest
+    needs: [lint, test]  # Waits for lint and test jobs to complete
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Cache node_modules and pnpm-store
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Set up pnpm
+        run: corepack enable pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # Build the project
       - name: Build the project
         run: pnpm run build
+        env:
+          PNPM_FLAGS: --shamefully-hoist
 
-      # Deploy to Netlify staging
+  # Deploy job (runs after build)
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build  # Only runs after the build completes
+
+    steps:
       - name: Deploy to Netlify
-        run: netlify deploy --site=$NETLIFY_SITE_ID --dir=dist --auth=$NETLIFY_AUTH_TOKEN --prod
+        run: netlify deploy --site=$NETLIFY_SITE_ID --dir=.output --auth=$NETLIFY_AUTH_TOKEN --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
