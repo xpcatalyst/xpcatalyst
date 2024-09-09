@@ -100,7 +100,7 @@ jobs:
 
     steps:
       - name: Deploy to Netlify
-        run: netlify deploy --site=$NETLIFY_SITE_ID --dir=.output --auth=$NETLIFY_AUTH_TOKEN --prod
+        run: netlify deploy --site=$NETLIFY_SITE_ID --dir=.output/public --auth=$NETLIFY_AUTH_TOKEN --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

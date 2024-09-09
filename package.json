@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+  "node": "20.x"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
