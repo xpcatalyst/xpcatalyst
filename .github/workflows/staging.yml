@@ -1,33 +1,47 @@
-name: 'Deploy to Netlify'
+name: Build and Deploy to Netlify
 
 on:
   push:
-    branches:
-      - staging
+    branches: [ main ]  # Adjust this to your main branch name
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 9  # Specify the pnpm version you want to use
 
-      - name: Install dependencies
-        run: npm ci
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'  # Specify your preferred Node.js version
+        cache: 'pnpm'
 
-      - name: Build
-        run: npm run generate
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
 
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.SITE_ID }}
-        with:
-          args: deploy --prod --dir=.output
+    - name: Build Nuxt project
+      run: pnpm run generate  # Assumes your package.json has a "generate" script for Nuxt static site generation
+
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v2.0
+      with:
+        publish-dir: '.output'  # Adjust this if your Nuxt output directory is different
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions"
+        enable-pull-request-comment: false
+        enable-commit-comment: true
+        overwrites-pull-request-comment: true
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      timeout-minutes: 1
