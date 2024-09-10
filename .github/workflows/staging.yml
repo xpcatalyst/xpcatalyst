@@ -1,33 +1,33 @@
-name: 'My Workflow'  
+name: 'Deploy to Netlify'
 
-on:  
-  push:  
-    branches:  
-    - staging  
+on:
+  push:
+    branches:
+      - staging
 
-jobs:  
-  deploy:  
-    # Operating system to run job on  
-  runs-on: ubuntu-latest  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-    # Steps in job  
-  steps:  
-      # Get code from repo  
-  - name: Checkout code  
-      uses: actions/checkout@v4
-      # Install NodeJS  
-  - name: Use Node.js 20.x  
-      uses: actions/setup-node@latest  
-      with:  
-          node-version: 20.x  
-      # Run npm install and build on our code  
-  - run: npm install  
-  - run: npm run build  
-      # Deploy to Netlify using our dev secrets  
-  - name: Deploy to netlify  
-      uses: netlify/actions/cli@master  
-      env:  
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}  
-        NETLIFY_SITE_ID:  ${{ secrets.SITE_ID }} 
-      with:  
-        args: deploy
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run generate
+
+      - name: Deploy to Netlify
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.SITE_ID }}
+        with:
+          args: deploy --prod --dir=.output
