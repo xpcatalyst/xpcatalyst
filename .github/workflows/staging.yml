@@ -2,9 +2,13 @@ name: Build and Deploy to Netlify
 
 on:
   push:
-    branches: [ staging ]
+    branches: 
+      - staging
+      - main
   pull_request:
-    branches: [ staging ]
+    branches: 
+      - staging
+      - main
 
 jobs:
   build-and-deploy:
@@ -50,10 +54,13 @@ jobs:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       with:
-        args: deploy --dir=.output/public --prod
+        args: >
+          deploy --dir=.output/public 
+          --alias=${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
+          ${{ github.ref == 'refs/heads/main' && '--prod' || '' }}
 
     - name: Get Netlify URL
-      run: echo "NETLIFY_URL=${{ steps.netlify-deploy.outputs.NETLIFY_URL }}" >> $GITHUB_ENV
+      run: echo "NETLIFY_URL=${{ steps.netlify-deploy.outputs.DEPLOY_URL }}" >> $GITHUB_ENV
 
     - name: Use Netlify URL
       run: |
