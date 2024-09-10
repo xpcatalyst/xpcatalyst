@@ -2,46 +2,52 @@ name: Build and Deploy to Netlify
 
 on:
   push:
-    branches: [ staging ]  # Adjust this to your main branch name
+    branches: [ staging ]
   pull_request:
     branches: [ staging ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
 
     - name: Install pnpm
       uses: pnpm/action-setup@v2
       with:
-        version: 9  # Specify the pnpm version you want to use
+        version: 9
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+    - name: Setup pnpm cache
+      uses: actions/cache@v3
       with:
-        node-version: '20'  # Specify your preferred Node.js version
-        cache: 'pnpm'
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
 
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      run: pnpm install
 
-    - name: Build Nuxt project
-      run: pnpm run generate  # Assumes your package.json has a "generate" script for Nuxt static site generation
+    - name: Build Nuxt app
+      run: pnpm run build
 
     - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v2.0
-      with:
-        publish-dir: '.output'  # Adjust this if your Nuxt output directory is different
-        production-branch: main
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        deploy-message: "Deploy from GitHub Actions"
-        enable-pull-request-comment: false
-        enable-commit-comment: true
-        overwrites-pull-request-comment: true
+      uses: netlify/actions/cli@master
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      timeout-minutes: 1
+      with:
+        args: deploy --dir=.output/public --prod
+        secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
