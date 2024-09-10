@@ -2,9 +2,9 @@ name: Build and Deploy to Netlify
 
 on:
   push:
-    branches: [ staging ]
+    branches: [ main ]
   pull_request:
-    branches: [ staging ]
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -44,6 +44,7 @@ jobs:
       run: pnpm run build
 
     - name: Deploy to Netlify
+      id: netlify-deploy
       uses: netlify/actions/cli@master
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -52,4 +53,8 @@ jobs:
         args: deploy --dir=.output/public --prod
 
     - name: Get Netlify URL
-      run: echo "NETLIFY_URL=${{ steps.netlify-deploy.outputs.NETLIFY_URL }}" >> $GITHUB_OUTPUT
+      run: echo "NETLIFY_URL=${{ steps.netlify-deploy.outputs.NETLIFY_URL }}" >> $GITHUB_ENV
+
+    - name: Use Netlify URL
+      run: |
+        echo "The site was deployed to ${{ env.NETLIFY_URL }}"
