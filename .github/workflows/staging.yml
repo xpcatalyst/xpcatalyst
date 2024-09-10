@@ -1,106 +1,71 @@
-name: Staging Lint, Test, and Deploy to Netlify
+name: Deploy to Netlify
 
 on:
   push:
     branches:
+      - main
       - staging
 
 jobs:
-  # Lint job
-  lint:
+  lint-test-build:
+    name: Lint, Test, and Build
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
-      
-      # Cache node_modules and pnpm-store
-      - name: Cache pnpm modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+    strategy:
+      matrix:
+        node-version: [20.x]
 
-      - name: Set up pnpm
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install pnpm
         run: corepack enable pnpm
 
       - name: Install dependencies
         run: pnpm install
-
-      # Lint code
-      - name: Lint code
-        run: pnpm run lint
-
-  # Test job (runs in parallel with lint)
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      
-      # Cache node_modules and pnpm-store
-      - name: Cache pnpm modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Set up pnpm
-        run: corepack enable pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      # Run tests
-      - name: Run tests
-        run: pnpm run test
-
-  # Build job (runs after lint and test)
-  build:
-    runs-on: ubuntu-latest
-    needs: [lint, test]  # Waits for lint and test jobs to complete
-
-    steps:
-      - uses: actions/checkout@v4
-      
-      # Cache node_modules and pnpm-store
-      - name: Cache pnpm modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Set up pnpm
-        run: corepack enable pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      # Build the project
-      - name: Build the project
-        run: pnpm run build
         env:
-          PNPM_FLAGS: --shamefully-hoist
+          PNPM_FLAGS: '--shamefully-hoist'
 
-  # Deploy job (runs after build)
+      - name: Lint
+        run: pnpm lint
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Build for Nuxt
+        run: pnpm build
+        env:
+          NODE_ENV: production
+
+      - name: Upload production build
+        if: github.ref == 'refs/heads/staging'
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-build
+          path: .output
+
   deploy:
+    name: Deploy to Netlify
     runs-on: ubuntu-latest
-    needs: build  # Only runs after the build completes
+    needs: lint-test-build
 
     steps:
+      - name: Download production build
+        uses: actions/download-artifact@v3
+        with:
+          name: production-build
+          path: .output
+
       - name: Deploy to Netlify
-        run: netlify deploy --site=$NETLIFY_SITE_ID --dir=.output/public --auth=$NETLIFY_AUTH_TOKEN --prod
+        run: npx netlify-cli deploy --dir=.output --prodIfUnlocked
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
