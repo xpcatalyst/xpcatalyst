@@ -1,4 +1,4 @@
-name: Build and Deploy Staging Branch to Netlify
+name: Build & Deploy Staging to Netlify
 
 on:
   push:
