@@ -39,8 +39,8 @@ jobs:
     - name: Deploy to Netlify
       uses: South-Paw/action-netlify-cli@v2
       with:
-        # be sure to escape any double quotes with a backslash \".output/public\"
-        args: 'deploy --json --dir \"dist\" --message \"draft [${{ github.sha }}]\"'
+        # be sure to escape any double quotes with a backslash 
+        args: 'deploy --json --dir \".output/public\" --message \"draft [${{ github.sha }}]\"'
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
