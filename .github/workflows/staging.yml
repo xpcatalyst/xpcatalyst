@@ -1,14 +1,9 @@
-name: Build and Deploy to Netlify
+name: Build and Deploy Staging Branch to Netlify
 
 on:
   push:
     branches: 
       - staging
-      - main
-  pull_request:
-    branches: 
-      - staging
-      - main
 
 jobs:
   build-and-deploy:
@@ -23,45 +18,28 @@ jobs:
         node-version: '20'
 
     - name: Install pnpm
-      uses: pnpm/action-setup@v2
+      uses: pnpm/action-setup@v4
       with:
         version: 9
 
-    - name: Get pnpm store directory
-      id: pnpm-cache
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-    - name: Setup pnpm cache
-      uses: actions/cache@v3
+    - name: Cache pnpm store
+      uses: actions/cache@v4
       with:
-        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
-    - name: Install dependencies
+    - name: Install dependencies with pnpm
       run: pnpm install
 
     - name: Build Nuxt app
       run: pnpm run build
 
     - name: Deploy to Netlify
-      id: netlify-deploy
       uses: netlify/actions/cli@master
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       with:
-        args: >
-          deploy --dir=.output/public 
-          --alias=${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
-          ${{ github.ref == 'refs/heads/main' && '--prod' || '' }}
-
-    - name: Get Netlify URL
-      run: echo "NETLIFY_URL=${{ steps.netlify-deploy.outputs.DEPLOY_URL }}" >> $GITHUB_ENV
-
-    - name: Use Netlify URL
-      run: |
-        echo "The site was deployed to ${{ env.NETLIFY_URL }}"
+        args: deploy --dir=.output/public --prod
