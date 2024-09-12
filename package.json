@@ -24,8 +24,7 @@
   "lint-staged": {
     "*.{js,ts,vue}": [
       "pnpm lint",
-      "pnpm test:unit",
-      "git add"
+      "pnpm test:unit"
     ]
   },
   "dependencies": {

@@ -1,28 +1,56 @@
-name: Production Deploy to Netlify
+name: Build & Deploy Production to Netlify
 
 on:
   push:
-    branches:
+    branches: 
       - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up pnpm
-        run: corepack enable pnpm
+    - uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: pnpm install
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
 
-      - name: Build the project
-        run: pnpm run build
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
 
-      # Deploy to Netlify production
-      - name: Deploy to Netlify
-        run: netlify deploy --site=$NETLIFY_SITE_ID --dir=dist --auth=$NETLIFY_AUTH_TOKEN --prod
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+    - name: Cache pnpm store
+      uses: actions/cache@v4
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+
+    - name: Install dependencies with pnpm
+      run: pnpm install
+
+    - name: Lint
+      run: pnpm run lint
+
+    - name: Run unit tests
+      run: pnpm run test:unit
+
+    - name: Run end-to-end tests
+      run: pnpm run test:e2e
+
+    - name: Build Nuxt app
+      run: pnpm run build
+      env:
+        PNPM_FLAGS: --shamefully-hoist
+
+    - name: Deploy to Netlify (Production)
+      uses: South-Paw/action-netlify-cli@v2
+      with:
+        args: 'deploy --prod --message \"Production [${{ github.sha }}]\"'
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
