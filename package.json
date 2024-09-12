@@ -1,42 +1,62 @@
 {
-  "name": "nuxt-app",
+  "name": "xpcatalyst",
   "private": true,
   "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:ui": "vitest --coverage --ui",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "pnpm lint",
+      "pnpm test:unit"
+    ]
   },
   "dependencies": {
-    "@nuxt/icon": "^1.4.5",
-    "@nuxt/image": "^1.7.0",
-    "@vueuse/core": "^10.11.0",
+    "@nuxt/eslint": "^0.5.6",
+    "@nuxt/icon": "^1.5.1",
+    "@nuxt/image": "^1.8.0",
+    "@vueuse/core": "^11.0.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "lucide-vue-next": "^0.400.0",
-    "nuxt": "^3.12.4",
-    "radix-vue": "^1.9.2",
+    "lucide-vue-next": "^0.439.0",
+    "nuxt": "^3.13.1",
+    "radix-vue": "^1.9.5",
     "shadcn-nuxt": "^0.10.4",
-    "tailwind-merge": "^2.4.0",
+    "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "vue": "latest",
-    "vue-multiselect": "3.0.0-beta.3"
+    "vue": "^3.5.3"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.1.68",
-    "@iconify-json/uil": "^1.1.9",
-    "@nuxt/test-utils": "^3.14.0",
+    "@iconify-json/mdi": "^1.2.0",
+    "@iconify-json/uil": "^1.2.0",
+    "@nuxt/test-utils": "^3.14.1",
     "@nuxtjs/tailwindcss": "^6.12.1",
-    "@playwright/test": "^1.45.3",
+    "@playwright/test": "^1.47.0",
+    "@vitest/coverage-v8": "^2.0.5",
     "@vitest/ui": "^2.0.5",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^14.12.3",
-    "playwright-core": "^1.45.3",
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.10",
+    "playwright-core": "^1.47.0",
     "typescript": "^5.5.4",
-    "vitest": "^1.6.0"
-  },
-  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
+    "vitest": "^2.0.5",
+    "vitest-environment-nuxt": "^1.0.1"
+  }
 }

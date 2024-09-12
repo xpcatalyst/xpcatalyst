@@ -1,29 +1,44 @@
 <script lang="ts" setup>
-import { mockProjects } from "../../utils/project.mock";
-import { MESSAGE, SORT_OPTIONS } from '../../utils/project.constants.js';
-import { useProjects } from '../../composables/useProjects';
+import { mockProjects } from '../../utils/project.mock'
+import { MESSAGE, SORT_OPTIONS } from '../../utils/project.constants.js'
+import { useProjects } from '../../composables/useProjects'
 
-const { sortedProjects, 
-        updateSearchTerm, 
-        updateWorkflowFilter,
-        updateStackFilter, 
-        updateSort, 
-        workflowOptions, 
-        stackOptions, 
-        triggerLike 
-        } = useProjects(mockProjects);
+const { sortedProjects,
+  updateSearchTerm,
+  updateWorkflowFilter,
+  updateStackFilter,
+  updateSort,
+  workflowOptions,
+  stackOptions,
+  triggerLike,
+} = useProjects(mockProjects)
 
-provide('triggerLike', triggerLike);
+provide('triggerLike', triggerLike)
 </script>
 
 <template>
   <section>
     <div class="flex gap-8">
-      <ProjectFilterSearch @update:search="updateSearchTerm" :placeholder="MESSAGE.SEARCH_PLACEHOLDER" />
-      <ProjectFilterWorkflow @update:workflow="updateWorkflowFilter" :options="workflowOptions" />
-      <ProjectFilterStack  @update:stack="updateStackFilter" :options="stackOptions" />
-      <ProjectSort  @update:sort="updateSort" :options="SORT_OPTIONS" />
+      <ProjectFilterSearch
+        :placeholder="MESSAGE.SEARCH_PLACEHOLDER"
+        @update:search="updateSearchTerm"
+      />
+      <ProjectFilterWorkflow
+        :options="workflowOptions"
+        @update:workflow="updateWorkflowFilter"
+      />
+      <ProjectFilterStack
+        :options="stackOptions"
+        @update:stack="updateStackFilter"
+      />
+      <ProjectSort
+        :options="SORT_OPTIONS"
+        @update:sort="updateSort"
+      />
     </div>
-    <ProjectList :projects="sortedProjects" :message="MESSAGE.NO_PROJECTS" />
+    <ProjectList
+      :projects="sortedProjects"
+      :message="MESSAGE.NO_PROJECTS"
+    />
   </section>
 </template>
