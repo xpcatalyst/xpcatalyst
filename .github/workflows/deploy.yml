@@ -1,9 +1,9 @@
-name: Build & Deploy Staging to Netlify
+name: Build & Deploy to Netlify
 
 on:
   push:
     branches: 
-      - staging
+      - main
   workflow_dispatch:
 
 jobs:
