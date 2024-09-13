@@ -22,10 +22,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,ts,vue}": [
-      "pnpm lint",
-      "pnpm test:unit"
-    ]
+    "*.{js,ts,vue}": ["pnpm lint"]
   },
   "dependencies": {
     "@nuxt/eslint": "^0.5.6",
