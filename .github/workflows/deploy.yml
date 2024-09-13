@@ -66,7 +66,7 @@ jobs:
         run: pnpm install
 
       - name: Run unit tests
-        run: pnpm run test:unit --loglevel=verbose
+        run: pnpm test:unit
 
   build-and-deploy:
     runs-on: ubuntu-latest
