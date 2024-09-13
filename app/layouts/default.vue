@@ -2,12 +2,11 @@
   <div class="h-screen">
     <header class="border-b p-8">
       <div class="container flex gap-16">
-        <span>XP CATALYST</span>
         <nav>
           <ul class="flex gap-8">
             <li>
               <NuxtLink to="/">
-                Home
+                XP CATALYST
               </NuxtLink>
             </li>
             <li>
