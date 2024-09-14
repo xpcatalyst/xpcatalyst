@@ -1,75 +1,17 @@
-# Nuxt 3 Minimal Starter
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d7aaebf4-bc90-428a-a989-c86ad1247333/deploy-status)](https://app.netlify.com/sites/xpcatalyst/deploys)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# XP Catalyst
 
-## Setup
+XP Catalyst is a platform designed to tackle a common challenge faced by aspiring developers: gaining practical experience to secure their first job. This project aims to create a supportive environment where newcomers can work on real-world projects while project owners benefit from dedicated talent.
 
-Make sure to install the dependencies:
+## Project Status
 
-```bash
-# npm
-npm install
+It is currently in its prototype phase, serving as a learning project in Vue/Nuxt, testing, and clean architecture. As I continue to develop this project, I welcome feedback and contributions from the community to help shape its future. 👋👋🏿👋🏽👋🏻👋🏾👋🏼
 
-# pnpm
-pnpm install
+## 👤 Author
 
-# yarn
-yarn install
+[@jeromeabel](https://github.com/jeromeabel)
 
-# bun
-bun install
-```
+## 📝 License
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
