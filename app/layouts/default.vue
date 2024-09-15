@@ -9,7 +9,7 @@ const navItems: NavItem[] = [
   { name: 'Projects', path: '/project' },
   { name: 'Guide', path: '/guide' },
   { name: 'Login', path: '/login' },
-  { name: 'Join us', path: '/join-us' },
+  { name: 'Sign Up', path: '/signup' },
   { name: 'Profile', path: '/profile' },
 ]
 </script>

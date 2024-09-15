@@ -1,5 +1,5 @@
 <template>
   <div>
-    Join us
+    Sign up
   </div>
 </template>

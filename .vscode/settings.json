@@ -1,7 +1,9 @@
 {
     "cSpell.words": [
         "inmemory",
-        "lucide"
+        "lucide",
+        "usecase",
+        "usecases"
     ],
     // Disable the default formatter, use eslint instead
     //"prettier.enable": false,
@@ -11,7 +13,7 @@
         "source.fixAll.eslint": "explicit",
         "source.organizeImports": "always" // never
     },
-    // Silent the stylistic rules in you IDE, but still auto fix them
+    //Silent the stylistic rules in you IDE, but still auto fix them
     "eslint.rules.customizations": [
         {
             "rule": "style/*",
