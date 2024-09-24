@@ -12,7 +12,11 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/eslint',
+    '@nuxtjs/supabase',
   ],
+  supabase: {
+    redirect: false,
+  },
   shadcn: {
     prefix: '',
     componentDir: 'app/components/ui',

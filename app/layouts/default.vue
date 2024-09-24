@@ -9,8 +9,9 @@ const navItems: NavItem[] = [
   { name: 'Projects', path: '/project' },
   { name: 'Guide', path: '/guide' },
   { name: 'Login', path: '/login' },
-  { name: 'Sign Up', path: '/signup' },
-  { name: 'Profile', path: '/profile' },
+  { name: 'Register', path: '/register' },
+  { name: 'Register OTP', path: '/register2' },
+  { name: 'Dashboard', path: '/dashboard' },
 ]
 </script>
 

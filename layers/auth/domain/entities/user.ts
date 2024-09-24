@@ -1,10 +1,7 @@
-export interface IUser {
+export type User = {
   id: string
   email: string
   name?: string
-}
-
-export interface ICredentials {
-  email: string
-  password: string
+  created_at?: string
+  updated_at?: string
 }

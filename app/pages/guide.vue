@@ -1,5 +1,3 @@
 <template>
-  <div>
-    Guide
-  </div>
+  <div>Guide</div>
 </template>
