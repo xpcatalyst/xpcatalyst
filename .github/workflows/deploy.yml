@@ -42,18 +42,18 @@ jobs:
     - name: List directory contents
       run: ls -R /home/runner/work/xpcatalyst/xpcatalyst
 
-    # - name: Deploy to Netlify
-    #   uses: South-Paw/action-netlify-cli@v2
-    #   with:
-    #     args: 'deploy --prod --message "Production [${{ github.sha }}]"'
-    #   env:
-    #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-    #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
     - name: Deploy to Netlify
-      uses: netlify/actions/cli@master
+      uses: South-Paw/action-netlify-cli@v2
+      with:
+        args: 'deploy --prod --message "Production [${{ github.sha }}]"'
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      with:
-        args: deploy --prod --dir=.output/public --message "Production [${{ github.sha }}]"
+
+    # - name: Deploy to Netlify
+    #   uses: netlify/actions/cli@master
+    #   env:
+    #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+    #   with:
+    #     args: deploy --prod --dir=.output/public --message "Production [${{ github.sha }}]"
