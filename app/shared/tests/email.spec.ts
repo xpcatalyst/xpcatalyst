@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { createEmail, ERRORS } from '../email'
-import { failure, success } from '../result'
+import { createEmail, ERRORS } from '@/shared/email'
+import { failure, success } from '@/shared/result'
 
 describe('Email', () => {
   it('should return a success result for valid email', () => {
@@ -68,7 +68,6 @@ describe('Email', () => {
     })
   })
 
-  // Consecutive Dots
   describe('Consecutive Dots', () => {
     const consecutiveDotsEmails = [
       'user..name@example.com',
@@ -88,6 +87,7 @@ describe('Email', () => {
       'user@example.c',
       'user@example.123',
       'user@example.com.',
+      'user@example.aaaaaaaaaaaaaaaaa', // more than 16
     ]
 
     invalidTLDEmails.forEach((email) => {

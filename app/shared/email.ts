@@ -10,7 +10,12 @@ export const ERRORS = {
 
 // export const PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 // export const PATTERN : RegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,3})$/ // from mdn + fix
-export const PATTERN = /^(?!.*\.\.)(?!.*\.$)(?!^\.)([a-zA-Z0-9._%+-]+)@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+// http://data.iana.org/TLD/tlds-alpha-by-domain.txt
+export const PATTERN = /^(?!.*\.\.)(?!.*\.$)(?!^\.)([a-zA-Z0-9._%+-]+)@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,16}$/ // ok
+
+// https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
+// export const PATTERN = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
 export const isValid = (value: string): boolean => PATTERN.test(value)
 
