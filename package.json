@@ -22,40 +22,38 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,ts,vue}": [
-      "pnpm lint"
-    ]
+    "*.{js,ts,vue}": "pnpm lint:fix"
   },
   "dependencies": {
     "@nuxt/eslint": "^0.5.7",
-    "@nuxt/icon": "^1.5.1",
+    "@nuxt/icon": "^1.5.2",
     "@nuxt/image": "^1.8.0",
     "@nuxtjs/supabase": "^1.4.0",
-    "@vueuse/core": "^11.0.3",
+    "@vueuse/core": "^11.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.439.0",
-    "nuxt": "^3.13.1",
-    "radix-vue": "^1.9.5",
+    "nuxt": "^3.13.2",
+    "radix-vue": "^1.9.6",
     "shadcn-nuxt": "^0.10.4",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "vue": "^3.5.5"
+    "typescript": "5.5.4",
+    "vue": "^3.5.9"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.0",
     "@iconify-json/uil": "^1.2.0",
     "@nuxt/test-utils": "^3.14.2",
     "@nuxtjs/tailwindcss": "^6.12.1",
-    "@playwright/test": "^1.47.1",
+    "@playwright/test": "^1.47.2",
     "@vitest/coverage-v8": "^2.1.1",
     "@vitest/ui": "^2.1.1",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^14.12.3",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
-    "playwright-core": "^1.47.1",
-    "typescript": "^5.6.2",
+    "playwright-core": "^1.47.2",
     "vitest": "^2.1.1",
     "vitest-environment-nuxt": "^1.0.1"
   },

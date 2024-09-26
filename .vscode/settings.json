@@ -51,9 +51,9 @@
             "rule": "*semi",
             "severity": "off"
         },
-        {
-            "rule": "*-lines",
-            "severity": "off"
-        },
+        // {
+        //     "rule": "*-lines",
+        //     "severity": "off"
+        // },
     ],
 }
