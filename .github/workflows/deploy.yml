@@ -35,9 +35,12 @@ jobs:
       run: pnpm install
 
     - name: Build Nuxt app
-      run: pnpm run build
+      run: pnpm build
       env:
         PNPM_FLAGS: --shamefully-hoist
+
+    - name: List directory contents
+      run: ls -R /home/runner/work/xpcatalyst/xpcatalyst
 
     - name: Deploy to Netlify
       uses: South-Paw/action-netlify-cli@v2
