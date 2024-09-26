@@ -1,4 +1,6 @@
+import type { Email } from '@/shared/email'
+
 export type Credentials = {
-  email: string
+  email: Email
   password: string
 }

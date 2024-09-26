@@ -1,38 +1,29 @@
-import type { Credentials, IAuthRepository, User } from '@@/layers/auth'
+import { type IAuthRepository, type User, type Credentials, ERRORS } from '@@/layers/auth'
+import { failure, success, type Result } from '@/shared/result'
+import type { Email } from '@/shared/email'
 
 export const createInMemoryRepository = (): IAuthRepository => {
   const users: User[] = []
 
-  const addUser = async (credentials: Credentials): Promise<User> => {
+  const addUser = async (credentials: Credentials): Promise<Result<User>> => {
+    const existingUser = users.find(user => user.email === credentials.email)
+
+    if (existingUser) {
+      return failure(ERRORS.USER_ALREADY_EXISTS)
+    }
+
     const newUser: User = { id: String(users.length + 1), email: credentials.email }
     users.push(newUser)
-    return newUser
+    return success(newUser)
   }
 
-  const getUserByEmail = async (email: string): Promise<User | null> => {
-    return users.find(user => user.email === email) || null
+  const getUserByEmail = async (email: Email): Promise<Result<User>> => {
+    const user = users.find(user => user.email === email) || null
+    return user ? success(user) : failure(ERRORS.USER_NOT_FOUND)
   }
 
   return {
-    addUser, getUserByEmail,
-
+    addUser,
+    getUserByEmail,
   }
 }
-
-/*
-const login = async (credentials: Credentials): Promise<User> => {
-    const user = users.find(u => u.email === credentials.email)
-    if (!user) {
-      throw new Error('User not found')
-    }
-    return user
-  }
-
-  const logout = async (): Promise<void> => {
-    // No action needed for in-memory repository
-  }
-
-  const getCurrentUser = async (): Promise<User | null> => {
-    return users.length > 0 ? users[users.length - 1] : null
-  }
-*/
