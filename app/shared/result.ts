@@ -4,21 +4,24 @@
 
 export type Error = string
 
-// result.ts
-// export type Result<T, E = Error> =
-//   | { success: true, value: T }
-//   | { success: false, error: E }
+export type Result<T> = Success<T> | Failure
 
-export type Result<T, E = Error> =
-  | { success: true, value: T }
-  | { success: false, error: E }
+export interface Success<T> {
+  success: true
+  value: T
+}
 
-export const success = <T>(value: T): Result<T> => ({
+export interface Failure {
+  success: false
+  error: Error
+}
+
+export const success = <T>(value: T): Success<T> => ({
   success: true,
   value,
 })
 
-export const failure = <E>(error: E): Result<never, E> => ({
+export const failure = (error: Error): Failure => ({
   success: false,
   error,
 })
