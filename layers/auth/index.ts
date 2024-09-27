@@ -13,4 +13,4 @@ export { createLoginUseCase } from './domain/usecases/login'
 export { ERRORS, REPOSITORY_ERRORS, USECASE_ERRORS } from './domain/errors'
 
 // Adapters (repositories)
-export { createInMemoryRepository } from './adapters/in-memory-repository'
+export { createInMemoryRepository } from './infrastructure/in-memory-repository'
