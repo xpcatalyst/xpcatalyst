@@ -7,6 +7,7 @@ export type { IAuthRepository } from './domain/ports/auth-repository'
 
 // Domain/Use cases
 export { createAddUserUseCase } from './domain/usecases/add-user'
+export { createLoginUseCase } from './domain/usecases/login'
 
 // Domain/Errors
 export { ERRORS } from './domain/errors'
