@@ -1,40 +1,40 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { createAddUserUseCase, createInMemoryRepository, USECASE_ERRORS } from '@@/layers/auth/'
 import { success, failure, PASSWORD_ERRORS, EMAIL_ERRORS } from '@/shared'
 
 describe('AddUserUseCase', () => {
-  it('should add a new user successfully', async () => {
-    const repository = createInMemoryRepository()
-    const addUserUseCase = createAddUserUseCase(repository)
+  let repository: ReturnType<typeof createInMemoryRepository>
+  let addUserUseCase: ReturnType<typeof createAddUserUseCase>
 
-    const result = await addUserUseCase.execute({ email: 'test@example.com', password: 'ValidPassword1!' })
-    expect(result).toEqual(success({ id: '1', email: 'test@example.com' }))
+  beforeEach(() => {
+    repository = createInMemoryRepository()
+    addUserUseCase = createAddUserUseCase(repository)
+  })
+
+  const validUser = {
+    email: 'test@example.com',
+    password: 'ValidPassword1!',
+  }
+
+  it('should add a new user successfully', async () => {
+    const result = await addUserUseCase.execute(validUser)
+
+    expect(result).toEqual(success({ id: '1', email: validUser.email }))
   })
 
   it('should return failure when user already exists', async () => {
-    const repository = createInMemoryRepository()
-    const addUserUseCase = createAddUserUseCase(repository)
-
-    await addUserUseCase.execute({ email: 'test@example.com', password: 'ValidPassword1!' })
-    const result = await addUserUseCase.execute({ email: 'test@example.com', password: 'ValidPassword1!' })
+    await addUserUseCase.execute(validUser)
+    const result = await addUserUseCase.execute(validUser)
 
     expect(result).toEqual(failure(USECASE_ERRORS.USER_ALREADY_EXISTS))
   })
 
-  it('should return failure when password is invalid', async () => {
-    const repository = createInMemoryRepository()
-    const addUserUseCase = createAddUserUseCase(repository)
+  it.each([
+    { scenario: 'password is too short', input: { ...validUser, password: 'short' }, expectedError: PASSWORD_ERRORS.TOO_SHORT },
+    { scenario: 'email is invalid', input: { ...validUser, email: 'invalid-email' }, expectedError: EMAIL_ERRORS.INVALID },
+  ])('should return failure when $scenario', async ({ input, expectedError }) => {
+    const result = await addUserUseCase.execute(input)
 
-    const result = await addUserUseCase.execute({ email: 'test@example.com', password: 'short' })
-
-    expect(result).toEqual(failure(PASSWORD_ERRORS.TOO_SHORT))
-  })
-
-  it('should return failure when email is invalid', async () => {
-    const repository = createInMemoryRepository()
-    const addUserUseCase = createAddUserUseCase(repository)
-
-    const result = await addUserUseCase.execute({ email: 'invalid-email', password: 'ValidPassword1!' })
-    expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
+    expect(result).toEqual(failure(expectedError))
   })
 })
