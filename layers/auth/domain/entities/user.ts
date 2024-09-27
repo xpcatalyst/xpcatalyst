@@ -1,4 +1,4 @@
-import type { Email } from '@/shared/email'
+import type { Email } from '@/shared'
 
 export type User = {
   id: string

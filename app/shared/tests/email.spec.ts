@@ -1,39 +1,38 @@
 import { describe, expect, it } from 'vitest'
-import { createEmail, ERRORS } from '@/shared/email'
-import { failure, success } from '@/shared/result'
+import { validateEmail, EMAIL_ERRORS, failure, success } from '@/shared'
 
 describe('Email', () => {
   it('should return a success result for valid email', () => {
-    const result = createEmail('test@example.com')
+    const result = validateEmail('test@example.com')
     expect(result).toEqual(success('test@example.com'))
   })
 
   it('should return failure when email is a empty string', () => {
-    const result = createEmail('')
-    expect(result).toEqual(failure(ERRORS.REQUIRED))
+    const result = validateEmail('')
+    expect(result).toEqual(failure(EMAIL_ERRORS.REQUIRED))
   })
 
   it('should return failure when email is null or undefined', () => {
-    const resultNull = createEmail(null)
-    const resultUndefined = createEmail(undefined)
+    const resultNull = validateEmail(null)
+    const resultUndefined = validateEmail(undefined)
 
-    expect(resultNull).toEqual(failure(ERRORS.REQUIRED))
-    expect(resultUndefined).toEqual(failure(ERRORS.REQUIRED))
+    expect(resultNull).toEqual(failure(EMAIL_ERRORS.REQUIRED))
+    expect(resultUndefined).toEqual(failure(EMAIL_ERRORS.REQUIRED))
   })
 
   it('should return failure with missing "@" symbol', () => {
-    const result = createEmail('userexample.com')
-    expect(result).toEqual(failure(ERRORS.INVALID))
+    const result = validateEmail('userexample.com')
+    expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
   })
 
   it('should return failure with multiple "@" symbols', () => {
-    const result = createEmail('user@@example.com') // user@domain@domain.com
-    expect(result).toEqual(failure(ERRORS.INVALID))
+    const result = validateEmail('user@@example.com') // user@domain@domain.com
+    expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
   })
 
   it('should return failure with missing domain name', () => {
-    const result = createEmail('user@') // @example.com
-    expect(result).toEqual(failure(ERRORS.INVALID))
+    const result = validateEmail('user@') // @example.com
+    expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
   })
 
   describe('Invalid Characters', () => {
@@ -47,8 +46,8 @@ describe('Email', () => {
 
     invalidEmails.forEach((email) => {
       it(`should return failure with invalid email: ${email}`, () => {
-        const result = createEmail(email)
-        expect(result).toEqual(failure(ERRORS.INVALID))
+        const result = validateEmail(email)
+        expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
       })
     })
   })
@@ -62,8 +61,8 @@ describe('Email', () => {
 
     spacedEmails.forEach((email) => {
       it(`should return failure with email containing spaces: '${email}'`, () => {
-        const result = createEmail(email)
-        expect(result).toEqual(failure(ERRORS.INVALID))
+        const result = validateEmail(email)
+        expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
       })
     })
   })
@@ -76,8 +75,8 @@ describe('Email', () => {
 
     consecutiveDotsEmails.forEach((email) => {
       it(`should return failure with consecutive dots in email: ${email}`, () => {
-        const result = createEmail(email)
-        expect(result).toEqual(failure(ERRORS.INVALID))
+        const result = validateEmail(email)
+        expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
       })
     })
   })
@@ -92,30 +91,30 @@ describe('Email', () => {
 
     invalidTLDEmails.forEach((email) => {
       it(`should return failure with invalid TLD: ${email}`, () => {
-        const result = createEmail(email)
-        expect(result).toEqual(failure(ERRORS.INVALID))
+        const result = validateEmail(email)
+        expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
       })
     })
   })
 
   it('should return failure with non-ASCII email', () => {
-    const result = createEmail('用户@例子.广告')
-    expect(result).toEqual(failure(ERRORS.INVALID))
+    const result = validateEmail('用户@例子.广告')
+    expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
   })
 
   it('should return failure with a too short email address', () => {
-    const result = createEmail('a@b.c') // This is valid but not a realistic use case
-    expect(result).toEqual(failure(ERRORS.INVALID))
+    const result = validateEmail('a@b.c') // This is valid but not a realistic use case
+    expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
   })
 
   it('should return failure with an extremely long email address (> 100 characters)', () => {
     const longEmail = 'a'.repeat(89) + '@example.com'
-    const result = createEmail(longEmail)
-    expect(result).toEqual(failure(ERRORS.TOO_LONG))
+    const result = validateEmail(longEmail)
+    expect(result).toEqual(failure(EMAIL_ERRORS.TOO_LONG))
   })
   it('should return failure with invalid local part email: .user@example.com', () => {
-    const result = createEmail('.user@example.com') // don't work with 'user.@example.com'
-    expect(result).toEqual(failure(ERRORS.INVALID))
+    const result = validateEmail('.user@example.com') // don't work with 'user.@example.com'
+    expect(result).toEqual(failure(EMAIL_ERRORS.INVALID))
   })
 })
 
