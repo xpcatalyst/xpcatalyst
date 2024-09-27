@@ -1,8 +1,11 @@
 import { validateCredentials, USECASE_ERRORS, type Credentials, type IAuthRepository, type User } from '@@/layers/auth'
 import { failure, success, type Result } from '@/shared'
 
-// Interactor?
-export const createLoginUseCase = (repository: IAuthRepository) => ({
+export interface ILoginUseCase {
+  execute(credentials: Credentials): Promise<Result<User>>
+}
+
+export const createLoginUseCase = (repository: IAuthRepository): ILoginUseCase => ({
   execute: async (credentials: Credentials): Promise<Result<User>> => {
     const validatedCredentials = validateCredentials(credentials)
     if (!validatedCredentials.success) {
@@ -22,3 +25,5 @@ export const createLoginUseCase = (repository: IAuthRepository) => ({
     return success(loginResult.value)
   },
 })
+
+// Use case == Interactor?

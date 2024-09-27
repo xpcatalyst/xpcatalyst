@@ -7,10 +7,15 @@ export type { IAuthRepository } from './domain/ports/auth-repository'
 
 // Domain/Use cases
 export { createAddUserUseCase } from './domain/usecases/add-user'
-export { createLoginUseCase } from './domain/usecases/login'
+export { createLoginUseCase, type ILoginUseCase } from './domain/usecases/login'
 
 // Domain/Errors
 export { ERRORS, REPOSITORY_ERRORS, USECASE_ERRORS } from './domain/errors'
 
-// Adapters (repositories)
+// Infrastructure/Adapters (repositories)
 export { createInMemoryRepository } from './infrastructure/in-memory-repository'
+export { createSupabaseRepository } from './infrastructure/supabase-repository'
+export { createAuthRepository } from './infrastructure/auth-repository-factory'
+
+// Presentation
+export * from './presentation/composables/useLogin'
