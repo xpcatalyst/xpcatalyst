@@ -1,32 +1,42 @@
-import { describe, expect, it, vi } from 'vitest'
-import { useLogin } from '@@/layers/auth'
-import { success } from '~/shared'
+import { describe, expect, it, beforeEach } from 'vitest'
+import { useLogin, createLoginUseCase, createInMemoryRepository, type IAuthRepository } from '@@/layers/auth'
 
 describe('useLogin', () => {
-  const mockLoginUseCase = {
-    execute: vi.fn().mockResolvedValue({ id: '1', email: 'test@example.com' }),
-  }
+  let loginUseCase: ReturnType<typeof createLoginUseCase>
+  let repository: IAuthRepository
+
+  beforeEach(() => {
+    repository = createInMemoryRepository()
+    loginUseCase = createLoginUseCase(repository)
+  })
 
   it('should initialize with default values', () => {
-    const { error, isLoading, user } = useLogin(mockLoginUseCase)
+    const { error, isLoading, user } = useLogin(loginUseCase)
     expect(error.value).toBe(null)
     expect(isLoading.value).toBe(false)
     expect(user.value).toBe(null)
   })
 
   it('should handle successful login', async () => {
-    const mockLoginUseCase = {
-      execute: vi.fn().mockResolvedValue(success({ id: '1', email: 'test@example.com' })),
-    }
-    const { login, user, error, isLoading } = useLogin(mockLoginUseCase)
+    const credentials = { email: 'test@example.com', password: 'ValidPassword1!' }
+    const { login, user, error, isLoading } = useLogin(loginUseCase)
+    await repository.addUser(credentials)
 
-    await login({ email: 'test@example.com', password: 'password123' })
+    await login(credentials)
 
-    expect(mockLoginUseCase.execute).toHaveBeenCalledWith({ email: 'test@example.com', password: 'password123' })
-
-    expect(user.value).toEqual({ id: '1', email: 'test@example.com' })
+    expect(user.value).toEqual(expect.objectContaining({ email: credentials.email }))
     expect(error.value).toBeNull()
     expect(isLoading.value).toBe(false)
   })
-  it.todo('should handle login failure')
+
+  it('should handle login failure', async () => {
+    const { login, user, error, isLoading } = useLogin(loginUseCase)
+    const credentials = { email: 'nonexistent@example.com', password: 'InvalidPassword1!' }
+
+    await login(credentials)
+
+    expect(user.value).toBeNull()
+    expect(error.value).toBeTruthy()
+    expect(isLoading.value).toBe(false)
+  })
 })
