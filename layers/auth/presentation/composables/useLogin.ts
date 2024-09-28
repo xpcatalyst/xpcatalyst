@@ -9,17 +9,15 @@ export const useLogin = (loginUseCase: ILoginUseCase) => {
     isLoading.value = true
     error.value = null
 
-    try {
-      const result = await loginUseCase.execute(credentials)
-      user.value = result.success ? result.value : null
-      error.value = result.success ? null : result.error
+    const result = await loginUseCase.execute(credentials)
+    if (result.success) {
+      user.value = result.value
     }
-    catch (e) {
-      error.value = e instanceof Error ? e.message : 'An error occurred'
+    else {
+      user.value = null
+      error.value = result.error
     }
-    finally {
-      isLoading.value = false
-    }
+    isLoading.value = false
   }
 
   return { user, error, isLoading, login }

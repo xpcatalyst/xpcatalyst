@@ -1,8 +1,8 @@
 import { describe, expect, it, beforeEach } from 'vitest'
-import { useLogin, createLoginUseCase, createInMemoryRepository, type IAuthRepository } from '@@/layers/auth'
+import { useLogin, createLoginUseCase, createInMemoryRepository, type IAuthRepository, type ILoginUseCase } from '@@/layers/auth'
 
 describe('useLogin', () => {
-  let loginUseCase: ReturnType<typeof createLoginUseCase>
+  let loginUseCase: ILoginUseCase
   let repository: IAuthRepository
 
   beforeEach(() => {
