@@ -1,10 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest'
+import type { IAuthRepository, ILoginUseCase } from '@@/layers/auth/'
 import { createLoginUseCase, createInMemoryRepository, USECASE_ERRORS } from '@@/layers/auth/'
 import { failure, success } from '@/shared/result'
 
+// Test the LoginUseCase with a mocked repository.
 describe('LoginUseCase', () => {
-  let repository: ReturnType<typeof createInMemoryRepository>
-  let loginUseCase: ReturnType<typeof createLoginUseCase>
+  let repository: IAuthRepository // ReturnType<typeof createInMemoryRepository>
+  let loginUseCase: ILoginUseCase // ReturnType<typeof createLoginUseCase>
 
   const validCredentials = {
     email: 'test@example.com',

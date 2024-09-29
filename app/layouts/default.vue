@@ -7,11 +7,11 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: 'XP Catalyst', path: '/' },
   { name: 'Projects', path: '/project' },
-  { name: 'Guide', path: '/guide' },
-  { name: 'Login', path: '/login' },
-  { name: 'Register', path: '/register' },
-  { name: 'Register OTP', path: '/register2' },
-  { name: 'Dashboard', path: '/dashboard' },
+  // { name: 'Guide', path: '/guide' },
+  // { name: 'Login', path: '/login' },
+  // { name: 'Register', path: '/register' },
+  // { name: 'Register OTP', path: '/register2' },
+  // { name: 'Dashboard', path: '/dashboard' },
 ]
 </script>
 
