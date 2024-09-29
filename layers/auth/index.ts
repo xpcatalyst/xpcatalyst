@@ -18,4 +18,4 @@ export { createSupabaseRepository } from './infrastructure/supabase-repository'
 export { createAuthRepository } from './infrastructure/auth-repository-factory'
 
 // Presentation
-export * from './presentation/composables/useLogin'
+export { useLogin } from './presentation/composables/useLogin'

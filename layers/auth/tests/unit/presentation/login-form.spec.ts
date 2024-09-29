@@ -1,17 +1,21 @@
 import { shallowMount } from '@vue/test-utils'
-import { describe, it, expect, beforeEach } from 'vitest'
-import { createLoginUseCase, createInMemoryRepository } from '@@/layers/auth'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import LoginForm from '@@/layers/auth/presentation/components/LoginForm.vue'
 
-describe('LoginForm', () => {
-  const repository = createInMemoryRepository()
-  const loginUseCase = createLoginUseCase(repository)
+// Mock login use case
+const mockLoginUseCase = {
+  execute: vi.fn(),
+}
 
+describe('LoginForm', () => {
   let wrapper: ReturnType<typeof shallowMount>
 
   beforeEach(() => {
-    // Factory
-    wrapper = shallowMount(LoginForm, { props: { usecase: loginUseCase } })
+    // Reset mock before each test
+    vi.resetAllMocks()
+
+    // Component factory
+    wrapper = shallowMount(LoginForm, { props: { usecase: mockLoginUseCase } })
   })
 
   // Helper selectors
@@ -25,15 +29,74 @@ describe('LoginForm', () => {
     expect(findEmailInput().exists()).toBe(true)
     expect(findPasswordInput().exists()).toBe(true)
     expect(findSubmitButton().exists()).toBe(true)
+    expect(findSubmitButton().attributes('disabled')).toBe('')
   })
 
-  //   it('submits the form with correct data', async () => {
-  //     await wrapper.find('input[type="email"]').setValue('test@example.com')
-  //     await wrapper.find('input[type="password"]').setValue('ValidPassword1!')
-  //     await wrapper.find('form').trigger('submit')
+  it('should disable the submit button when email field is empty', async () => {
+    await findPasswordInput().setValue('password')
+    expect(findSubmitButton().attributes('disabled')).toBe('') // Disable true
+  })
 
-//     // Check if the form submission was handled correctly
-//     // You might need to wait for the next tick or use a custom matcher
-//     // to check if the login function was called with the correct arguments
-//   })
+  it('should disable the submit button when password field is empty', async () => {
+    await findEmailInput().setValue('test@example.com')
+    expect(findSubmitButton().attributes('disabled')).toBe('')
+  })
+
+  describe('when email and password are provided', () => {
+    beforeEach(async () => {
+      await findEmailInput().setValue('test@example.com')
+      await findPasswordInput().setValue('password')
+    })
+
+    it('should enable the submit button', () => {
+      expect(findSubmitButton().attributes('disabled')).toBeUndefined() // Disabled false
+    })
+
+    describe('on form submit', () => {
+      it('should call the login use case', async () => {
+        await findSubmitButton().trigger('submit')
+        expect(mockLoginUseCase.execute).toHaveBeenCalledWith({
+          email: 'test@example.com',
+          password: 'password',
+        })
+      })
+    })
+  })
 })
+
+/*
+        // mockLoginUseCase.execute.mockResolvedValue({ success: true, value: { id: '1', email: 'test@example.com' } })
+
+      it('should handle login failure', async () => {
+        mockLoginUseCase.execute.mockResolvedValue({ success: false, error: 'Invalid credentials' })
+        await findSubmitButton().trigger('submit')
+        // Add expectations for failure scenario (e.g., error message displayed)
+      })
+
+      it('should handle login error', async () => {
+        // mockLoginUseCase.execute.mockRejectedValue(new Error('Network error'))
+        await findSubmitButton().trigger('submit')
+        // Add expectations for error scenario
+      })
+    })
+  })
+
+  it('should disable submit button when loading', async () => {
+    await findEmailInput().setValue('test@example.com')
+    await findPasswordInput().setValue('password')
+
+    let resolveLogin: (value: unknown) => void
+    mockLoginUseCase.execute.mockImplementation(() => new Promise((resolve) => { resolveLogin = resolve }))
+
+    await findSubmitButton().trigger('submit')
+    await wrapper.vm.$nextTick()
+
+    expect(findSubmitButton().attributes('disabled')).toBe('')
+
+    resolveLogin!({ success: true, value: { id: '1', email: 'test@example.com' } })
+    await wrapper.vm.$nextTick()
+
+    expect(findSubmitButton().attributes('disabled')).toBeUndefined()
+  })
+
+  */

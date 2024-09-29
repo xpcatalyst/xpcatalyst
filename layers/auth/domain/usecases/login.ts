@@ -9,7 +9,7 @@ export const createLoginUseCase = (repository: IAuthRepository): ILoginUseCase =
   execute: async (credentials: Credentials): Promise<Result<User>> => {
     const validatedCredentials = validateCredentials(credentials)
     if (!validatedCredentials.success) {
-      return failure(USECASE_ERRORS.INVALID_CREDENTIALS)
+      return failure(USECASE_ERRORS.INVALID_CREDENTIALS) // Generic error for the use
     }
 
     const existingUser = await repository.getUserByEmail(validatedCredentials.value.email)
