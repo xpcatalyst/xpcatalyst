@@ -1,6 +1,8 @@
 import type { Credentials, User } from '@@/layers/auth'
 import type { Result, Email } from '~/shared'
 
+// Output Ports (Repository Interfaces):
+// These are also defined in the domain layer but implemented by the infrastructure layer
 // Focus on pure data retrieval and manipulation
 export interface IAuthRepository {
   addUser: (credentials: Credentials) => Promise<Result<User>>
