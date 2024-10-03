@@ -6,7 +6,7 @@ module.exports = {
   safelist: ['dark'],
   prefix: '',
   content: [
-    'layers/project/views/**/*.vue',
+    'layers/**/*.vue',
   ],
   theme: {
     container: {
