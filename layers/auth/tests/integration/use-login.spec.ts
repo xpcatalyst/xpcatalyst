@@ -44,4 +44,53 @@ describe('useLogin', () => {
     expect(success.value).toBe(false)
     expect(error.value).toBe(USECASE_ERRORS.INVALID_CREDENTIALS)
   })
+
+  it('should not attempt login if email or password is empty', async () => {
+    const { login, email, password, success, error } = useLogin(loginUseCase)
+    email.value = ''
+    password.value = ''
+
+    await login()
+
+    expect(success.value).toBe(false)
+    expect(error.value).toBe('')
+  })
+
+  it('should set loading state during login process', async () => {
+    const { login, loading, email, password } = useLogin(loginUseCase)
+
+    email.value = 'not empty'
+    password.value = 'not empty'
+
+    login()
+
+    expect(loading.value).toBe(true)
+
+    await nextTick()
+
+    expect(loading.value).toBe(false)
+  })
+
+  it('should disabled the login button when email or password is empty', () => {
+    const { email, password, isSubmitDisabled } = useLogin(loginUseCase)
+    email.value = ''
+    password.value = ''
+    expect(isSubmitDisabled.value).toBe(true)
+  })
+
+  it('should disabled the login button when loading', async () => {
+    const { loading, isSubmitDisabled, email, password, login } = useLogin(loginUseCase)
+    email.value = 'not empty'
+    password.value = 'not empty'
+
+    login()
+
+    expect(loading.value).toBe(true)
+    expect(isSubmitDisabled.value).toBe(true)
+
+    await nextTick()
+
+    expect(loading.value).toBe(false)
+    expect(isSubmitDisabled.value).toBe(false)
+  })
 })
