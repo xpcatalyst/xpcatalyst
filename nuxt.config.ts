@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'url'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -24,6 +26,23 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       stylistic: true,
+    },
+  },
+  // extends: [
+  //   './layers/auth/nuxt.config',
+  // ],
+
+  // Extend the auth layer
+  // extends: './layers/auth',
+
+  // Use the extendPages hook to add the /login route
+  hooks: {
+    'pages:extend'(pages) {
+      pages.push({
+        name: 'login',
+        path: '/login',
+        file: fileURLToPath(new URL('./layers/auth/presentation/pages/login.vue', import.meta.url)),
+      })
     },
   },
 })
