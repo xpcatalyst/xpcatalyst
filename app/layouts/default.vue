@@ -13,10 +13,29 @@ const navItems: NavItem[] = [
   // { name: 'Register OTP', path: '/register2' },
   // { name: 'Dashboard', path: '/dashboard' },
 ]
+const isDarkMode = ref(true)
+
+// Fonction pour basculer le mode sombre
+const toggleDarkMode = () => {
+  isDarkMode.value = !isDarkMode.value
+  localStorage.setItem('darkMode', isDarkMode.value.toString())
+}
+
+// Initialiser le mode sombre en fonction des préférences de l'utilisateur
+watchEffect(() => {
+  if (import.meta.client) {
+    const savedMode = localStorage.getItem('darkMode')
+    isDarkMode.value = savedMode ? savedMode === 'true' : window.matchMedia('(prefers-color-scheme: dark)').matches
+    document.documentElement.classList.toggle('dark', isDarkMode.value)
+  }
+})
 </script>
 
 <template>
-  <div class="grid min-h-screen grid-rows-[auto_1fr_auto]">
+  <div
+    :class="{ dark: isDarkMode }"
+    class="grid min-h-screen grid-rows-[auto_1fr_auto] "
+  >
     <header class="border-b p-8">
       <div class="container flex gap-16">
         <nav>
@@ -31,6 +50,12 @@ const navItems: NavItem[] = [
             </li>
           </ul>
         </nav>
+        <button
+          class="p-2 rounded-full bg-secondary text-secondary-foreground"
+          @click="toggleDarkMode"
+        >
+          <Icon :name="isDarkMode ? 'mdi:white-balance-sunny' : 'mdi:moon-waning-crescent'" />
+        </button>
       </div>
     </header>
     <main class="p-8 container">
