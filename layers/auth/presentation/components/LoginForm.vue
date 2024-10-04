@@ -46,11 +46,13 @@ const presenter = useLogin()
       data-testid="login-submit"
       type="submit"
       class="w-full px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+      :disabled="presenter.isSubmitDisabled.value"
     >
-      Log In
+      {{ presenter.loading.value ? 'Loading...' : 'Log In' }}
     </button>
     <p
       v-if="presenter.error"
+      data-testid="login-error"
       class="mt-4 text-sm text-red-500 text-center text-foreground"
     >
       {{ presenter.error }}
