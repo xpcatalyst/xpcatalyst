@@ -1,5 +1,5 @@
 import type { Credentials, ILoginUseCase } from '@@/layers/auth'
-import { createLoginUseCase, createAuthRepository } from '@@/layers/auth'
+import { createLoginUseCase, createAuthRepository, BUTTON_TEXT } from '@@/layers/auth'
 
 export const useLogin = (customLoginUseCase?: ILoginUseCase) => {
   const loginUseCase = customLoginUseCase || createLoginUseCase(createAuthRepository())
@@ -13,6 +13,8 @@ export const useLogin = (customLoginUseCase?: ILoginUseCase) => {
   const isFormEmpty = computed(() => email.value.trim() === '' || password.value.trim() === '')
 
   const isSubmitDisabled = computed(() => loading.value || isFormEmpty.value)
+
+  const submitButtonText = computed(() => loading.value ? BUTTON_TEXT.LOADING : BUTTON_TEXT.LOGIN)
 
   const login = async () => {
     if (isFormEmpty.value) {
@@ -40,6 +42,7 @@ export const useLogin = (customLoginUseCase?: ILoginUseCase) => {
   return {
     email,
     password,
+    submitButtonText: readonly(submitButtonText),
     loading: readonly(loading),
     error: readonly(error),
     success: readonly(success),

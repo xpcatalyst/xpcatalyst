@@ -20,3 +20,4 @@ export { createAuthRepository } from './infrastructure/auth-repository-factory'
 // Presentation
 export { useLogin } from './presentation/composables/useLogin'
 export { default as LoginForm } from './presentation/components/LoginForm.vue'
+export { BUTTON_TEXT } from './presentation/constants'
