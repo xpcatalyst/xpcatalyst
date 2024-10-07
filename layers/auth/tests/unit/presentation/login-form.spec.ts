@@ -40,6 +40,7 @@ describe('LoginForm (Unit)', () => {
     expect(findEmailInput().exists()).toBe(true)
     expect(findPasswordInput().exists()).toBe(true)
     expect(findSubmitButton().exists()).toBe(true)
+    expect(findErrorMessage().exists()).toBe(true)
   })
 
   it('sets required attribute on email and password inputs', () => {
@@ -54,7 +55,7 @@ describe('LoginForm (Unit)', () => {
 
   it('does not display error message when error is empty', () => {
     mockUseLogin.error.value = ''
-    expect(findErrorMessage().exists()).toBe(false)
+    expect(findErrorMessage().text()).toBe('')
   })
   it('binds email input to the presenter', async () => {
     await findEmailInput().setValue('test@example.com')
@@ -92,11 +93,8 @@ describe('LoginForm (Unit)', () => {
   })
 
   it('displays error message when present', async () => {
-    expect(findErrorMessage().exists()).toBe(false)
-
     mockUseLogin.error.value = 'Invalid credentials'
     await nextTick()
-    expect(findErrorMessage().exists()).toBe(true)
     expect(findErrorMessage().text()).toBe('Invalid credentials')
   })
 

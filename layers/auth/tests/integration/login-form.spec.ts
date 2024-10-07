@@ -40,11 +40,10 @@ describe('LoginForm (Integration)', () => {
 
     describe('on form submit', () => {
       it('renders an error message on invalid credentials', async () => {
-        expect(findError().exists()).toBe(false)
+        expect(findError().text()).toBe('')
 
         await findForm().trigger('submit')
 
-        expect(findError().exists()).toBe(true)
         expect(findError().text()).toBe(USECASE_ERRORS.INVALID_CREDENTIALS)
       })
     })
