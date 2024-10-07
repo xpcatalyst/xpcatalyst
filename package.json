@@ -3,63 +3,19 @@
   "private": true,
   "type": "module",
   "version": "0.0.1",
-  "engines": {
-    "node": "20.x"
-  },
+  "description": "Gain professional experience by collaborating on real-world projects",
+  "author": "Jérôme Abel",
+  "license": "CC BY-NC-SA 4.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "test": "vitest",
-    "test:coverage": "vitest --coverage",
-    "test:ui": "vitest --coverage --ui",
-    "test:unit": "vitest run",
-    "test:e2e": "playwright test",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.{js,ts,vue}": "pnpm lint:fix"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/eslint": "^0.5.7",
-    "@nuxt/icon": "^1.5.2",
-    "@nuxt/image": "^1.8.0",
-    "@nuxtjs/supabase": "^1.4.0",
-    "@vee-validate/zod": "^4.13.2",
-    "@vue/devtools-api": "^7.4.6",
-    "@vueuse/core": "^11.1.0",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "lucide-vue-next": "^0.439.0",
-    "nuxt": "^3.13.2",
-    "radix-vue": "^1.9.6",
-    "shadcn-nuxt": "^0.10.4",
-    "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7",
-    "typescript": "5.5.4",
-    "vee-validate": "^4.13.2",
-    "vue": "^3.5.9",
-    "zod": "^3.23.8"
-  },
-  "devDependencies": {
-    "@iconify-json/mdi": "^1.2.0",
-    "@iconify-json/uil": "^1.2.0",
-    "@nuxt/test-utils": "^3.14.2",
-    "@nuxtjs/tailwindcss": "^6.12.1",
-    "@playwright/test": "^1.47.2",
-    "@vitest/coverage-v8": "^2.1.1",
-    "@vitest/ui": "^2.1.1",
-    "@vue/test-utils": "^2.4.6",
-    "happy-dom": "^14.12.3",
-    "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
-    "playwright-core": "^1.47.2",
-    "vitest": "^2.1.1",
-    "vitest-environment-nuxt": "^1.0.1"
-  },
-  "packageManager": "pnpm@9.6.0"
+    "nuxt": "^3.13.0",
+    "vue": "latest",
+    "vue-router": "latest"
+  }
 }
