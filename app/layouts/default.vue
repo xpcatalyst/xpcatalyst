@@ -13,7 +13,7 @@ const navItems: NavItem[] = [
   // { name: 'Register OTP', path: '/register2' },
   // { name: 'Dashboard', path: '/dashboard' },
 ]
-const isDarkMode = ref(true)
+const isDarkMode = ref(false)
 
 // Fonction pour basculer le mode sombre
 const toggleDarkMode = () => {

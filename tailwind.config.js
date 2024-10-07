@@ -7,6 +7,7 @@ module.exports = {
   prefix: '',
   content: [
     'layers/**/*.vue',
+    // 'app/**/*.vue',
   ],
   theme: {
     container: {
