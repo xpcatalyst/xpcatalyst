@@ -18,5 +18,4 @@
     "vue": "latest",
     "vue-router": "latest"
   }
-  //"packageManager": "pnpm@9.12.1"
 }
