@@ -14,8 +14,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "nuxt": "^3.13.0",
+    "nuxt": "^3.13.2",
     "vue": "latest",
     "vue-router": "latest"
   }
+  //"packageManager": "pnpm@9.12.1"
 }
