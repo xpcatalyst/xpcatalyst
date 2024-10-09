@@ -2,6 +2,10 @@
   "name": "xpcatalyst",
   "private": true,
   "type": "module",
+  "version": "0.0.1",
+  "description": "Gain professional experience by collaborating on real-world projects",
+  "author": "Jérôme Abel",
+  "license": "CC BY-NC-SA 4.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -10,7 +14,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "nuxt": "^3.13.0",
+    "nuxt": "^3.13.2",
     "vue": "latest",
     "vue-router": "latest"
   }
