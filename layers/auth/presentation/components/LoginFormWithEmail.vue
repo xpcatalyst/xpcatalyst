@@ -1,8 +1,6 @@
 <template>
   <form>
     <input type="email">
-    <button type="submit">
-      Submit
-    </button>
+    <button>Submit</button>
   </form>
 </template>
