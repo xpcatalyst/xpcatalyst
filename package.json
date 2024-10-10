@@ -1,11 +1,7 @@
 {
-  "name": "xpcatalyst",
+  "name": "nuxt-app",
   "private": true,
   "type": "module",
-  "version": "0.0.1",
-  "description": "Gain professional experience by collaborating on real-world projects",
-  "author": "Jérôme Abel",
-  "license": "CC BY-NC-SA 4.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -14,8 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "nuxt": "^3.13.2",
+    "@nuxt/eslint": "^0.5.7",
+    "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-router": "latest"
-  }
+  },
+  "packageManager": "pnpm@9.12.1+sha512.e5a7e52a4183a02d5931057f7a0dbff9d5e9ce3161e33fa68ae392125b79282a8a8a470a51dfc8a0ed86221442eb2fb57019b0990ed24fab519bf0e1bc5ccfc4"
 }
