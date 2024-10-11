@@ -7,50 +7,44 @@
     "source.organizeImports": "never"
   },
   // Silent the stylistic rules in you IDE, but still auto fix them
-<<<<<<< HEAD
   // "eslint.rules.customizations": [
-=======
-  "eslint.rules.customizations": [
->>>>>>> 5f3116caf76aae40cad601185bd303f64f1904b2
-    // {
-    //   "rule": "style/*",
-    //   "severity": "off"
-    // },
-    // {
-    //   "rule": "*-indent",
-    //   "severity": "off"
-    // },
-    // {
-    //   "rule": "*-spacing",
-    //   "severity": "off"
-    // },
-    // {
-    //   "rule": "*-spaces",
-    //   "severity": "off"
-    // },
-    // {
-    //   "rule": "*-order",
-    //   "severity": "off"
-    // },
-    // {
-    //   "rule": "*-dangle",
-    //   "severity": "off"
-    // },
-    // {
-    //   "rule": "*-newline",
-    //   "severity": "off"
-    // },
-    // {
-    //   "rule": "*quotes",
-    //   "severity": "off"
-    // },
-    // {
-    //   "rule": "*semi",
-    //   "severity": "off"
-    // }
-<<<<<<< HEAD
-=======
-  ],
+  // {
+  //   "rule": "style/*",
+  //   "severity": "off"
+  // },
+  // {
+  //   "rule": "*-indent",
+  //   "severity": "off"
+  // },
+  // {
+  //   "rule": "*-spacing",
+  //   "severity": "off"
+  // },
+  // {
+  //   "rule": "*-spaces",
+  //   "severity": "off"
+  // },
+  // {
+  //   "rule": "*-order",
+  //   "severity": "off"
+  // },
+  // {
+  //   "rule": "*-dangle",
+  //   "severity": "off"
+  // },
+  // {
+  //   "rule": "*-newline",
+  //   "severity": "off"
+  // },
+  // {
+  //   "rule": "*quotes",
+  //   "severity": "off"
+  // },
+  // {
+  //   "rule": "*semi",
+  //   "severity": "off"
+  // }
+  // ],
   // Enable eslint for all supported languages
   // "eslint.validate": [
   //   "javascript",
@@ -63,21 +57,7 @@
   //   "json",
   //   "jsonc",
   //   "yaml"
->>>>>>> 5f3116caf76aae40cad601185bd303f64f1904b2
   // ],
-  // Enable eslint for all supported languages
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "html",
-    "markdown",
-    "json",
-    "jsonc",
-    "yaml"
-  ],
   "iconify.annotations": true,
   "iconify.inplace": true
 }

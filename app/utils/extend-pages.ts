@@ -4,20 +4,20 @@ import path from 'path'
 import type { NuxtPage } from '@nuxt/schema'
 
 const getVueFiles = (dir: string): string[] => {
-    const files = fs.readdirSync(dir, { withFileTypes: true })
-    return files.flatMap((file) => {
-      const filePath = path.join(dir, file.name)
-      if (file.isDirectory()) {
-        return getVueFiles(filePath)
-      }
-      else if (file.name.endsWith('.vue')) {
-        return [filePath]
-      }
-      return []
-    })
-  }
+  const files = fs.readdirSync(dir, { withFileTypes: true })
+  return files.flatMap((file) => {
+    const filePath = path.join(dir, file.name)
+    if (file.isDirectory()) {
+      return getVueFiles(filePath)
+    }
+    else if (file.name.endsWith('.vue')) {
+      return [filePath]
+    }
+    return []
+  })
+}
 
-export function extendPages(pages: NuxtPage[], options = { prefix: '' }) {
+export function extendPages(pages: NuxtPage[]) {
   const layersDir = fileURLToPath(new URL('../../layers', import.meta.url))
   const layers = fs.readdirSync(layersDir, { withFileTypes: true })
     .filter(dirent => dirent.isDirectory())

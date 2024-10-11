@@ -10,12 +10,12 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint'],
   eslint: {
     config: {
-      stylistic: true
+      stylistic: true,
     },
   },
   hooks: {
     'pages:extend'(pages) {
       extendPages(pages)
-    }
+    },
   },
 })
