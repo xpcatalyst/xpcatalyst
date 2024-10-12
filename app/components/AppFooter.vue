@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <footer>
     <div class="py-16 text-center text-sm text-gray-400">

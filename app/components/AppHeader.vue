@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 const navItems = [
   { name: 'XP Catalyst', path: '/' },
