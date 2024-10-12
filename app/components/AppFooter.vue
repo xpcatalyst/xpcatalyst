@@ -1,8 +1,12 @@
 <template>
   <footer>
-    <div class="py-16 text-center text-sm text-gray-400">
+    <div class="py-16 text-center text-sm">
       <p>
-        Made with ❤️
+        Made with
+        <Icon
+          name="mdi:heart"
+          class="animate-pulse"
+        />
         by <a
           href="https://dev.jeromeabel.net"
           class="underline hover:text-black"

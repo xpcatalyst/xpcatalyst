@@ -7,7 +7,23 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
+    '@nuxt/image',
+    '@nuxt/icon',
+    '@nuxt/fonts',
+  ],
+  fonts: [
+    {
+      name: 'Cabinet Grotesk', // Name of the font
+      weight: [400, 500, 700], // Specify the weights you want to use
+      display: 'swap', // Use the swap display property for better performance
+      fallbacks: ['sans-serif'], // Add fallbacks like sans-serif
+    },
+
+  ],
   eslint: {
     config: {
       stylistic: true,
@@ -17,5 +33,8 @@ export default defineNuxtConfig({
     'pages:extend'(pages) {
       extendPages(pages)
     },
+  },
+  shadcn: {
+    componentDir: './app/components/ui',
   },
 })

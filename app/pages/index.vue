@@ -1,4 +1,3 @@
 <template>
-  <MainHero />
-  <NewsletterForm />
+  <HeroSection />
 </template>

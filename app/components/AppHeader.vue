@@ -1,25 +1,22 @@
-<script setup lang="ts">
-const navItems = [
-  { name: 'XP Catalyst', path: '/' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Campus', path: '/campus' },
-]
-</script>
-
 <template>
-  <header class="border-b p-8">
-    <div class="container flex gap-16">
-      <nav>
-        <ul class="flex gap-8">
-          <li
-            v-for="item in navItems"
-            :key="item.path"
-          >
-            <NuxtLink :to="item.path">
-              {{ item.name }}
-            </NuxtLink>
-          </li>
-        </ul>
+  <header class="py-6">
+    <div class="container flex justify-between text-xl items-center">
+      <nav class="flex gap-16 items-center">
+        <NuxtLink to="/">
+          <Icon
+            name="tabler:atom-2"
+            class="text-4xl"
+          />
+        </NuxtLink>
+
+        <NuxtLink
+          to="/projects"
+        >
+          Projects
+        </NuxtLink>
+        <NuxtLink to="/campus">
+          Campus
+        </NuxtLink>
       </nav>
       <AuthButtons />
     </div>
