@@ -14,11 +14,11 @@ import { Button } from '@/components/ui/button'
         </p>
       </div>
       <div class="flex flex-row gap-16 justify-center mt-24">
-        <Button class="text-xl px-8 py-3 rounded-full shadow-xl bg-xp-light-green text-black hover:text-white">
+        <Button class="text-xl px-8 py-6 rounded-full shadow-xl bg-xp-light-green text-black hover:text-white">
           Start Building
         </Button>
         <Button
-          class="text-xl px-8 py-3 rounded-full  shadow-xl bg-xp-pink text-black hover:text-white"
+          class="text-xl px-8 py-6 rounded-full  shadow-xl bg-xp-pink text-black hover:text-white"
         >
           Explore Projects
         </Button>
