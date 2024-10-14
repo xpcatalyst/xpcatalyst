@@ -4,7 +4,7 @@
       <nav class="flex gap-16 items-center">
         <NuxtLink to="/">
           <Icon
-            name="tabler:atom-2"
+            name="xp:logo"
             class="text-4xl"
           />
         </NuxtLink>

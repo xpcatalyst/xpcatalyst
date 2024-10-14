@@ -22,8 +22,15 @@ export default defineNuxtConfig({
       display: 'swap', // Use the swap display property for better performance
       fallbacks: ['sans-serif'], // Add fallbacks like sans-serif
     },
-
   ],
+  icon: {
+    customCollections: [
+      {
+        prefix: 'xp',
+        dir: './app/assets/icons',
+      },
+    ],
+  },
   eslint: {
     config: {
       stylistic: true,
