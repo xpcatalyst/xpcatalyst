@@ -1,14 +1,12 @@
 <template>
   <footer class="py-16">
     <div class="container flex flex-col gap-16">
-      <NewsletterForm />
-
       <div class="text-center text-sm">
         <p>
           Made with
           <Icon
-            name="mdi:heart"
-            class="animate-pulse"
+            name="heroicons:heart-solid"
+            class="animate-pulse text-red-500"
           />
           by <a
             href="https://dev.jeromeabel.net"

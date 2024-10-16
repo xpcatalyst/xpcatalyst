@@ -36,9 +36,9 @@ const onSubmit = handleSubmit((values, actions) => {
 </script>
 
 <template>
-  <div class="mx-auto w-fit text-center">
-    <p class="text-sm text-gray-800 italic mb-4">
-      Early adopters, subscribe to the newsletter!
+  <div class="mx-auto w-fit text-center mt-16">
+    <p class="text-base text-gray-800 italic mb-4">
+      XP Catalyst is in its early prototype phase. <br>Stay updated and be the first to join our community.
     </p>
     <form
       class="flex items-center group focus-within:ring-2 rounded-3xl focus-within:ring-offset-2 focus-within:ring-black"
@@ -58,16 +58,16 @@ const onSubmit = handleSubmit((values, actions) => {
               :class="{
                 'text-foreground border-green-500': meta.valid && meta.dirty,
               }"
-              class="rounded-s-3xl rounded-e-none ps-6 w-80 focus-visible:ring-0"
+              class="rounded-s-3xl rounded-e-none ps-6 w-80 focus-visible:ring-0 text-lg"
             />
           </FormControl>
         </FormItem>
       </FormField>
       <Button
         type="submit"
-        class="rounded-e-3xl rounded-s-none pe-6"
+        class="rounded-e-3xl rounded-s-none pe-6 text-lg"
       >
-        Submit
+        Subscribe
       </Button>
     </form>
     <p

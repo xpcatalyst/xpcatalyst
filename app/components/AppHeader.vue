@@ -2,11 +2,14 @@
   <header class="py-6">
     <div class="container flex justify-between text-xl items-center">
       <nav class="flex gap-16 items-center">
-        <NuxtLink to="/">
+        <NuxtLink
+          to="/"
+          class="flex items-center gap-3 font-bold"
+        >
           <Icon
-            name="xp:logo"
-            class="text-4xl"
-          />
+            name="xp:logo2"
+            class="text-2xl font-readex"
+          /> XP Catalyst
         </NuxtLink>
 
         <NuxtLink
