@@ -36,47 +36,45 @@ const onSubmit = handleSubmit((values, actions) => {
 </script>
 
 <template>
-  <div class="mx-auto w-fit text-center mt-16">
-    <p class="text-base text-gray-800 italic mb-4">
-      XP Catalyst is in its early prototype phase. <br>Stay updated and be the first to join our community.
-    </p>
-    <form
-      class="flex items-center group focus-within:ring-2 rounded-3xl focus-within:ring-offset-2 focus-within:ring-black"
-      @submit="onSubmit"
+  <p class="text-base text-gray-800 mb-4">
+    Subscribe to the newsletter to follow the progress.
+  </p>
+  <form
+    class="flex items-center group focus-within:ring-2 rounded-3xl focus-within:ring-offset-2 focus-within:ring-black"
+    @submit="onSubmit"
+  >
+    <FormField
+      v-slot="{ componentField, meta }"
+      name="email"
+      :validate-on-blur="!isFieldDirty"
     >
-      <FormField
-        v-slot="{ componentField, meta }"
-        name="email"
-        :validate-on-blur="!isFieldDirty"
-      >
-        <FormItem>
-          <FormControl>
-            <Input
-              type="text"
-              placeholder="Enter your email"
-              v-bind="componentField"
-              :class="{
-                'text-foreground border-green-500': meta.valid && meta.dirty,
-              }"
-              class="rounded-s-3xl rounded-e-none ps-6 w-80 focus-visible:ring-0 text-lg"
-            />
-          </FormControl>
-        </FormItem>
-      </FormField>
-      <Button
-        type="submit"
-        class="rounded-e-3xl rounded-s-none pe-6 text-lg"
-      >
-        Subscribe
-      </Button>
-    </form>
-    <p
-      class="py-2 h-6"
+      <FormItem>
+        <FormControl>
+          <Input
+            type="text"
+            placeholder="Enter your email"
+            v-bind="componentField"
+            :class="{
+              'text-foreground border-green-500': meta.valid && meta.dirty,
+            }"
+            class="rounded-s-3xl rounded-e-none ps-6 w-80 focus-visible:ring-0 text-lg"
+          />
+        </FormControl>
+      </FormItem>
+    </FormField>
+    <Button
+      type="submit"
+      class="rounded-e-3xl rounded-s-none pe-6 text-lg"
     >
-      <ErrorMessage
-        name="email"
-        class="text-destructive"
-      />
-    </p>
-  </div>
+      Stay Updated
+    </Button>
+  </form>
+  <p
+    class="py-2 h-6"
+  >
+    <ErrorMessage
+      name="email"
+      class="text-destructive"
+    />
+  </p>
 </template>
