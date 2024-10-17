@@ -25,6 +25,9 @@ module.exports = {
         general: ['General Sans'],
         readex: ['Readex Pro'],
         dot: ['Dot Nation'],
+        fira: ['Fira Sans'],
+        noto: ['Noto'],
+        encode: ['Encode sans'],
       },
       colors: {
         'xp-light-blue': '#baffff',

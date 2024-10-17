@@ -4,7 +4,7 @@
       <nav class="flex gap-16 items-center">
         <NuxtLink
           to="/"
-          class="flex items-center gap-3 font-extrabold font-readex  hover:underline underline-offset-2"
+          class="flex items-center gap-3 font-bold font-readex  hover:underline underline-offset-2 tracking-wide"
         >
           <Icon
             name="xp:logo"

@@ -1,15 +1,12 @@
 <template>
   <section class="flex items-center justify-center flex-grow">
-    <div class="container text-center max-w-4xl">
-      <div class="flex flex-col gap-8">
-        <h1 class="text-6xl font-readex font-bold leading-tight">
-          Let's Catalyze Experience!
+    <div class="container text-2xl">
+      <div class="max-w-4xl">
+        <h1 class="text-4xl font-fira font-black tracking-wider leading-tight mb-4">
+          Let's Catalyze Experience Together!
         </h1>
-        <p class="text-xl lg:text-4xl">
-          Join a supportive community of developers, designers, and project owners.
-        </p>
-        <p class="text-xl lg:text-4xl">
-          Convert your time into professional experience by working on full-stack, real-world projects that solve real problems for users or non-profits.
+        <p>
+          Secure your next job in software development by working on <span class="border-b border-xp-light-purple">curated real-world projects</span>. Make a positive impact through  <span class="border-b border-xpc-light-green">contributions</span> and support for non-profit initiatives.
         </p>
       </div>
 
