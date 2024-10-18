@@ -14,13 +14,20 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/icon',
     '@nuxt/fonts',
+    '@nuxt/test-utils/module', // integration to Nuxt Dev Tools
   ],
   fonts: [
     {
-      name: 'Cabinet Grotesk', // Name of the font
-      weight: [400, 500, 700], // Specify the weights you want to use
-      display: 'swap', // Use the swap display property for better performance
-      fallbacks: ['sans-serif'], // Add fallbacks like sans-serif
+      name: 'Cabinet Grotesk',
+      weight: [400, 500, 700, 800],
+      display: 'swap',
+      fallbacks: ['sans-serif'],
+    },
+    {
+      name: 'Fira Sans',
+      weight: [400, 500, 700, 800],
+      display: 'swap',
+      fallbacks: ['sans-serif'],
     },
   ],
   icon: {
