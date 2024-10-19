@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { createEmail, EMAIL_ERRORS, failure, success } from '@/shared'
+import { createEmail, EMAIL_ERRORS } from '~/shared/email'
+import { failure, success } from '~/shared/result'
 
 describe('Email', () => {
   it('should return a success result for valid email', () => {
