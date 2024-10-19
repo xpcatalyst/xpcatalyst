@@ -8,7 +8,7 @@
         >
           <Icon
             name="xp:logo"
-            class="text-2xl"
+            class="text-2xl text-white fill-white"
           /> XPCATALYST
         </NuxtLink>
         <NuxtLink
