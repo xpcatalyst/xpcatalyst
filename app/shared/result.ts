@@ -1,9 +1,9 @@
 export const success = <T>(value: T): Success<T> => ({
   success: true,
-  value: value as T,
+  value,
 })
 
-export const failure = (error: Error | string): Failure => ({
+export const failure = (error: FailureMessage | Error): Failure => ({
   success: false,
   error,
 })
