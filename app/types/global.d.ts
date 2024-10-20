@@ -11,14 +11,15 @@ type FailureMessage = string
 // Result type that can be either a success or a failure
 type Result<T> = Success<T> | Failure
 
-// Success interface
-interface Success<T> {
+// Success type alias
+type Success<T> = {
   success: true
   value: T
 }
 
-// Failure interface
-interface Failure {
+// Failure type alias:  closed and cannot be extended
+// Instead of interfaces
+type Failure = {
   success: false
   error: FailureMessage | Error
 }
