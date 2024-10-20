@@ -2,7 +2,7 @@
 // They adapt external resources (databases, APIs) into your domain
 
 import type { INewsletterRepository } from '../domain/ports/newsletter-repository-interface'
-import type { Subscriber } from '../domain/entities/subscriber'
+import { createSubscriber, type Subscriber } from '../domain/entities/subscriber'
 import { failure, success } from '~/shared/result'
 
 export const ERRORS = {
@@ -18,21 +18,23 @@ export const createInMemoryRepository = (): INewsletterRepository => {
   const subscribers: Subscriber[] = []
   let currentId = 1
 
-  const addSubscriber = async (email: Email) => {
+  const addSubscriber = async (subscriber: Subscriber) => {
     // No domain-specific validation like email verification => Use Case
-    const existingSubscriber = await getSubscriberByEmail(email)
+    const existingSubscriber = await getSubscriberByEmail(subscriber.email)
     if (existingSubscriber.success) {
       return failure(ERRORS.DUPLICATE_EMAIL)
     }
+    // assume that the inputs it receives are valid?
 
-    const newSubscriber: Subscriber = { id: currentId++, email }
+    // const newSubscriber: Subscriber = { id: currentId++, email }
+    const newSubscriberResult = createSubscriber(subscriber.email, String(currentId++))
 
-    subscribers.push(newSubscriber)
-    return success(newSubscriber)
+    subscribers.push(newSubscriberResult)
+    return success(newSubscriberResult)
   }
 
   const getSubscriberByEmail = async (email: Email): Promise<Result<Subscriber>> => {
-    const subscriber = subscribers.find(subscriber => subscriber.email === email)
+    const subscriber = subscribers.find(subscriber => subscriber.email === email) || null
     return subscriber ? success(subscriber) : failure(ERRORS.SUBSCRIBER_NOT_FOUND)
   }
 

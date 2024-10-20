@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { createInMemoryRepository, ERRORS } from '../../repositories/in-memory-repository'
 import type { INewsletterRepository } from '../../domain/ports/newsletter-repository-interface'
+import { createSubscriber } from '../../domain/entities/subscriber'
 import { failure, success } from '~/shared/result'
 
 describe('InMemoryRepository', () => {
@@ -11,24 +12,32 @@ describe('InMemoryRepository', () => {
   })
 
   it('should add new subscribers', async () => {
-    const result1 = await repository.addSubscriber('test1@example.com')
-    expect(result1).toEqual(success({ id: 1, email: 'test1@example.com' }))
+    const newSubscriber1 = createSubscriber('test1@example.com')
+    const newSubscriber2 = createSubscriber('test2@example.com')
 
-    const result2 = await repository.addSubscriber('test2@example.com')
-    expect(result2).toEqual(success({ id: 2, email: 'test2@example.com' }))
+    const result1 = await repository.addSubscriber(newSubscriber1)
+    expect(result1).toEqual(success({ id: '1', email: newSubscriber1.email }))
+
+    const result2 = await repository.addSubscriber(newSubscriber2)
+    expect(result2).toEqual(success({ id: '2', email: newSubscriber2.email }))
   })
 
   it('should prevent adding duplicate subscribers', async () => {
-    await repository.addSubscriber('test@example.com')
-    const result = await repository.addSubscriber('test@example.com')
+    const subscriber = createSubscriber('test@example.com')
+    await repository.addSubscriber(subscriber)
+
+    const result = await repository.addSubscriber(subscriber)
+
     expect(result.success).toBe(false)
     expect(result).toEqual(failure(ERRORS.DUPLICATE_EMAIL))
   })
 
   it('should retrieve a subscriber by email', async () => {
-    await repository.addSubscriber('test@example.com')
+    const subscriber = createSubscriber('test@example.com')
+    await repository.addSubscriber(subscriber)
+
     const result = await repository.getSubscriberByEmail('test@example.com')
-    expect(result).toEqual(success({ id: 1, email: 'test@example.com' }))
+    expect(result).toEqual(success({ id: '1', email: 'test@example.com' }))
   })
 
   it('should return an error when trying to retrieve a non-existent subscriber', async () => {
