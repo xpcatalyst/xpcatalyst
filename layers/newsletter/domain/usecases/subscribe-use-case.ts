@@ -29,7 +29,7 @@ export const createSubscribeUseCase = (repository: INewsletterRepository): ISubs
     }
 
     // Check if subscriber exists
-    const existingSubscriber = await repository.getSubscriberByEmail(emailResult.value)
+    const existingSubscriber = await repository.getByEmail(emailResult.value)
     if (existingSubscriber.success) {
       return failure(ERRORS.ALREADY_EXISTS)
     }
@@ -37,11 +37,11 @@ export const createSubscribeUseCase = (repository: INewsletterRepository): ISubs
     const newSubscriber = createSubscriber(emailResult.value)
 
     // Reformat errors from repository to something more meaningful, which is useful for providing user-friendly feedback.
-    const subscriberResult = await repository.addSubscriber(newSubscriber)
+    const subscriberResult = await repository.add(newSubscriber)
     return subscriberResult.success
       ? success(subscriberResult.value)
       : failure(ERRORS.ADD_SUBSCRIBER_FAILED)
 
-    // or return await repository.addSubscriber(emailResult.value) ?
+    // or return await repository.add(emailResult.value) ?
   },
 })

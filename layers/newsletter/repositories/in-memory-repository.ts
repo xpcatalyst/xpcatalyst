@@ -18,22 +18,21 @@ export const createInMemoryRepository = (): INewsletterRepository => {
   const subscribers: Subscriber[] = []
   let currentId = 1
 
-  const addSubscriber = async (subscriber: Subscriber) => {
-    // No domain-specific validation like email verification => Use Case
-    const existingSubscriber = await getSubscriberByEmail(subscriber.email)
+  const add = async (subscriber: Subscriber) => {
+    // Assume that the inputs it receives are valid
+
+    const existingSubscriber = await getByEmail(subscriber.email)
     if (existingSubscriber.success) {
       return failure(ERRORS.DUPLICATE_EMAIL)
     }
-    // assume that the inputs it receives are valid?
 
-    // const newSubscriber: Subscriber = { id: currentId++, email }
     const newSubscriberResult = createSubscriber(subscriber.email, String(currentId++))
 
     subscribers.push(newSubscriberResult)
     return success(newSubscriberResult)
   }
 
-  const getSubscriberByEmail = async (email: Email): Promise<Result<Subscriber>> => {
+  const getByEmail = async (email: Email): Promise<Result<Subscriber>> => {
     const subscriber = subscribers.find(subscriber => subscriber.email === email) || null
     return subscriber ? success(subscriber) : failure(ERRORS.SUBSCRIBER_NOT_FOUND)
   }
@@ -43,8 +42,8 @@ export const createInMemoryRepository = (): INewsletterRepository => {
   }
 
   return {
-    addSubscriber,
-    getSubscriberByEmail,
+    add,
+    getByEmail,
     subscribe,
 
   }
