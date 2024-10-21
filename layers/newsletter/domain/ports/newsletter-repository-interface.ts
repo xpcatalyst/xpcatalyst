@@ -7,5 +7,4 @@ import type { Subscriber } from '../entities/subscriber'
 export interface INewsletterRepository {
   add: (subscriber: Subscriber) => Promise<Result<Subscriber>>
   getByEmail: (email: Email) => Promise<Result<Subscriber>>
-  subscribe: (email: Email) => Promise<Result<Subscriber>>
 }

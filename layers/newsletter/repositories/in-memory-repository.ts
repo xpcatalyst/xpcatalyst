@@ -37,14 +37,8 @@ export const createInMemoryRepository = (): INewsletterRepository => {
     return subscriber ? success(subscriber) : failure(ERRORS.SUBSCRIBER_NOT_FOUND)
   }
 
-  const subscribe = async (_email: Email) => {
-    return failure('Not yet implemented')
-  }
-
   return {
     add,
     getByEmail,
-    subscribe,
-
   }
 }
