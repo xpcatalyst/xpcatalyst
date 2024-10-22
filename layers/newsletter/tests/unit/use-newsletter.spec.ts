@@ -38,9 +38,24 @@ describe('useNewsletter', () => {
     await inMemoryRepository.add(createSubscriber('test@example.com'))
     const { email, subscribe, success, error } = useNewsletter(subscribeUseCase)
     email.value = 'test@example.com'
+
     await subscribe()
+
     expect(success.value).toBe(false)
     expect(error.value).not.toBeNull()
+  })
+
+  it('should set loading state during login process', async () => {
+    const { email, subscribe, loading } = useNewsletter(subscribeUseCase)
+    email.value = 'not empty'
+
+    subscribe()
+
+    expect(loading.value).toBe(true)
+
+    await nextTick()
+
+    expect(loading.value).toBe(false)
   })
 })
 

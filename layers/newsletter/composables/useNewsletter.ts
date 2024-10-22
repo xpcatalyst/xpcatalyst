@@ -11,7 +11,7 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   const email = ref('')
   const error = ref<string | null>(null)
   const success = ref<boolean | null>(null)
-  const loading = ref<boolean | null>(null)
+  const loading = ref(false)
 
   const isEmpty = computed(() => {
     return email == null || email.value.trim() === ''
@@ -30,12 +30,13 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   }
 
   const subscribe = async () => {
-    setError(null)
-
     if (isEmpty.value) {
       setError(ERRORS.REQUIRED)
       return
     }
+
+    setError(null)
+    loading.value = true
 
     const result = await subscribeUseCase.execute(email.value) // handle Email verification
     if (result.success) {
@@ -45,6 +46,7 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
       success.value = false
       setError(result.error)
     }
+    loading.value = false
   }
 
   return {
