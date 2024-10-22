@@ -14,62 +14,70 @@ describe('useNewsletter', () => {
     subscribeUseCase = createSubscribeUseCase(inMemoryRepository)
   })
 
-  it('should successfully subscribe with a valid email', async () => {
-    const { email, subscribe, success } = useNewsletter(subscribeUseCase)
-    email.value = 'valid@email.com'
-    await subscribe()
-    expect(success.value).toBe(true)
+  describe('Subscription Logic', () => {
+    it('should successfully subscribe with a valid email', async () => {
+      const { email, subscribe, success, error } = useNewsletter(subscribeUseCase)
+      email.value = 'valid@email.com'
+      await subscribe()
+      expect(success.value).toBe(true)
+      expect(error.value).toBeNull()
+    })
+
+    // Duplicates use case (Email verification ?)
+    it('should not attempt subscribe if email is empty', async () => {
+      subscribeUseCase.execute = vi.fn()
+      const { email, subscribe, success, error } = useNewsletter(subscribeUseCase)
+      email.value = ''
+
+      await subscribe()
+
+      expect(subscribeUseCase.execute).not.toHaveBeenCalled()
+      expect(success.value).toBeNull()
+      expect(error.value).toBe(ERRORS.REQUIRED)
+    })
+
+    it('should fail with an existing email', async () => {
+      await inMemoryRepository.add(createSubscriber('test@example.com'))
+      const { email, subscribe, success, error } = useNewsletter(subscribeUseCase)
+      email.value = 'test@example.com'
+
+      await subscribe()
+
+      expect(success.value).toBe(false)
+      expect(error.value).not.toBeNull()
+    })
+
+    it('should set loading state during login process', async () => {
+      const { email, subscribe, loading } = useNewsletter(subscribeUseCase)
+      email.value = 'not empty'
+
+      subscribe()
+
+      expect(loading.value).toBe(true)
+
+      await nextTick()
+
+      expect(loading.value).toBe(false)
+    })
+
+    it('should reset error when subscription is called', async () => {
+      const { email, subscribe, error } = useNewsletter(subscribeUseCase)
+
+      email.value = 'invalid-email'
+      await subscribe()
+      expect(error.value).not.toBeNull() // error.value = "anything" (readonly)
+
+      email.value = 'valid@email.com'
+      await subscribe()
+      expect(error.value).toBeNull()
+    })
   })
 
-  // Duplicates use case (Email verification ?)
-  it('should not attempt subscribe if email is empty', async () => {
-    subscribeUseCase.execute = vi.fn()
-    const { email, subscribe, success, error } = useNewsletter(subscribeUseCase)
-    email.value = ''
-
-    await subscribe()
-
-    expect(subscribeUseCase.execute).not.toHaveBeenCalled()
-    expect(success.value).toBeNull()
-    expect(error.value).toBe(ERRORS.REQUIRED)
-  })
-
-  it('should fail with an existing email', async () => {
-    await inMemoryRepository.add(createSubscriber('test@example.com'))
-    const { email, subscribe, success, error } = useNewsletter(subscribeUseCase)
-    email.value = 'test@example.com'
-
-    await subscribe()
-
-    expect(success.value).toBe(false)
-    expect(error.value).not.toBeNull()
-  })
-
-  it('should set loading state during login process', async () => {
-    const { email, subscribe, loading } = useNewsletter(subscribeUseCase)
-    email.value = 'not empty'
-
-    subscribe()
-
-    expect(loading.value).toBe(true)
-
-    await nextTick()
-
-    expect(loading.value).toBe(false)
+  describe('Button State and Behavior', () => {
+    it('should disable the subscribe button when email is empty')
+    it('should disable the subscribe button when loading')
+    it('should render the correct text on subscribe button with loading state')
+    it('should update isSubmitDisabled when email changes')
+    it('should update isSubmitDisabled when loading state changes')
   })
 })
-
-/*
-4. `it('should set loading state during subscription process')`
-5. `it('should reset error when subscription is called')`
-
-#### **Button State and Behavior**
-6. `it('should disable the subscribe button when email is empty')`
-7. `it('should disable the subscribe button when loading')`
-8. `it('should render the correct text on subscribe button with loading state')`
-
-#### **Computed Properties**
-9. `it('should update isSubmitDisabled when email changes')`
-10. `it('should update isSubmitDisabled when loading state changes')`
-
-*/
