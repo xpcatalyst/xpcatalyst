@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createSubscribeUseCase, ERRORS, type ISubscribeUseCase } from '../../domain/usecases/subscribe-use-case'
 import type { INewsletterRepository } from '../../domain/ports/newsletter-repository-interface'
 import { createInMemoryRepository } from '../../repositories/in-memory-repository'
@@ -27,6 +27,17 @@ describe('Subscribe To Newsletter Use Case', () => {
     await usecase.execute('test@example.com')
     const result = await usecase.execute('test@example.com')
     expect(result).toEqual(failure(ERRORS.ALREADY_EXISTS))
+  })
+
+  it('should not attempt call the repository if email is invalid', async () => {
+    repository.getByEmail = vi.fn()
+    repository.add = vi.fn()
+
+    usecase = createSubscribeUseCase(repository)
+
+    await usecase.execute('invalid-email')
+    expect(repository.add).not.toHaveBeenCalled()
+    expect(repository.getByEmail).not.toHaveBeenCalled()
   })
 
   // test: subscription failed?
