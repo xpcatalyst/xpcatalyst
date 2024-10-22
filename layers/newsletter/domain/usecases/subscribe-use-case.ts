@@ -7,16 +7,15 @@ import { success, failure } from '~/shared/result'
 
 // Input Ports (Use Case Interface): implemented by use cases
 // Ports define the interfaces that the application core expects to interact with.
+// ReturnType<typeof createSubscribeUseCase>
 export interface ISubscribeUseCase {
   execute(email: Email): Promise<Result<Subscriber>>
 }
 
-// ReturnType<typeof createSubscribeUseCase>
-
 export const ERRORS = {
   INVALID_EMAIL: 'Invalid email address',
-  ALREADY_EXISTS: 'Subscriber already exists',
-  ADD_SUBSCRIBER_FAILED: 'Adding the subscriber failed',
+  ALREADY_EXISTS: 'Email address already exists',
+  FAILED: 'Subscription failed',
 } as const
 
 // Use Case
@@ -40,8 +39,6 @@ export const createSubscribeUseCase = (repository: INewsletterRepository): ISubs
     const subscriberResult = await repository.add(newSubscriber)
     return subscriberResult.success
       ? success(subscriberResult.value)
-      : failure(ERRORS.ADD_SUBSCRIBER_FAILED)
-
-    // or return await repository.add(emailResult.value) ?
+      : failure(ERRORS.FAILED)
   },
 })
