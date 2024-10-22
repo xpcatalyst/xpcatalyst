@@ -10,6 +10,8 @@ export const BUTTON_TEXT = {
   LOADING: 'Loading...',
 }
 
+export const SUCCESS = 'Thank you for subscribing! 🎉 You’re now on the list to receive our latest updates, exclusive offers, and exciting news. Stay tuned for your first newsletter!'
+
 export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   const subscribeUseCase = customSubscribeUseCase || createSubscribeUseCase(createInMemoryRepository())
 
@@ -27,6 +29,7 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   })
 
   const buttonText = computed(() => loading.value ? BUTTON_TEXT.LOADING : BUTTON_TEXT.SUBSCRIBE)
+  const successMessage = computed(() => success.value ? SUCCESS : '')
 
   const setError = (_error: string | Error | null) => {
     if (typeof _error === 'string') {
@@ -66,6 +69,7 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
     subscribe,
     loading: readonly(loading),
     error: readonly(error),
+    successMessage: readonly(successMessage),
     success: readonly(success),
     isButtonDisabled: readonly(isButtonDisabled),
     buttonText: readonly(buttonText),

@@ -24,7 +24,7 @@ export const createSubscribeUseCase = (repository: INewsletterRepository): ISubs
     // Handle the Email verification
     const emailResult = createEmail(email)
     if (!emailResult.success) {
-      return failure(ERRORS.INVALID_EMAIL) // Generic error for the user
+      return failure(ERRORS.INVALID_EMAIL) // Generic error or specific error?
     }
 
     // Check if subscriber exists

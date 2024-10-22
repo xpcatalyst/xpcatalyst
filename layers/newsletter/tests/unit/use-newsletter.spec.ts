@@ -23,6 +23,13 @@ describe('useNewsletter', () => {
       expect(error.value).toBeNull()
     })
 
+    it('should show success message on successful subscription', async () => {
+      const { email, subscribe, successMessage } = useNewsletter(subscribeUseCase)
+      email.value = 'valid@email.com'
+      await subscribe()
+      expect(successMessage.value).not.toBe('')
+    })
+
     // Duplicates use case (Email verification ?)
     it('should not attempt subscribe if email is empty', async () => {
       subscribeUseCase.execute = vi.fn()
