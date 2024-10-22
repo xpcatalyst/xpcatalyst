@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, vi, it } from 'vitest'
 import type { INewsletterRepository } from '../../domain/ports/newsletter-repository-interface'
 import { createSubscribeUseCase, type ISubscribeUseCase } from '../../domain/usecases/subscribe-use-case'
 import { createInMemoryRepository } from '../../repositories/in-memory-repository'
-import { useNewsletter, ERRORS } from '../../composables/useNewsletter'
+import { useNewsletter, ERRORS, BUTTON_TEXT } from '../../composables/useNewsletter'
 import { createSubscriber } from '../../domain/entities/subscriber'
 
 describe('useNewsletter', () => {
@@ -60,7 +60,7 @@ describe('useNewsletter', () => {
       expect(loading.value).toBe(false)
     })
 
-    it('should reset error when subscription is called', async () => {
+    it('should reset error & email when subscription is called', async () => {
       const { email, subscribe, error } = useNewsletter(subscribeUseCase)
 
       email.value = 'invalid-email'
@@ -70,14 +70,50 @@ describe('useNewsletter', () => {
       email.value = 'valid@email.com'
       await subscribe()
       expect(error.value).toBeNull()
+      expect(email.value).toBe('')
     })
   })
 
   describe('Button State and Behavior', () => {
-    it('should disable the subscribe button when email is empty')
-    it('should disable the subscribe button when loading')
-    it('should render the correct text on subscribe button with loading state')
-    it('should update isSubmitDisabled when email changes')
-    it('should update isSubmitDisabled when loading state changes')
+    it('should disable the subscribe button when email is empty', () => {
+      const { email, isButtonDisabled } = useNewsletter(subscribeUseCase)
+      email.value = ''
+      expect(isButtonDisabled.value).toBe(true)
+    })
+
+    it('should disable the subscribe button when loading', async () => {
+      const { email, isButtonDisabled, loading, subscribe } = useNewsletter(subscribeUseCase)
+      email.value = 'not empty'
+
+      subscribe()
+      expect(loading.value).toBe(true)
+      expect(isButtonDisabled.value).toBe(true)
+
+      await nextTick()
+      expect(loading.value).toBe(false)
+      expect(isButtonDisabled.value).toBe(false)
+    })
+
+    it('should update isButtonDisabled when email changes', () => {
+      const { email, isButtonDisabled } = useNewsletter(subscribeUseCase)
+      email.value = 'not empty'
+      expect(isButtonDisabled.value).toBe(false)
+
+      email.value = ''
+      expect(isButtonDisabled.value).toBe(true)
+    })
+
+    it('should render the correct text on subscribe button with loading state', async () => {
+      const { email, subscribe, loading, buttonText } = useNewsletter(subscribeUseCase)
+      email.value = 'not empty'
+
+      subscribe()
+      expect(loading.value).toBe(true)
+      expect(buttonText.value).toBe(BUTTON_TEXT.LOADING)
+
+      await nextTick()
+      expect(loading.value).toBe(false)
+      expect(buttonText.value).toBe(BUTTON_TEXT.SUBSCRIBE)
+    })
   })
 })

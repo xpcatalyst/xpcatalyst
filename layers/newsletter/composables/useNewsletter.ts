@@ -5,6 +5,11 @@ export const ERRORS = {
   REQUIRED: 'Email address is required',
 } as const
 
+export const BUTTON_TEXT = {
+  SUBSCRIBE: 'Stay Updated',
+  LOADING: 'Loading...',
+}
+
 export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   const subscribeUseCase = customSubscribeUseCase || createSubscribeUseCase(createInMemoryRepository())
 
@@ -16,6 +21,12 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   const isEmpty = computed(() => {
     return email == null || email.value.trim() === ''
   })
+
+  const isButtonDisabled = computed(() => {
+    return loading.value || isEmpty.value
+  })
+
+  const buttonText = computed(() => loading.value ? BUTTON_TEXT.LOADING : BUTTON_TEXT.SUBSCRIBE)
 
   const setError = (_error: string | Error | null) => {
     if (typeof _error === 'string') {
@@ -35,12 +46,13 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
       return
     }
 
-    setError(null)
     loading.value = true
 
     const result = await subscribeUseCase.execute(email.value) // handle Email verification
     if (result.success) {
       success.value = true
+      email.value = ''
+      setError(null)
     }
     else {
       success.value = false
@@ -55,5 +67,7 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
     loading: readonly(loading),
     error: readonly(error),
     success: readonly(success),
+    isButtonDisabled: readonly(isButtonDisabled),
+    buttonText: readonly(buttonText),
   }
 }
