@@ -18,7 +18,7 @@ describe('Subscribe To Newsletter Use Case', () => {
     expect(result).toEqual(success({ id: '1', email: 'test@example.com' }))
   })
 
-  it('should return failure when email is invalid', async () => {
+  it('should return failure with invalid email', async () => {
     const result = await usecase.execute('invalid-email')
     expect(result).toEqual(failure(ERRORS.INVALID_EMAIL))
   })

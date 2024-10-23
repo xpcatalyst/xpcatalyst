@@ -11,7 +11,7 @@ describe('InMemoryRepository', () => {
     repository = createInMemoryRepository()
   })
 
-  it('should add new subscribers', async () => {
+  it('should successfully add new subscribers', async () => {
     const newSubscriber1 = createSubscriber('test1@example.com')
     const newSubscriber2 = createSubscriber('test2@example.com')
 
@@ -22,7 +22,7 @@ describe('InMemoryRepository', () => {
     expect(result2).toEqual(success({ id: '2', email: newSubscriber2.email }))
   })
 
-  it('should prevent adding duplicate subscribers', async () => {
+  it('should fail when adding duplicate subscribers', async () => {
     const subscriber = createSubscriber('test@example.com')
     await repository.add(subscriber)
 
@@ -40,7 +40,7 @@ describe('InMemoryRepository', () => {
     expect(result).toEqual(success({ id: '1', email: 'test@example.com' }))
   })
 
-  it('should return an error when trying to retrieve a non-existent subscriber', async () => {
+  it('should fail when trying to retrieve a non-existent subscriber', async () => {
     const result = await repository.getByEmail('test@example.com')
     expect(result).toEqual(failure(ERRORS.SUBSCRIBER_NOT_FOUND))
   })

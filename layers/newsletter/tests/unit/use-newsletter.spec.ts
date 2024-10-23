@@ -70,9 +70,10 @@ describe('useNewsletter', () => {
     it('should reset error & email when subscription is called', async () => {
       const { email, subscribe, error } = useNewsletter(subscribeUseCase)
 
+      // Extra steps needed to set a value to error (readonly)
       email.value = 'invalid-email'
       await subscribe()
-      expect(error.value).not.toBeNull() // error.value = "anything" (readonly)
+      expect(error.value).not.toBeNull()
 
       email.value = 'valid@email.com'
       await subscribe()

@@ -4,7 +4,7 @@ import { mount } from '@vue/test-utils'
 import NewsletterForm from '../../components/NewsletterForm.vue'
 
 describe('NewsletterForm', () => {
-  const wrapper = mount(NewsletterForm)
+  const wrapper = mount(NewsletterForm) // We need mount (or mountSuspended) instead of shallow mount to use Input, Button Shadcn elements
 
   const findForm = () => wrapper.find('[data-testid="newsletter-form"]')
   const findEmail = () => wrapper.find('[data-testid="newsletter-email"]')
@@ -18,12 +18,12 @@ describe('NewsletterForm', () => {
     expect(findMessage().exists()).toBe(true)
   })
 
-  it('should disable the button when email field is empty and enables when filled ', async () => {
+  it('should disable the button when email field is empty and enables when filled', async () => {
     await findEmail().setValue('')
-    expect(findSubmitButton().attributes('disabled')).toBe('')
+    expect(findSubmitButton().attributes('disabled')).toBe('') // disabled = true
 
     await findEmail().setValue('not empty')
-    expect(findSubmitButton().attributes('disabled')).toBeUndefined()
+    expect(findSubmitButton().attributes('disabled')).toBeUndefined() // disabled = false
   })
 })
 
