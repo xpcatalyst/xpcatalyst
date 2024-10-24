@@ -12,8 +12,7 @@ export interface ISubscribeUseCase {
   execute(email: Email): Promise<Result<Subscriber>>
 }
 
-export const ERRORS = {
-  INVALID_EMAIL: 'Invalid email address',
+export const SUBSCRIBE_ERRORS = {
   ALREADY_EXISTS: 'Email address already exists',
   FAILED: 'Subscription failed',
 } as const
@@ -24,13 +23,13 @@ export const createSubscribeUseCase = (repository: INewsletterRepository): ISubs
     // Handle the Email verification
     const emailResult = createEmail(email)
     if (!emailResult.success) {
-      return failure(ERRORS.INVALID_EMAIL) // Generic error or specific error?
+      return failure(emailResult.error) // Pass through email errors
     }
 
     // Check if subscriber exists
     const existingSubscriber = await repository.getByEmail(emailResult.value)
     if (existingSubscriber.success) {
-      return failure(ERRORS.ALREADY_EXISTS)
+      return failure(SUBSCRIBE_ERRORS.ALREADY_EXISTS)
     }
 
     const newSubscriber = createSubscriber(emailResult.value)
@@ -39,6 +38,6 @@ export const createSubscribeUseCase = (repository: INewsletterRepository): ISubs
     const subscriberResult = await repository.add(newSubscriber)
     return subscriberResult.success
       ? success(subscriberResult.value)
-      : failure(ERRORS.FAILED)
+      : failure(SUBSCRIBE_ERRORS.FAILED)
   },
 })
