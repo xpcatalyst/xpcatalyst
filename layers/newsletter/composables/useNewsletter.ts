@@ -1,10 +1,6 @@
 import { createSubscribeUseCase, type ISubscribeUseCase } from '../domain/usecases/subscribe-use-case'
 import { createInMemoryRepository } from '../repositories/in-memory-repository'
 
-export const ERRORS = {
-  REQUIRED: 'Email address is required',
-} as const
-
 export const BUTTON_TEXT = {
   SUBSCRIBE: 'Stay Updated',
   LOADING: 'Loading...',
@@ -16,7 +12,7 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   const subscribeUseCase = customSubscribeUseCase || createSubscribeUseCase(createInMemoryRepository())
 
   const email = ref('')
-  const error = ref<string | null>(null)
+  const message = ref<string | null>(null)
   const success = ref<boolean | null>(null)
   const loading = ref(false)
 
@@ -29,37 +25,23 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   })
 
   const buttonText = computed(() => loading.value ? BUTTON_TEXT.LOADING : BUTTON_TEXT.SUBSCRIBE)
-  const successMessage = computed(() => success.value ? SUCCESS : '')
-
-  const setError = (_error: string | Error | null) => {
-    if (typeof _error === 'string') {
-      error.value = _error
-    }
-    else if (_error instanceof Error) {
-      error.value = _error.message
-    }
-    else {
-      error.value = null
-    }
-  }
 
   const subscribe = async () => {
-    if (isEmpty.value) {
-      setError(ERRORS.REQUIRED)
-      return
-    }
-
+    message.value = null
     loading.value = true
 
-    const result = await subscribeUseCase.execute(email.value) // handle Email verification
+    const result = await subscribeUseCase.execute(email.value)
     if (result.success) {
       success.value = true
-      email.value = ''
-      setError(null)
+      message.value = SUCCESS
+      email.value = '' // Reset
     }
     else {
       success.value = false
-      setError(result.error)
+      if (result.error instanceof Error) {
+        message.value = result.error.message
+      }
+      else message.value = result.error // pass through errors
     }
     loading.value = false
   }
@@ -68,8 +50,7 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
     email,
     subscribe,
     loading: readonly(loading),
-    error: readonly(error),
-    successMessage: readonly(successMessage),
+    message: readonly(message),
     success: readonly(success),
     isButtonDisabled: readonly(isButtonDisabled),
     buttonText: readonly(buttonText),

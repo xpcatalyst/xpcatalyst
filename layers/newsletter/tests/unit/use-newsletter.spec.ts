@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, vi, it } from 'vitest'
 import type { INewsletterRepository } from '../../domain/ports/newsletter-repository-interface'
 import { createSubscribeUseCase, type ISubscribeUseCase } from '../../domain/usecases/subscribe-use-case'
 import { createInMemoryRepository } from '../../repositories/in-memory-repository'
-import { useNewsletter, ERRORS, BUTTON_TEXT } from '../../composables/useNewsletter'
+import { useNewsletter, BUTTON_TEXT, SUCCESS } from '../../composables/useNewsletter'
 import { createSubscriber } from '../../domain/entities/subscriber'
 
 describe('useNewsletter', () => {
@@ -16,42 +16,29 @@ describe('useNewsletter', () => {
 
   describe('Subscription Logic', () => {
     it('should successfully subscribe with a valid email', async () => {
-      const { email, subscribe, success, error } = useNewsletter(subscribeUseCase)
+      const { email, subscribe, success, message } = useNewsletter(subscribeUseCase)
       email.value = 'valid@email.com'
       await subscribe()
       expect(success.value).toBe(true)
-      expect(error.value).toBeNull()
+      expect(message.value).toBe(SUCCESS)
     })
 
     it('should show success message on successful subscription', async () => {
-      const { email, subscribe, successMessage } = useNewsletter(subscribeUseCase)
+      const { email, subscribe, message } = useNewsletter(subscribeUseCase)
       email.value = 'valid@email.com'
       await subscribe()
-      expect(successMessage.value).not.toBe('')
-    })
-
-    // Duplicates use case (Email verification ?)
-    it('should not attempt subscribe if email is empty', async () => {
-      subscribeUseCase.execute = vi.fn()
-      const { email, subscribe, success, error } = useNewsletter(subscribeUseCase)
-      email.value = ''
-
-      await subscribe()
-
-      expect(subscribeUseCase.execute).not.toHaveBeenCalled()
-      expect(success.value).toBeNull()
-      expect(error.value).toBe(ERRORS.REQUIRED)
+      expect(message.value).toBe(SUCCESS)
     })
 
     it('should fail with an existing email', async () => {
       await inMemoryRepository.add(createSubscriber('test@example.com'))
-      const { email, subscribe, success, error } = useNewsletter(subscribeUseCase)
+      const { email, subscribe, success, message } = useNewsletter(subscribeUseCase)
       email.value = 'test@example.com'
 
       await subscribe()
 
       expect(success.value).toBe(false)
-      expect(error.value).not.toBeNull()
+      expect(message.value).not.toBeNull()
     })
 
     it('should set loading state during login process', async () => {
@@ -67,17 +54,15 @@ describe('useNewsletter', () => {
       expect(loading.value).toBe(false)
     })
 
-    it('should reset error & email when subscription is called', async () => {
-      const { email, subscribe, error } = useNewsletter(subscribeUseCase)
+    it('should reset email when subscription is called', async () => {
+      const { email, subscribe } = useNewsletter(subscribeUseCase)
 
       // Extra steps needed to set a value to error (readonly)
       email.value = 'invalid-email'
       await subscribe()
-      expect(error.value).not.toBeNull()
 
       email.value = 'valid@email.com'
       await subscribe()
-      expect(error.value).toBeNull()
       expect(email.value).toBe('')
     })
   })
