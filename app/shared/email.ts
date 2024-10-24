@@ -9,18 +9,11 @@ export const EMAIL_ERRORS = {
 // https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address
 // http://data.iana.org/TLD/tlds-alpha-by-domain.txt
 const EMAIL_PATTERN = /^(?!.*\.\.)(?!.*\.$)(?!^\.)([a-zA-Z0-9._%+-]+)@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/i
-
-const isValid = (value: string): boolean => EMAIL_PATTERN.test(value)
+const MAX_LENGTH = 100
 
 export const createEmail = (value: string | null | undefined): Result<Email> => {
-  if (!value) {
-    return failure(EMAIL_ERRORS.REQUIRED)
-  }
-  if (value.length > 100) {
-    return failure(EMAIL_ERRORS.TOO_LONG)
-  }
-  if (!isValid(value)) {
-    return failure(EMAIL_ERRORS.INVALID)
-  }
+  if (!value) return failure(EMAIL_ERRORS.REQUIRED)
+  if (value.length > MAX_LENGTH) return failure(EMAIL_ERRORS.TOO_LONG)
+  if (!EMAIL_PATTERN.test(value)) return failure(EMAIL_ERRORS.INVALID)
   return success(value)
 }
