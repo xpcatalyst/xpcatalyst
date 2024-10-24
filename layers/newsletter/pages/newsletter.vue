@@ -1,4 +1,4 @@
 <template>
-  <h1>Newsletter</h1>
+  <h1>Subscribe to the newsletter</h1>
   <NewsletterForm />
 </template>
