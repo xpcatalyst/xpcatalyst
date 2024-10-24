@@ -18,6 +18,7 @@ const { isButtonDisabled, success, email, subscribe, message } = useNewsletter()
     <Input
       v-model="email"
       required
+      type="email"
       placeholder="Enter your email"
       data-testid="newsletter-email"
       :class="success ? 'text-foreground border-success': 'text-error border-error'"
