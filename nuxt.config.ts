@@ -2,6 +2,14 @@ import { extendPages } from './app/utils/extend-pages'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  nitro: {
+    watchOptions: {
+      usePolling: true, // Set true if experiencing issues with file change detection
+      interval: 500, // Check for changes every 500ms; adjust as needed
+      ignored: ['**/node_modules/**', '**/.git/**'], // Ignore common directories
+
+    },
+  },
   compatibilityDate: '2024-04-03',
   future: {
     compatibilityVersion: 4,
