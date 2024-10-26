@@ -1,5 +1,5 @@
 import { createSubscribeUseCase, type ISubscribeUseCase } from '../domain/usecases/subscribe-use-case'
-import { createInMemoryRepository } from '../repositories/in-memory-repository'
+import { createNewsletterRepository } from '../repositories/newsletter-repository-factory'
 
 export const BUTTON_TEXT = {
   SUBSCRIBE: 'Stay Updated',
@@ -9,7 +9,7 @@ export const BUTTON_TEXT = {
 export const SUCCESS = 'Welcome to the XP Catalyst newsletter! Stay tuned for updates on our journey, new project opportunities, and ways to make a real impact together.'
 
 export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
-  const subscribeUseCase = customSubscribeUseCase || createSubscribeUseCase(createInMemoryRepository())
+  const subscribeUseCase = customSubscribeUseCase || createSubscribeUseCase(createNewsletterRepository())
 
   const email = ref('')
   const message = ref<string | null>(null)
