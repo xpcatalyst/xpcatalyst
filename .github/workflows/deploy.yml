@@ -3,7 +3,8 @@ name: Build & Deploy to Netlify
 on:
   push:
     branches: 
-      - staging
+    - main
+    - staging
   workflow_dispatch:
 
 jobs:
