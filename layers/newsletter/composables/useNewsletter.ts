@@ -6,7 +6,7 @@ export const BUTTON_TEXT = {
   LOADING: 'Loading...',
 }
 
-export const SUCCESS = 'Thank you for subscribing! 🎉 You’re now on the list to receive our latest updates, exclusive offers, and exciting news. Stay tuned for your first newsletter!'
+export const SUCCESS = 'Welcome to the XP Catalyst newsletter! Stay tuned for updates on our journey, new project opportunities, and ways to make a real impact together.'
 
 export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   const subscribeUseCase = customSubscribeUseCase || createSubscribeUseCase(createInMemoryRepository())
@@ -15,6 +15,8 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
   const message = ref<string | null>(null)
   const success = ref<boolean | null>(null)
   const loading = ref(false)
+
+  const router = useRouter()
 
   const isEmpty = computed(() => {
     return email == null || email.value.trim() === ''
@@ -33,8 +35,9 @@ export const useNewsletter = (customSubscribeUseCase?: ISubscribeUseCase) => {
     const result = await subscribeUseCase.execute(email.value)
     if (result.success) {
       success.value = true
-      message.value = SUCCESS
+      message.value = ''
       email.value = '' // Reset
+      await router.push('/newsletter/success')
     }
     else {
       success.value = false
