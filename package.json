@@ -14,7 +14,11 @@
     "test:coverage": "vitest --coverage",
     "test:ui": "vitest --coverage --ui",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": "pnpm lint:fix"
   },
   "dependencies": {
     "@nuxt/eslint": "^0.5.7",
@@ -44,6 +48,8 @@
     "@vue/devtools-api": "^7.4.6",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^15.7.4",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "playwright-core": "^1.48.1",
     "typescript": "~5.5.4",
     "vitest": "^2.1.3"
