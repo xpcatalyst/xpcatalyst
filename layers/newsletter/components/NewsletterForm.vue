@@ -2,7 +2,9 @@
 <script setup lang="ts">
 import { useNewsletter } from '../composables/useNewsletter'
 
-const { isButtonDisabled, email, subscribe, message } = useNewsletter()
+const { isButtonDisabled, email, subscribe, message }
+
+= useNewsletter()
 </script>
 
 <template>
