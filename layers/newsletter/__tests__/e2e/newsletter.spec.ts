@@ -7,16 +7,18 @@ test('newsletter page displays correctly', async ({ page, goto }) => {
   // Get references to form elements
   const emailInput = page.getByTestId('newsletter-email')
   const submitButton = page.getByTestId('newsletter-submit')
-  const messageText = page.getByTestId('newsletter-message')
 
   // Test initial state
   await expect(submitButton).toBeDisabled()
 
   // Enter a valid email
-  await emailInput.fill('user@example.com')
+  await emailInput.fill('valid@email.com')
   await expect(submitButton).toBeEnabled()
 
   // Submit the form
   await submitButton.click()
-  await expect(messageText).toContainText('thank you', { ignoreCase: true })
+  await expect(page).toHaveURL('/newsletter/success')
 })
+
+//   const messageText = page.getByTestId('newsletter-message')
+//   await expect(messageText).toContainText('thank you', { ignoreCase: true })

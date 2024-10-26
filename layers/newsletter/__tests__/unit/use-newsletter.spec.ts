@@ -1,8 +1,10 @@
-import { beforeEach, describe, expect, vi, it } from 'vitest'
+// @vitest-environment nuxt
+// Use Nuxt environment for router.push
+import { beforeEach, describe, expect, it } from 'vitest'
 import type { INewsletterRepository } from '../../domain/ports/newsletter-repository-interface'
 import { createSubscribeUseCase, type ISubscribeUseCase } from '../../domain/usecases/subscribe-use-case'
 import { createInMemoryRepository } from '../../repositories/in-memory-repository'
-import { useNewsletter, BUTTON_TEXT, SUCCESS } from '../../composables/useNewsletter'
+import { useNewsletter, BUTTON_TEXT } from '../../composables/useNewsletter'
 import { createSubscriber } from '../../domain/entities/subscriber'
 
 describe('useNewsletter', () => {
@@ -18,16 +20,13 @@ describe('useNewsletter', () => {
     it('should successfully subscribe with a valid email', async () => {
       const { email, subscribe, success, message } = useNewsletter(subscribeUseCase)
       email.value = 'valid@email.com'
-      await subscribe()
-      expect(success.value).toBe(true)
-      expect(message.value).toBe(SUCCESS)
-    })
 
-    it('should show success message on successful subscription', async () => {
-      const { email, subscribe, message } = useNewsletter(subscribeUseCase)
-      email.value = 'valid@email.com'
       await subscribe()
-      expect(message.value).toBe(SUCCESS)
+
+      expect(success.value).toBe(true)
+      expect(message.value).toBe('')
+
+      // Mock the router?
     })
 
     it('should fail with an existing email', async () => {
@@ -45,13 +44,17 @@ describe('useNewsletter', () => {
       const { email, subscribe, loading } = useNewsletter(subscribeUseCase)
       email.value = 'not empty'
 
-      subscribe()
-
+      const subscribePromise = subscribe()
       expect(loading.value).toBe(true)
 
-      await nextTick()
-
+      await subscribePromise
       expect(loading.value).toBe(false)
+
+      // Or this method
+      // subscribe()
+      // expect(loading.value).toBe(true)
+      // await nextTick()
+      // expect(loading.value).toBe(false)
     })
 
     it('should reset email when subscription is called', async () => {
