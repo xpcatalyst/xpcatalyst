@@ -1,8 +1,8 @@
 <template>
-  <section class="flex items-center justify-center flex-grow">
-    <div class="container text-2xl flex flex-col gap-16">
-      <div class="max-w-4xl">
-        <h1 class="text-4xl font-fira font-black tracking-wider leading-tight mb-4">
+  <section class="flex items-center flex-1">
+    <div class="container text-4xl flex flex-col gap-16">
+      <div class="max-w-5xl space-y-8">
+        <h1 class="text-6xl font-fira font-bold tracking-wide">
           Let's Catalyze Experience Together!
         </h1>
         <p>
