@@ -1,8 +1,8 @@
 # XP Catalyst
 
-XP Catalyst is a platform tackling the challenge of gaining professional experience for developers and designers. To land a job, experience is crucial, and the best way to gain it is by working on real-world projects with small teams and project owners, often contributing to non-profits or initiatives that create a positive impact. Why not use learning time to help others in a meaningful way? XP Catalyst fosters a supportive environment with senior feedbacks, quality guidelines, and opportunities for professional recommendations.
+XP Catalyst is a platform tackling the challenge of gaining professional experience for developers and designers. To land a job, experience is crucial, and the best way to gain it is by working on real-world projects with small teams. And why not use learning time to help others in a meaningful way, contributing to non-profits or initiatives that create a positive impact? XP Catalyst fosters a supportive environment with senior feedbacks, quality guidelines, and opportunities for professional recommendations.
 
-Currently, in its prototype phase, XP Catalyst is built using Vue/Nuxt with a focus on testing and clean architecture. I welcome feedback and contributions from the community to shape its ongoing development. 👋👋🏿👋🏽👋🏻👋🏾👋🏼
+Currently, in its **prototype phase**, XP Catalyst is built using Vue/Nuxt with a focus on testing and clean architecture. I welcome feedback and contributions from the community to shape its ongoing development. 👋👋🏿👋🏽👋🏻👋🏾👋🏼
 
 ## Development
 
