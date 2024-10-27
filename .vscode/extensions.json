@@ -4,6 +4,7 @@
         "dbaeumer.vscode-eslint",
         "vue.volar",
         "bradlc.vscode-tailwindcss",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "usernamehw.errorlens"
     ]
 }

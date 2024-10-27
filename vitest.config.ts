@@ -2,6 +2,11 @@ import { defineVitestConfig } from '@nuxt/test-utils/config'
 
 export default defineVitestConfig({
   test: {
-    environment: 'nuxt',
+    include: [
+      '**/__tests__/unit/**/*.{test,spec}.ts',
+      '**/__tests__/**/*.unit.{test,spec}.ts',
+    ],
+    name: 'unit',
+    environment: 'node',
   },
 })

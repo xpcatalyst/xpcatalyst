@@ -22,3 +22,9 @@ logs
 .env
 .env.*
 !.env.example
+
+# tests
+test-results
+
+# Local Netlify folder
+.netlify
