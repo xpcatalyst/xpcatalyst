@@ -3,6 +3,7 @@ import { extendPages } from './app/utils/extend-pages'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   nitro: {
+    preset: 'netlify',
     watchOptions: {
       usePolling: true, // Set true if experiencing issues with file change detection
       interval: 1000, // Check for changes every 500ms; adjust as needed
