@@ -27,9 +27,10 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
+          ${{ runner.os }}-
 
     - name: Install dependencies with pnpm
       run: pnpm install
@@ -54,7 +55,7 @@ jobs:
     - name: Deploy to Netlify
       uses: South-Paw/action-netlify-cli@v2
       with:
-        args: 'deploy --message "Staging [${{ github.sha }}]"'
+        args: 'deploy --message "Staging [${{ github.sha }}]" --dir ".output"'
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
