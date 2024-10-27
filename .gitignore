@@ -25,3 +25,6 @@ logs
 
 # tests
 test-results
+
+# Local Netlify folder
+.netlify
