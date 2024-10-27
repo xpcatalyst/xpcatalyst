@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     provider: 'netlify',
   },
   nitro: {
-    preset: 'netlify',
+    // preset: 'netlify',
     watchOptions: {
       usePolling: true, // Set true if experiencing issues with file change detection
       interval: 1000,
