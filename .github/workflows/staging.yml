@@ -34,16 +34,23 @@ jobs:
       - name: Run unit tests
         run: pnpm test:unit
         
-      - name: Build Nuxt app
-        run: pnpm build
+      - name: Generate static Nuxt app
+        run: pnpm generate
         env:
           PNPM_FLAGS: --shamefully-hoist
+          
+      - name: Debug directory content
+        run: |
+          pwd
+          ls -la
+          ls -la .output || echo "No .output directory"
+          ls -la dist || echo "No dist directory"
           
       - name: Deploy to Netlify
         uses: South-Paw/action-netlify-cli@v2
         id: netlify
         with:
-          args: deploy --prod --message "Staging [${{ github.sha }}]" --dir='.output/public'
+          args: deploy --prod --message "Staging [${{ github.sha }}]" --dir=dist
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
