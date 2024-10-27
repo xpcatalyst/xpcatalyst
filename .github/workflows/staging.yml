@@ -2,7 +2,7 @@ name: Build & Deploy Staging Branch to Netlify
 
 on:
   push:
-    branches: 
+    branches:
       - staging
   workflow_dispatch:
 
@@ -11,39 +11,42 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.12.1
-        run_install: false
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'pnpm'
-
-    - name: Install dependencies
-      run: pnpm install
-
-    - name: Run linting
-      run: pnpm lint:fix
-
-    - name: Run unit tests
-      run: pnpm test:unit
-
-    - name: Build Nuxt app
-      run: pnpm build
-      env:
-        PNPM_FLAGS: --shamefully-hoist
-
-    - name: Deploy to Netlify
-      uses: South-Paw/action-netlify-cli@v2
-      id: netlify
-      with:
-        args: 'deploy --message "Staging [${{ github.sha }}]"'
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - uses: actions/checkout@v4
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.1
+          run_install: false
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install
+        
+      - name: Run linting
+        run: pnpm lint:fix
+        
+      - name: Run unit tests
+        run: pnpm test:unit
+        
+      - name: Build Nuxt app
+        run: pnpm build
+        env:
+          PNPM_FLAGS: --shamefully-hoist
+          
+      - name: Deploy to Netlify
+        uses: South-Paw/action-netlify-cli@v2
+        id: netlify
+        with:
+          args: deploy --prod --message "Staging [${{ github.sha }}]" --dir='.output/public'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          
+      - name: Output deployment URL
+        run: echo "Deployment URL - ${{ steps.netlify.outputs.deploy-url }}"
