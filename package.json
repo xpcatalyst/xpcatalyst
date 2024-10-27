@@ -6,6 +6,9 @@
   "description": "Gain professional experience by collaborating on real-world projects",
   "author": "Jérôme Abel",
   "license": "CC BY-NC-SA 4.0",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
