@@ -46,7 +46,7 @@ jobs:
       - name: Deploy to Netlify
         uses: South-Paw/action-netlify-cli@v2
         with:
-          args: 'deploy --message "Staging [${{ github.sha }}]" --alias=test'
+          args: 'deploy --message "Staging [${{ github.sha }}]"'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
