@@ -24,7 +24,10 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
-          
+
+      - name: Clear Nuxt Cache
+        run: rm -rf .output .nuxt
+
       - name: Install dependencies
         run: pnpm install
         

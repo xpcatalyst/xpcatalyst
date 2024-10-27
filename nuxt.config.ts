@@ -2,6 +2,9 @@ import { extendPages } from './app/utils/extend-pages'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  image: {
+    dir: 'public', // Ensure this matches where images are located
+  },
   nitro: {
     preset: 'netlify',
     watchOptions: {
@@ -24,20 +27,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/fonts',
     '@nuxt/test-utils/module', // integration to Nuxt Dev Tools
-  ],
-  fonts: [
-    {
-      name: 'Cabinet Grotesk',
-      weight: [400, 500, 700, 800],
-      display: 'swap',
-      fallbacks: ['sans-serif'],
-    },
-    {
-      name: 'Fira Sans',
-      weight: [400, 500, 700, 800],
-      display: 'swap',
-      fallbacks: ['sans-serif'],
-    },
   ],
   icon: {
     customCollections: [
