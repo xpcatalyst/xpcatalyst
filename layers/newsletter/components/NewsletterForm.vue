@@ -1,16 +1,13 @@
-<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
 import { useNewsletter } from '../composables/useNewsletter'
 
-const { isButtonDisabled, email, subscribe, message }
-
-= useNewsletter()
+const { isButtonDisabled, email, subscribe, message } = useNewsletter()
 </script>
 
 <template>
   <section>
     <p class="text-lg mb-4">
-      Subscribe to the newsletter to follow the progress and be part of the journey.
+      Subscribe to the monthly newsletter to follow the progress and be part of the journey.
     </p>
     <form
       class="flex items-center gap-3 rounded-full peer text-xl w-fit peer border-xp-light-pink border-4 bg-white"
