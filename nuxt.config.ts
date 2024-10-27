@@ -10,8 +10,8 @@ export default defineNuxtConfig({
     preset: 'netlify',
     watchOptions: {
       usePolling: true, // Set true if experiencing issues with file change detection
-      interval: 1000, // Check for changes every 500ms; adjust as needed
-      ignored: ['**/node_modules/**', '**/.git/**'], // Ignore common directories
+      interval: 1000,
+      ignored: ['**/node_modules/**', '**/.git/**'],
 
     },
   },

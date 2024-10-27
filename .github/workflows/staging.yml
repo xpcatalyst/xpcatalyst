@@ -30,6 +30,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Run linting
+        run: pnpm lint:fix
+
+      - name: Run tests
+        run: pnpm test:unit
         
       - name: Build Nuxt app
         run: pnpm build
