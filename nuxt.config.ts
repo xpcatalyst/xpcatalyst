@@ -3,7 +3,7 @@ import { extendPages } from './app/utils/extend-pages'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   image: {
-    dir: 'public',
+    // dir: 'public',
     provider: 'netlify',
   },
   nitro: {
