@@ -40,16 +40,16 @@ jobs:
     - name: Run unit tests
       run: pnpm test:unit
 
-    - name: Build Nuxt app
-      run: pnpm build
-      env:
-        PNPM_FLAGS: --shamefully-hoist
+    # - name: Build Nuxt app
+    #   run: pnpm build
+    #   env:
+    #     PNPM_FLAGS: --shamefully-hoist
 
-    - name: Deploy to Netlify
-      run: npx netlify-cli deploy --message "Staging [${{ github.sha }}]"
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+    # - name: Deploy to Netlify
+    #   run: npx netlify-cli deploy --message "Staging [${{ github.sha }}]"
+    #   env:
+    #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
     # - name: Deploy to Netlify
     #   uses: South-Paw/action-netlify-cli@v2
