@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   ssr: true,
   target: 'static',
   nitro: {
-    preset: 'netlify',
+    preset: 'static', // 'netlify'
     watchOptions: {
       usePolling: true, // Set true if experiencing issues with file change detection
       interval: 500, // Check for changes every 500ms; adjust as needed
