@@ -41,6 +41,7 @@ jobs:
         run: pnpm build
         env:
           PNPM_FLAGS: --shamefully-hoist
+          NITRO_PRESET: netlify
           
       - name: Deploy to Netlify
         uses: South-Paw/action-netlify-cli@v2
