@@ -25,8 +25,8 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
-      # - name: Clear Nuxt Cache
-      #   run: rm -rf .output .nuxt
+      - name: Clear Nuxt Cache
+        run: rm -rf .output .nuxt
 
       - name: Install dependencies
         run: pnpm install
@@ -41,12 +41,11 @@ jobs:
         run: pnpm build
         env:
           PNPM_FLAGS: --shamefully-hoist
-          NITRO_PRESET: netlify
           
       - name: Deploy to Netlify
         uses: South-Paw/action-netlify-cli@v2
         with:
-          args: 'deploy --message "Staging [${{ github.sha }}]"'
+          args: 'deploy --message "Staging [${{ github.sha }}]" --dir "dist"'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
