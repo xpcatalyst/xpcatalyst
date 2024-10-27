@@ -2,7 +2,7 @@ name: Build & Deploy Main Branch to Netlify
 
 on:
   pull_request:
-    branches: 
+    branches:
       - main
   workflow_dispatch:
 
@@ -25,8 +25,8 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
-      - name: Clear Nuxt Cache
-        run: rm -rf .output .nuxt
+      # - name: Clear Nuxt Cache
+      #   run: rm -rf .output .nuxt
 
       - name: Install dependencies
         run: pnpm install
@@ -36,9 +36,6 @@ jobs:
 
       - name: Run tests
         run: pnpm test:unit
-      
-      # - name: Run End-to-End tests
-      #   run: pnpm test:e2e
         
       - name: Build Nuxt app
         run: pnpm build
@@ -49,7 +46,7 @@ jobs:
       - name: Deploy to Netlify
         uses: South-Paw/action-netlify-cli@v2
         with:
-          args: 'deploy --prod --message "Production [${{ github.sha }}]" --dir "dist"'
+          args: 'deploy --prod --message "Staging [${{ github.sha }}]" --dir "dist"'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
