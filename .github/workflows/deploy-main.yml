@@ -1,9 +1,9 @@
-name: Build & Deploy Staging Branch to Netlify
+name: Build & Deploy Main Branch to Netlify
 
 on:
   pull_request:
     branches: 
-      - staging
+      - main
   workflow_dispatch:
 
 env:
