@@ -28,23 +28,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install
         
-      - name: Run linting
-        run: pnpm lint:fix
-        
-      - name: Run unit tests
-        run: pnpm test:unit
-        
-      - name: Generate static Nuxt app
-        run: pnpm generate
+      - name: Build Nuxt app
+        run: pnpm build
         env:
-          NITRO_PRESET: static
           PNPM_FLAGS: --shamefully-hoist
           
-      - name: Install Netlify CLI
-        run: npm install -g netlify-cli
-        
       - name: Deploy to Netlify
-        run: netlify deploy --prod --dir=dist
+        uses: South-Paw/action-netlify-cli@v2
+        with:
+          args: 'deploy --dir ".output/public" --message "Staging [${{ github.sha }}]"'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

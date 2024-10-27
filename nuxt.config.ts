@@ -2,13 +2,10 @@ import { extendPages } from './app/utils/extend-pages'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: true,
-  target: 'static',
   nitro: {
-    preset: 'static', // 'netlify'
     watchOptions: {
       usePolling: true, // Set true if experiencing issues with file change detection
-      interval: 500, // Check for changes every 500ms; adjust as needed
+      interval: 1000, // Check for changes every 500ms; adjust as needed
       ignored: ['**/node_modules/**', '**/.git/**'], // Ignore common directories
 
     },
