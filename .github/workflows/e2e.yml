@@ -1,0 +1,30 @@
+name: End To End Testing
+
+
+on:
+    push:
+      branches:
+        - staging
+    workflow_dispatch:
+
+jobs:
+  e2e:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v4
+      with:
+        version: 9.12.1
+        run_install: false
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'pnpm'
+    - run: npm install -g pnpm && pnpm install
+    - run: pnpm exec playwright install --with-deps
+    - name: Run Playwright tests
+      env:
+        BASE_URL: ${{ github.event.deployment_status.environment_url }}
+      run: pnpm exec playwright test
