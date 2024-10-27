@@ -43,7 +43,7 @@ jobs:
       uses: South-Paw/action-netlify-cli@v2
       id: netlify
       with:
-        args: 'deploy --json --dir \"./public\" --message \"draft [${{ github.sha }}]\"'
+        args: 'deploy --json --dir \"./output\" --message \"draft [${{ github.sha }}]\"'
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
