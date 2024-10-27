@@ -1,9 +1,7 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ staging ]
-  pull_request:
-    branches: [ staging ]
+    branches: [ staging ] 
 jobs:
   test:
     timeout-minutes: 60
@@ -21,7 +19,7 @@ jobs:
     - run: pnpm install # npm install -g pnpm && 
     - run: pnpm exec playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: pnpm test:e2e
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

@@ -3,7 +3,7 @@ name: Build & Deploy Staging Branch to Netlify
 on:
   push:
     branches:
-      - v1
+      - staging
   workflow_dispatch:
 
 jobs:
