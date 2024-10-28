@@ -1,11 +1,11 @@
 export type Subscriber = {
   id?: string
   email: Email
-  name?: string
+  created_at: string
 }
 
 // Assume that the inputs it receives are valid?
 // Don't perform email validation with createEmail(email)
-export const createSubscriber = (email: Email, id?: string, name?: string): Subscriber => {
-  return { id, email, name } as Subscriber
+export const createSubscriber = (email: Email, id?: string, created_at?: string): Subscriber => {
+  return { id, email, created_at } as Subscriber
 }
