@@ -4,7 +4,7 @@ import { extendPages } from './app/utils/extend-pages'
 export default defineNuxtConfig({
   image: {
     // dir: 'public',
-    provider: 'netlify',
+    // provider: 'netlify',
   },
   nitro: {
     // preset: 'netlify',
@@ -14,6 +14,9 @@ export default defineNuxtConfig({
       ignored: ['**/node_modules/**', '**/.git/**'],
 
     },
+  },
+  supabase: {
+    redirect: false,
   },
   compatibilityDate: '2024-04-03',
   future: {
@@ -27,7 +30,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/icon',
     '@nuxt/fonts',
-    '@nuxt/test-utils/module', // integration to Nuxt Dev Tools
+    // integration to Nuxt Dev Tools
+    '@nuxt/test-utils/module',
+    '@nuxtjs/supabase',
   ],
   icon: {
     customCollections: [
