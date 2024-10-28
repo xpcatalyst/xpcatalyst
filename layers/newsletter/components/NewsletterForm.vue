@@ -40,7 +40,7 @@ const { isButtonDisabled, email, subscribe, message } = useNewsletter()
       </button>
     </form>
     <p
-      class="py-2 h-6 text-lg text-error peer-focus-within:opacity-0 transition-opacity ease-in-out delay-150 duration-300"
+      class="py-2 h-6 text-lg text-error peer-focus-within:opacity-0 transition-opacity ease-out duration-300"
       data-testid="newsletter-message"
     >
       {{ message }}

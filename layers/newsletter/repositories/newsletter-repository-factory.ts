@@ -3,8 +3,13 @@ import { createInMemoryRepository } from './in-memory-newsletter-repository'
 import { createSupabaseNewsletterRepository } from './supabase-newsletter-repository'
 
 export const createNewsletterRepository = (): INewsletterRepository => {
-  if (process.env.NODE_ENV === 'development') {
+  // if (process.env.NODE_ENV === 'development') {
+  //   return createInMemoryRepository()
+  // }
+
+  // For unit tests, still use in-memory
+  if (process.env.VITEST) {
     return createInMemoryRepository()
   }
-  return createSupabaseNewsletterRepository()
+  return createSupabaseNewsletterRepository() // env.production + env.development
 }

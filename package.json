@@ -12,6 +12,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:local": "cross-env SUPABASE_URL=http://localhost:54321 SUPABASE_KEY=your-local-key nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -22,7 +23,16 @@
     "test:ui": "vitest --coverage --ui",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:studio": "supabase studio",
+    "db:new-migration": "supabase migration new",
+    "db:push": "supabase db push",
+    "db:generate-types": "supabase gen types typescript --local > types/supabase.ts",
+    "db:setup": "pnpm db:start && pnpm db:reset && pnpm db:generate-types",
+    "test:integration": "vitest run --config vitest.integration.config.ts"
   },
   "lint-staged": {
     "*.{js,ts,vue}": "pnpm lint:fix"
@@ -32,6 +42,7 @@
     "@nuxt/fonts": "^0.10.2",
     "@nuxt/icon": "^1.5.8",
     "@nuxt/image": "^1.8.1",
+    "@nuxtjs/supabase": "^1.4.1",
     "@vueuse/core": "^11.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -42,8 +53,7 @@
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
     "vue": "latest",
-    "vue-router": "latest",
-    "zod": "^3.23.8"
+    "vue-router": "latest"
   },
   "packageManager": "pnpm@9.12.1",
   "devDependencies": {
@@ -57,8 +67,8 @@
     "happy-dom": "^15.7.4",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
-    "netlify-cli": "^17.37.1",
     "playwright-core": "^1.48.2",
+    "supabase": "^1.207.9",
     "typescript": "~5.5.4",
     "vitest": "^2.1.3"
   }
