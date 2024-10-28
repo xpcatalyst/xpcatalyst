@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createSubscribeUseCase, SUBSCRIBE_ERRORS, type ISubscribeUseCase } from '../../domain/usecases/subscribe-use-case'
 import type { INewsletterRepository } from '../../domain/ports/newsletter-repository-interface'
-import { createInMemoryRepository } from '../../repositories/in-memory-repository'
+import { createInMemoryRepository } from '../../repositories/in-memory-newsletter-repository'
 import { success, failure } from '~/shared/result'
 import { EMAIL_ERRORS } from '~/shared/email'
 

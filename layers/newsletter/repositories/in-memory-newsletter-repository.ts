@@ -19,7 +19,7 @@ export const createInMemoryRepository = (): INewsletterRepository => {
   let currentId = 1
 
   const add = async (subscriber: Subscriber) => {
-    // Assume that the inputs it receives are valid
+    // Assume that the inputs are valid
 
     const existingSubscriber = await getByEmail(subscriber.email)
     if (existingSubscriber.success) {

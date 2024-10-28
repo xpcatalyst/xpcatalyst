@@ -3,7 +3,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import type { INewsletterRepository } from '../../domain/ports/newsletter-repository-interface'
 import { createSubscribeUseCase, type ISubscribeUseCase } from '../../domain/usecases/subscribe-use-case'
-import { createInMemoryRepository } from '../../repositories/in-memory-repository'
+import { createInMemoryRepository } from '../../repositories/in-memory-newsletter-repository'
 import { useNewsletter, BUTTON_TEXT } from '../../composables/useNewsletter'
 import { createSubscriber } from '../../domain/entities/subscriber'
 

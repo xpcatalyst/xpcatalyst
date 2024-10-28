@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { createInMemoryRepository, ERRORS } from '../../repositories/in-memory-repository'
+import { createInMemoryRepository, ERRORS } from '../../repositories/in-memory-newsletter-repository'
 import type { INewsletterRepository } from '../../domain/ports/newsletter-repository-interface'
 import { createSubscriber } from '../../domain/entities/subscriber'
 import { failure, success } from '~/shared/result'
