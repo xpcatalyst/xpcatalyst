@@ -4,7 +4,7 @@ import { extendPages } from './app/utils/extend-pages'
 export default defineNuxtConfig({
   image: {
     // dir: 'public',
-    // provider: 'netlify',
+    provider: 'netlify',
   },
   nitro: {
     // preset: 'netlify',
@@ -17,6 +17,11 @@ export default defineNuxtConfig({
   },
   supabase: {
     redirect: false,
+  },
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.NUXT_PUBLIC_BASE_URL || 'http://localhost:3000',
+    },
   },
   compatibilityDate: '2024-04-03',
   future: {
