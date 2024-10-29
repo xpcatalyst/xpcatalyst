@@ -1,15 +1,9 @@
-// layers/newsletter/infrastructure/supabase-newsletter-repository.ts
+// import createClient from '@nuxtjs/supabase'
 import type { INewsletterRepository } from '../domain/ports/newsletter-repository-interface'
 import { createSubscriber, type Subscriber } from '../domain/entities/subscriber'
 import { failure, success } from '~/shared/result'
 
 import type { Database } from '~/types/database.types'
-
-export const ERRORS = {
-  SUBSCRIBER_NOT_FOUND: 'Subscriber not found in the database',
-  DATABASE_ERROR: 'A database error occurred',
-  DUPLICATE_EMAIL: 'Email already exists in the database',
-} as const
 
 /*
 const { data: restaurant } = await useAsyncData('restaurant', async () => {
@@ -18,6 +12,17 @@ const { data: restaurant } = await useAsyncData('restaurant', async () => {
   return data
 })
   */
+
+export const ERRORS = {
+  SUBSCRIBER_NOT_FOUND: 'Subscriber not found in the database',
+  DATABASE_ERROR: 'A database error occurred',
+  DUPLICATE_EMAIL: 'Email already exists in the database',
+} as const
+
+// export const useSupabaseClient2 = () => {
+//   const config = useRuntimeConfig()
+//   return createClient(config.public.supabaseKey, config.public.supabaseUrl)
+// }
 
 export const createSupabaseNewsletterRepository = (): INewsletterRepository => {
   const supabase = useSupabaseClient<Database>()

@@ -1,3 +1,8 @@
+<script setup lang="ts">
+console.log('Supabase URL:', process.env.SUPABASE_URL)
+console.log('Supabase Key:', process.env.SUPABASE_KEY)
+</script>
+
 <template>
   <HeroSection />
   <NuxtImg
