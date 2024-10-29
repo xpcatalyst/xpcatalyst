@@ -3,8 +3,7 @@ import { extendPages } from './app/utils/extend-pages'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   image: {
-    // dir: 'public',
-    provider: 'netlify',
+    provider: process.env.NODE_ENV === 'production' ? 'netlify' : '',
   },
   nitro: {
     // preset: 'netlify',
@@ -20,8 +19,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      supabaseUrl: process.env.SUPABASE_URL,
-      supabaseKey: process.env.SUPABASE_KEY,
+      // supabaseUrl: process.env.SUPABASE_URL,
+      // supabaseKey: process.env.SUPABASE_KEY,
       baseURL: process.env.NUXT_PUBLIC_BASE_URL || 'http://localhost:3000',
     },
   },
@@ -39,7 +38,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     // integration to Nuxt Dev Tools
     '@nuxt/test-utils/module',
-    '@nuxtjs/supabase',
+    // '@nuxtjs/supabase',
   ],
   icon: {
     customCollections: [
