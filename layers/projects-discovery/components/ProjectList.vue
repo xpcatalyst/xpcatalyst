@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { mockProjects } from '../../tests/projects.mock'
+import { mockProjects } from '../tests/projects.mock'
 </script>
 
 <template>

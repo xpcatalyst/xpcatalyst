@@ -10,7 +10,7 @@ const { isButtonDisabled, email, subscribe, message } = useNewsletter()
       Subscribe to the monthly newsletter to follow the progress and be part of the journey.
     </p>
     <form
-      class="flex items-center gap-3 rounded-full peer text-xl w-fit peer border-xp-light-pink border-4 bg-white"
+      class="flex items-center gap-3 rounded-full peer text-lg w-fit peer border-xp-light-pink border-4 bg-white"
       data-testid="newsletter-form"
       novalidate
       @submit.prevent="subscribe"
@@ -23,8 +23,8 @@ const { isButtonDisabled, email, subscribe, message } = useNewsletter()
         data-testid="newsletter-email"
         class="
         w-80 ms-6 py-1 bg-white text-black border-transparent border-b-2
-         ring-transparent outline-none focus:border-black
-         invalid:[&:not(:focus)]:text-error invalid:[&:not(:placeholder-shown):not(:focus)]:border-error
+         ring-transparent outline-none
+         invalid:[&:not(:focus)]:text-error
          "
       >
       <button
@@ -40,7 +40,7 @@ const { isButtonDisabled, email, subscribe, message } = useNewsletter()
       </button>
     </form>
     <p
-      class="py-2 h-6 text-lg text-error peer-focus-within:opacity-0 transition-opacity ease-out duration-300"
+      class="py-2 h-6 text-base text-error peer-focus-within:opacity-0 transition-opacity ease-out duration-100"
       data-testid="newsletter-message"
     >
       {{ message }}
