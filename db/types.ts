@@ -31,8 +31,10 @@ export type Project = {
 
 export type ProjectTemplate = {
   id: number
+  slug: string
   draft: boolean
   pinned: boolean
+  likes: number
   approved: boolean
   date_created: string // Date in ISO format (e.g., 'YYYY-MM-DD')
   date_modified: string // Date in ISO format (e.g., 'YYYY-MM-DD')

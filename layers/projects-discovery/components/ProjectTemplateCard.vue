@@ -12,44 +12,82 @@ import { Badge } from '@/components/ui/badge'
 
 defineProps<{ project: ProjectTemplate }>()
 //    :to="{ name: 'project-id', params: { id: project.id } }"
+//         {{ project.version?.charAt(0).toUpperCase() + project.version?.slice(1) }}
 </script>
 
 <template>
   <NuxtLink
-    to="/"
+    :to="{ name: 'templates-slug', params: { slug: project.slug } }"
     class="group"
   >
-    <Card class="rounded-3xl overflow-hidden relative hover:drop-shadow-xl hover:scale-[1.02] transition-all flex flex-col h-full">
-      <Badge
-        variant="outline"
-        class="absolute top-4 left-4 w-fit bg-white border-none z-20"
-      >
-        {{ project.version?.charAt(0).toUpperCase() + project.version?.slice(1) }}
-      </Badge>
+    <Card
+      class="rounded-3xl overflow-hidden relative hover:drop-shadow-xl transition-all flex flex-col h-full justify-between"
+    >
+      <div class="absolute p-3 font-fira z-10 flex gap-3">
+        <Badge
+          variant="outline"
+          class=" bg-white"
+        >
+          Idea
+        </Badge>
+        <Badge
+          v-if="project.progress === 100"
+          variant="outline"
+          class=" bg-success  border-none flex items-center gap-1"
+        >
+          <Icon
+
+            name="heroicons:check-circle"
+          /> Ready
+        </Badge>
+      </div>
       <NuxtImg
         :src="`images/${project.image}`"
         class="w-full h-44 object-cover rounded-3xl opacity-85 group-hover:opacity-100"
       />
-      <CardHeader>
+      <CardHeader class="flex-1">
         <div class="flex justify-between gap-8">
           <CardTitle class="tracking-wider">
-            {{ project.title }}
+            {{ project.title }} <span class="text-xs ms-1 font-normal text-gray-400">v.{{ project.version }}</span>
           </CardTitle>
-          <slot name="likes" />
+          <div
+            class="flex items-center text-xs gap-1"
+          >
+            <Icon
+              name="heroicons:heart-solid"
+              size="16"
+            />
+            <span>{{ project.likes ?? 0 }}</span>
+          </div>
         </div>
         <CardDescription class="line-clamp-2">
           {{ project.description }}
+
         </CardDescription>
       </CardHeader>
       <CardContent />
-      <CardFooter class="flex gap-2 flex-wrap">
-        <Badge
-          v-for="(need, index) in project.needs"
-          :key="`need-${need?.value}-${index}`"
-          variant="secondary"
+      <CardFooter class="text-sm">
+        <div
+          v-if="project.progress === 100"
+          class="flex items-center gap-2"
         >
-          {{ need?.value }}
-        </Badge>
+          <Icon name="heroicons:rocket-launch" />
+          {{ project.projects?.length }} Started
+        </div>
+        <div
+          v-else
+          class="flex gap-2 flex-wrap items-center"
+        >
+          <Icon name="ph:hand-heart" />
+          <span class="text-sm">Help requests: </span>
+          <Badge
+            v-for="(need, index) in project.needs"
+            :key="`need-${need?.value}-${index}`"
+            variant="secondary"
+          >
+            {{ need?.value }}
+          </Badge>
+        </div>
       </CardFooter>
     </Card>
   </NuxtLink>
