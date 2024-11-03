@@ -25,7 +25,7 @@
     </aside>
 
     <!-- Main content area -->
-    <main class="flex-1 p-8 prose prose-lg prose-invert">
+    <main class="flex-1 p-8 prose prose-lg prose-invert prose-ul:margin-0 prose-li:leading-tight">
       <ContentDoc />
     </main>
   </div>
