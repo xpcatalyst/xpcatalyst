@@ -1,15 +1,17 @@
 <template>
-  <header class="py-6">
-    <div class="container flex justify-between text-xl items-center">
-      <nav class="flex gap-16 items-center">
+  <header>
+    <AppTopBanner />
+
+    <div class="container flex justify-between text-lg items-center py-4">
+      <nav class="flex gap-12 items-center">
         <NuxtLink
           to="/"
           class="flex items-center gap-3 font-bold font-readex hover:underline underline-offset-2 tracking-wide"
         >
           <Icon
             name="xp:logo"
-            class="text-2xl text-white fill-white"
-          /> XPCATALYST
+            class="text-xl text-white fill-white"
+          /> XP.CATALYST
         </NuxtLink>
         <NuxtLink
           to="/projects"
