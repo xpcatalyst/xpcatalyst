@@ -3,7 +3,7 @@
     <!-- Availability -->
     <div class="bg-white rounded-lg shadow p-4">
       <h3 class="text-lg font-semibold mb-3">
-        Disponibilités
+        Availability
       </h3>
       <div class="space-y-2">
         <p class="flex items-center gap-2">
