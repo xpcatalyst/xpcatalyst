@@ -4,6 +4,7 @@ import pkg from './package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
   content: {
     // Content module configuration
     navigation: {
@@ -26,7 +27,6 @@ export default defineNuxtConfig({
   //   redirect: false,
   // },
   runtimeConfig: {
-
     public: {
       version: pkg.version,
       // supabaseUrl: process.env.SUPABASE_URL,

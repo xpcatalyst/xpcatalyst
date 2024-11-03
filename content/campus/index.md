@@ -18,6 +18,7 @@ Another way to share authored content and improve your learning journey
 - Notes on Testing
 - Prepare Your Learning Map: Job Market, Exploratory
 - How to face Challenges Don't be stuck on project, manage your time
+- Rules of Conduct: Don't be an ... (~Processing community)
 
 ## Resources
 
