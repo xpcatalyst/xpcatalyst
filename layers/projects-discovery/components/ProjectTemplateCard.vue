@@ -18,8 +18,9 @@ defineProps<{ project: ProjectTemplate }>()
 <template>
   <NuxtLink
     :to="{ name: 'templates-slug', params: { slug: project.slug } }"
-    class="group"
+    class="group relative"
   >
+
     <Card
       class="rounded-3xl overflow-hidden relative hover:drop-shadow-xl transition-all flex flex-col h-full justify-between"
     >
@@ -36,7 +37,6 @@ defineProps<{ project: ProjectTemplate }>()
           class=" bg-success  border-none flex items-center gap-1"
         >
           <Icon
-
             name="heroicons:check-circle"
           /> Ready
         </Badge>
