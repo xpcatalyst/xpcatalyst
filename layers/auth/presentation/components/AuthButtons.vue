@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const isLoggedIn = false
+import { useAuthStore } from '../../store/authStore'
+
+const authStore = useAuthStore()
 </script>
 
 <template>
   <NuxtLink
-    v-if="isLoggedIn"
+    v-if="authStore.loginStatus"
     to="/dashboard"
     class=" text-white hover:border-white border border-transparent rounded-full grid items-center"
   >

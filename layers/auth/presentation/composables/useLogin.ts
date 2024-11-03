@@ -1,4 +1,5 @@
-import { success, failure } from '@/shared/result'
+import { useAuthStore } from '../../store/authStore'
+import { success, failure } from '~/shared/result'
 
 type Credentials = {
   email: string
@@ -18,11 +19,12 @@ async function fakeLogin(email: string, password: string): Promise<Result<Creden
 
 export const useLogin = () => {
   const router = useRouter()
+  const authStore = useAuthStore()
 
   const email = ref('user@example.com')
   const password = ref('ValidPassword1!')
   const error = ref('')
-  const success = ref(false)
+  const successBool = ref(false)
   const loading = ref(false)
 
   const isFormEmpty = computed(() => email.value.trim() === '' || password.value.trim() === '')
@@ -39,11 +41,12 @@ export const useLogin = () => {
     const result = await fakeLogin(email.value, password.value)
 
     if (result.success) {
-      success.value = true
-      await router.push('/dashboard')
+      successBool.value = true
+      authStore.loginStatus = true
+      await router.push('/')
     }
     else {
-      success.value = false
+      successBool.value = false
       error.value = result.error as string // Warning Error type
     }
 
@@ -56,7 +59,7 @@ export const useLogin = () => {
     submitButtonText: readonly(submitButtonText),
     loading: readonly(loading),
     error: readonly(error),
-    success: readonly(success),
+    successBool: readonly(successBool),
     isSubmitDisabled: readonly(isSubmitDisabled),
     login,
   }
