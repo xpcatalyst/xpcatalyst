@@ -1,14 +1,34 @@
+<script setup lang="ts">
+const isLoggedIn = false
+</script>
+
 <template>
   <NuxtLink
-    to="/login"
-    class="ps-6 py-2 pe-3 text-neutral-500 hover:text-black hover:underline underline-offset-2"
+    v-if="isLoggedIn"
+    to="/dashboard"
+    class=" text-white hover:border-white border border-transparent rounded-full grid items-center"
   >
-    Login
+    <Icon
+      name="heroicons:user-circle-solid"
+      size="28"
+    />
   </NuxtLink>
-  <NuxtLink
-    to="/subscribe"
-    class="px-6 py-2 rounded-full bg-black text-white hover:underline underline-offset-2"
+
+  <div
+    v-else
+    class="flex items-center rounded-full bg-neutral-100"
   >
-    Join us
-  </NuxtLink>
+    <NuxtLink
+      to="/login"
+      class="ps-4 py-1 pe-2 text-neutral-500 hover:text-black hover:underline underline-offset-2 text-lg"
+    >
+      Login
+    </NuxtLink>
+    <NuxtLink
+      to="/subscribe"
+      class="px-4 py-1 rounded-full bg-black text-white hover:underline underline-offset-2 text-lg"
+    >
+      Join us
+    </NuxtLink>
+  </div>
 </template>
