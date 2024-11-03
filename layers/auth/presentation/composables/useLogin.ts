@@ -43,7 +43,7 @@ export const useLogin = () => {
     if (result.success) {
       successBool.value = true
       authStore.loginStatus = true
-      await router.push('/')
+      await router.push('/dashboard')
     }
     else {
       successBool.value = false
