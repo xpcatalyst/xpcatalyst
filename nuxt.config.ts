@@ -1,7 +1,15 @@
 import { extendPages } from './app/utils/extend-pages'
 
+import pkg from './package.json'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  content: {
+    // Content module configuration
+    navigation: {
+      fields: ['title'],
+    },
+  },
   image: {
     provider: process.env.NODE_ENV === 'production' ? 'netlify' : '',
   },
@@ -18,7 +26,9 @@ export default defineNuxtConfig({
   //   redirect: false,
   // },
   runtimeConfig: {
+
     public: {
+      version: pkg.version,
       // supabaseUrl: process.env.SUPABASE_URL,
       // supabaseKey: process.env.SUPABASE_KEY,
       baseURL: process.env.NUXT_PUBLIC_BASE_URL || 'http://localhost:3000',
@@ -40,6 +50,7 @@ export default defineNuxtConfig({
     // '@nuxtjs/supabase',
     '@nuxt/test-utils/module',
     '@pinia/nuxt',
+    '@nuxt/content',
   ],
   icon: {
     customCollections: [

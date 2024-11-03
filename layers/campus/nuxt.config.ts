@@ -1,5 +1,1 @@
-export default defineNuxtConfig({
-  components: [
-    { path: './presentation/components' },
-  ],
-})
+export default defineNuxtConfig({})
