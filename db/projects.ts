@@ -3,7 +3,7 @@ import type { Project } from './types'
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'Sport School App',
+    title: 'Sport School App With Laravel',
     date_created: '2024-05-01',
     date_modified: '2024-10-12',
     version: 'v0.5',
@@ -12,12 +12,12 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: 'Solidarity Grocery Management',
+    title: 'Sport School Mobile App with React Native',
     date_created: '2024-04-15',
     date_modified: '2024-10-01',
     version: 'v1',
     progress: 75,
-    description: 'Stock management system for a community-driven grocery project involving local producers.',
+    description: 'A platform to manage sports school registrations, notifications, and learning progress.',
   },
   {
     id: 3,

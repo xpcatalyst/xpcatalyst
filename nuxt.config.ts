@@ -14,9 +14,9 @@ export default defineNuxtConfig({
 
     },
   },
-  supabase: {
-    redirect: false,
-  },
+  // supabase: {
+  //   redirect: false,
+  // },
   runtimeConfig: {
     public: {
       // supabaseUrl: process.env.SUPABASE_URL,
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
@@ -37,8 +37,9 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/fonts',
     // integration to Nuxt Dev Tools
-    '@nuxt/test-utils/module',
     // '@nuxtjs/supabase',
+    '@nuxt/test-utils/module',
+    '@pinia/nuxt',
   ],
   icon: {
     customCollections: [

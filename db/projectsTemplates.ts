@@ -66,7 +66,7 @@ const solidarityGroceryProjectTemplate: ProjectTemplate = {
   problem: 'Challenges with tracking stock levels, coordinating with suppliers, and managing donations in a reliable, centralized system.',
   solution: 'A system to streamline inventory, coordinate supplies with local producers, and improve stock visibility and management.',
   audience: ['Grocery managers', 'Local producers', 'Community organizers'],
-  projects: [projects[1]],
+  projects: [],
   needs: [needs[3]],
   analytics: {
     views: 180,
@@ -104,7 +104,7 @@ const dealsForDevsProjectTemplate: ProjectTemplate = {
   problem: 'Finding quality, up-to-date deals for developers is challenging, and existing resources are often scattered.',
   solution: 'A centralized, community-curated platform offering the latest deals for developer resources, tools, and more.',
   audience: ['Developers', 'Community contributors', 'Tech learners'],
-  projects: [projects[2]],
+  projects: [],
   needs: [needs[0], needs[1]],
   analytics: {
     views: 320,
