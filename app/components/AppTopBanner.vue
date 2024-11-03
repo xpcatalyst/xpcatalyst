@@ -10,9 +10,10 @@ const open = ref(true)
     class="w-screen bg-xp-yellow text-black py-2"
   >
     <div class="container flex justify-center gap-4 items-center">
-      <p>Prototype v{{ config.public.version }} with <b>static data</b></p><Icon
+      <p>Prototype v{{ config.public.version }}: static data</p><Icon
         name="ph:x-circle"
         size="22"
+        class="hover:cursor-pointer"
         @click="() => open = false"
       />
     </div>
