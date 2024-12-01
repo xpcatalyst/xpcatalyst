@@ -47,10 +47,11 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/fonts',
     // integration to Nuxt Dev Tools
-    // '@nuxtjs/supabase',
+    '@nuxtjs/supabase',
     '@nuxt/test-utils/module',
     '@pinia/nuxt',
     '@nuxt/content',
+    '@nuxtjs/mdc',
   ],
   icon: {
     customCollections: [

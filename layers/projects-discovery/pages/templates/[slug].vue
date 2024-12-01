@@ -98,6 +98,10 @@ const project = projectsTemplates.find(it => it.slug === route.params.slug)
               <h2 class="text-2xl font-bold">
                 Problem
               </h2>
+              <MDC
+                :value=" project.problem"
+                tag="article"
+              />
               <p>{{ project.problem }}</p>
             </div>
             <div class="">

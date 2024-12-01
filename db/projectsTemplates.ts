@@ -90,7 +90,7 @@ const dealsForDevsProjectTemplate: ProjectTemplate = {
   title: 'Deals for Devs',
   image: 'photo-1655993810480-c15dccf9b3a0.jpeg',
   keywords: ['developer tools', 'deals', 'open-source', 'community'],
-  description: 'A platform that curates the best deals for developers, including courses, ebooks, tools, and more. The project is open-source to allow the community to contribute and gain experience.',
+  description: 'A **platform** that curates the best deals for _developers_, including courses, ebooks, tools, and more. The project is open-source to allow the community to contribute and gain experience.',
   features: [
     'Deal curation for developers',
     'Community contributions',
@@ -101,7 +101,7 @@ const dealsForDevsProjectTemplate: ProjectTemplate = {
   contributions: [contributions[2]],
   interested: [users[1], users[3]],
   source: 'https://github.com/deals-for-devs',
-  problem: 'Finding quality, up-to-date deals for developers is challenging, and existing resources are often scattered.',
+  problem: '**Finding quality**, _up-to-date_ deals for developers is challenging, and existing resources are often scattered.',
   solution: 'A centralized, community-curated platform offering the latest deals for developer resources, tools, and more.',
   audience: ['Developers', 'Community contributors', 'Tech learners'],
   projects: [],
