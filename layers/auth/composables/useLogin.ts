@@ -1,4 +1,4 @@
-import { useAuthStore } from '../../store/authStore'
+import { useAuthStore } from '../store/authStore'
 import { success, failure } from '~/shared/result'
 
 type Credentials = {
@@ -17,6 +17,11 @@ async function fakeLogin(email: string, password: string): Promise<Result<Creden
   }
 }
 
+export const BUTTON_TEXT = {
+  LOGIN: 'Login',
+  LOADING: 'Loading...',
+}
+
 export const useLogin = () => {
   const router = useRouter()
   const authStore = useAuthStore()
@@ -29,7 +34,7 @@ export const useLogin = () => {
 
   const isFormEmpty = computed(() => email.value.trim() === '' || password.value.trim() === '')
   const isSubmitDisabled = computed(() => loading.value || isFormEmpty.value)
-  const submitButtonText = computed(() => loading.value ? 'Loading...' : 'Login')
+  const submitButtonText = computed(() => loading.value ? BUTTON_TEXT.LOADING : BUTTON_TEXT.LOGIN)
 
   const login = async () => {
     if (isSubmitDisabled.value) {

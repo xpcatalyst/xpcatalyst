@@ -1,5 +1,1 @@
-export default defineNuxtConfig({
-  pinia: {
-    storesDirs: ['./stores/**'],
-  },
-})
+export default defineNuxtConfig({})
