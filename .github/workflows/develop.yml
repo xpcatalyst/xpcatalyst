@@ -1,0 +1,52 @@
+name: Lint & Test Develop Branch
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.1
+          run_install: false
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      # - name: Clear Nuxt Cache
+      #   run: rm -rf .output .nuxt
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run linting
+        run: pnpm lint:fix
+
+      - name: Run tests
+        run: pnpm test:unit
+        
+      # - name: Build Nuxt app
+      #   run: pnpm build
+      #   env:
+      #     PNPM_FLAGS: --shamefully-hoist
+      #     NITRO_PRESET: netlify
+          
+      # - name: Deploy to Netlify
+      #   uses: South-Paw/action-netlify-cli@v2
+      #   with:
+      #     args: 'deploy --message "Staging [${{ github.sha }}]" --dir "dist" --alias "test"'
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
