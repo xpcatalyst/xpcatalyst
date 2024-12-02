@@ -1,3 +1,18 @@
+<script setup>
+const user = useSupabaseUser()
+
+const fullName = computed(
+  () => user.value?.user_metadata.full_name,
+)
+const avatarUrl = computed(
+  () => user.value?.user_metadata.avatar_url,
+)
+
+definePageMeta({
+  middleware: 'auth',
+})
+</script>
+
 <template>
   <div class="min-h-screen bg-gray-50 py-16 text-black">
     <div class="container grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -6,11 +21,11 @@
         <div class="flex flex-col items-center mb-4">
           <img
             class="w-20 h-20 rounded-full mb-2"
-            src="https://via.placeholder.com/80"
+            :src="avatarUrl"
             alt="Profile photo"
           >
           <h2 class="text-xl font-semibold">
-            Alex Developer
+            {{ fullName }}
           </h2>
           <p class="text-sm text-gray-600">
             Full Stack Engineer
@@ -194,7 +209,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-// Add your component logic here
-</script>

@@ -7,11 +7,11 @@ const open = ref(true)
 <template>
   <div
     v-if="open"
-    class="w-screen bg-xp-yellow text-black py-2"
+    class="w-screen bg-xp-light-purple text-black py-2"
   >
     <div class="container flex justify-center gap-4 items-center">
       <p>Prototype v{{ config.public.version }}: static data</p><Icon
-        name="ph:x-circle"
+        name="ph:x"
         size="22"
         class="hover:cursor-pointer"
         @click="() => open = false"

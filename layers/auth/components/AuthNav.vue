@@ -1,20 +1,40 @@
 <script setup lang="ts">
-import { useAuthStore } from '../../store/authStore'
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
 
-const authStore = useAuthStore()
+const logout = async () => {
+  const { error } = await supabase.auth.signOut()
+
+  if (error) {
+    console.error(error)
+    return
+  }
+
+  await navigateTo('/')
+}
 </script>
 
 <template>
-  <NuxtLink
-    v-if="authStore.loginStatus"
-    to="/dashboard"
-    class=" text-white hover:border-white border border-transparent rounded-full grid items-center"
+  <div
+    v-if="user"
+    class="flex flex-row gap-2 items-center"
   >
-    <Icon
-      name="heroicons:user-circle-solid"
-      size="28"
-    />
-  </NuxtLink>
+    <NuxtLink
+      to="/dashboard"
+      class=" text-white hover:border-white border border-transparent rounded-full grid items-center"
+    >
+      <Icon
+        name="heroicons:user-circle-solid"
+        size="28"
+      />
+    </NuxtLink>
+    <button
+      class="text-sm underline text-white"
+      @click="logout"
+    >
+      Log out
+    </button>
+  </div>
 
   <div
     v-else

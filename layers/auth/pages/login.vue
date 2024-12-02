@@ -1,12 +1,30 @@
+<script setup lang="ts">
+import { Button } from '~/components/ui/button'
+
+const supabase = useSupabaseClient()
+// const user = useSupabaseUser()
+
+const signInWithGithub = async () => {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'github',
+  })
+  if (error) console.log(error)
+}
+
+// watch(user, () => {
+//   if (user.value) {
+//     // Redirect to protected page
+//     console.log('user', user.value)
+//     // return navigateTo('/')
+//   }
+// }, { immediate: true })
+</script>
+
 <template>
-  <div class="container py-16 ">
-    <h1 class="font-fira text-4xl text-center">
-      Welcome back! Please sign in to continue
-    </h1>
-    <LoginForm />
-    <div class="py-8 flex gap-8 justify-center">
-      <p>Don't have any account? Sign up</p>
-      <p>Forgot your password? </p>
-    </div>
-  </div>
+  <Button
+    class="w-fit"
+    @click="signInWithGithub"
+  >
+    Sign In with github
+  </Button>
 </template>

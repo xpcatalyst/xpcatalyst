@@ -26,8 +26,7 @@
           Campus
         </NuxtLink>
       </nav>
-
-      <AuthButtons />
+      <AuthNav />
     </div>
   </header>
 </template>

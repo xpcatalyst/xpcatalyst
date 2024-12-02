@@ -23,9 +23,9 @@ export default defineNuxtConfig({
 
     },
   },
-  // supabase: {
-  //   redirect: false,
-  // },
+  supabase: {
+    redirect: false,
+  },
   runtimeConfig: {
     public: {
       version: pkg.version,
@@ -46,7 +46,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/icon',
     '@nuxt/fonts',
-    // integration to Nuxt Dev Tools
     '@nuxtjs/supabase',
     '@nuxt/test-utils/module',
     '@pinia/nuxt',
