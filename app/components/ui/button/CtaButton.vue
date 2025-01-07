@@ -14,9 +14,9 @@ const classes = computed(() => `text-${props.size}`)
 
 <template>
     <NuxtLink :to="to" class="inline-block ">
-        <Button class="rounded-full flex items-center gap-2" :class="classes" :variant="variant" :size="size">
+        <Button class="rounded-full" :class="classes" :variant="variant" :size="size">
             <slot />
-            <Icon v-if="icon" :name="icon" />
+            <Icon v-if="icon" :name="icon" class="ms-2" />
         </Button>
 
     </NuxtLink>
