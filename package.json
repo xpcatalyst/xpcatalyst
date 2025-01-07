@@ -17,6 +17,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/icon": "1.10.3",
     "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/tailwindcss": "6.12.2",
     "class-variance-authority": "^0.7.1",
@@ -29,5 +30,8 @@
     "tailwindcss-animate": "^1.0.7",
     "vue": "latest"
   },
-  "packageManager": "pnpm@9.15.3"
+  "packageManager": "pnpm@9.15.3",
+  "devDependencies": {
+    "@iconify-json/ph": "^1.2.2"
+  }
 }
