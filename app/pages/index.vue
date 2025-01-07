@@ -1,15 +1,14 @@
 <template>
   <section class="flex items-center flex-1">
-    <div class="container text-2xl flex flex-col gap-16">
-      <div class="max-w-4xl space-y-8">
-        <p class="text-balance"><b>Let's Catalyze Experience Together!</b><br><br>
-          Secure your career in web development by working on <span class="text-purple-400 font-semibold">curated
-            real-world projects</span>. Make a positive impact through <span
-            class="text-green-300 font-semibold">contributions</span> and support for non-profit initiatives.
-        </p>
+    <div class="container flex flex-col gap-16">
+      <p class="max-w-5xl text-balance text-4xl">
+        Secure your career in web development & make a positive impact by working on curated
+        <span class="text-purple-300 font-semibold">real-world projects</span> for non-profit initiatives.
+      </p>
+      <div class="flex gap-16">
+        <nuxt-link to="/projects" class="btn btn-primary">Explore Projects</nuxt-link>
+        <nuxt-link to="/guide/getting-started" class="btn btn-secondary">Get Started</nuxt-link>
       </div>
-
-      <NewsletterForm />
     </div>
   </section>
 </template>
