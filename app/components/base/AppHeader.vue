@@ -1,5 +1,7 @@
 <template>
   <header>
+    <BaseAppVersion />
+
     <div class="container flex justify-between text-lg items-center py-4">
       <nav class="flex gap-12 items-center">
         <NuxtLink to="/" class="font-bold tracking-wide">
