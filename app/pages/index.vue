@@ -13,10 +13,10 @@ import CtaButton from '~/components/ui/button/CtaButton.vue';
         <CtaButton to="/" variant="outline" size="lg">
           Explore Projects
         </CtaButton>
-        <CtaButton to="/" variant="default" size="lg" icon="ph:arrow-right-bold">
+        <CtaButton to="/" size="lg" class="group">
           Get started
+          <Icon name="ph:arrow-right" class="ms-2 group-hover:translate-x-2 transition-transform" size="24" />
         </CtaButton>
-
       </div>
     </div>
   </section>

@@ -4,15 +4,11 @@
 
     <div class="container flex justify-between text-lg items-center py-8">
       <nav class="flex gap-12 items-center">
-        <NuxtLink to="/" class="font-bold tracking-wide">
-          XP.CATALYST
+        <NuxtLink to="/" class="font-bold tracking-wide flex items-center gap-2">
+          <Icon name="xpc:logo" /> XP.CATALYST
         </NuxtLink>
-        <NuxtLink to="/projects">
-          Login
-        </NuxtLink>
-        <NuxtLink to="/campus">
-          Join us
-        </NuxtLink>
+        <NuxtLink to="/"> Login </NuxtLink>
+        <NuxtLink to="/"> Join us </NuxtLink>
       </nav>
     </div>
   </header>

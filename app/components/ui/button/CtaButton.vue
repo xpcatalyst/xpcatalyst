@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import type { ButtonVariants } from '.';
+import type { ButtonVariants } from ".";
 
 const props = defineProps<{
-    to: string,
-    icon?: string,
-    variant?: ButtonVariants['variant']
-    size?: ButtonVariants['size']
-}>()
+    to: string;
+    variant?: ButtonVariants["variant"];
+    size?: ButtonVariants["size"];
+}>();
 
-const classes = computed(() => `text-${props.size}`)
+const sizeClass = computed(() => props.size ? `text-${props.size}` : 'text-base');
 </script>
 
 <template>
-    <NuxtLink :to="to" class="inline-block group">
-        <Button class="rounded-full" :class="classes" :variant="variant" :size="size">
+    <NuxtLink :to="to" class="inline-block">
+        <Button :class="['rounded-full', sizeClass]" :variant="variant" :size="size">
             <slot />
-            <Icon v-if="icon" :name="icon" class="ms-2 group-hover:translate-x-2 transition-transform" />
         </Button>
     </NuxtLink>
 </template>

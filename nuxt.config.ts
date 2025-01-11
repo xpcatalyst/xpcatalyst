@@ -20,5 +20,13 @@ export default defineNuxtConfig({
   shadcn: {
     prefix: '',
     componentDir: 'app/components/ui'
-  }
+  },
+  icon: {
+    customCollections: [
+      {
+        prefix: 'xpc',
+        dir: './app/assets/icons',
+      },
+    ],
+  },
 })
