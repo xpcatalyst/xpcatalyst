@@ -5,7 +5,6 @@ module.exports = {
   darkMode: ["class"],
   safelist: ["dark"],
   prefix: "",
-  
   theme: {
     container: {
       center: true,
@@ -15,6 +14,11 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        // grotesk: ['Cabinet Grotesk', 'sans-serif'],
+        readex: ['Readex Pro'],
+        //fira: ['Fira Sans'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
