@@ -3,7 +3,8 @@
     <div class="container flex flex-col gap-16">
       <div class="text-center text-sm">
         <p>
-          Made with ❤️ by
+          Made with
+          <Icon name="ph:heart" class="bg-purple-500" /> by
           <NuxtLink to="https://dev.jeromeabel.net">J&eacute;r&ocirc;me Abel</NuxtLink> -
           <NuxtLink to="https://github.com/xpcatalyst/xpcatalys">Source Code</NuxtLink>
         </p>
