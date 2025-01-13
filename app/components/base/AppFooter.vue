@@ -5,8 +5,8 @@
         <p>
           Made with
           <Icon name="ph:heart" class="bg-purple-500" /> by
-          <NuxtLink to="https://dev.jeromeabel.net">J&eacute;r&ocirc;me Abel</NuxtLink> -
-          <NuxtLink to="https://github.com/xpcatalyst/xpcatalys">Source Code</NuxtLink>
+          <NuxtLink to="https://dev.jeromeabel.net" external target="_blank">J&eacute;r&ocirc;me Abel</NuxtLink> -
+          <NuxtLink to="https://github.com/xpcatalyst/xpcatalyst" external target="_blank">Source Code</NuxtLink>
         </p>
       </div>
     </div>

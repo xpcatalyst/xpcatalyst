@@ -79,4 +79,7 @@
   body {
     @apply bg-background text-foreground;
   }
+  a[target=_blank] {
+    @apply underline;
+  }
 }
