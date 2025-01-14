@@ -1,4 +1,10 @@
 {
-    //"vue3snippets.enable-compile-vue-file-on-did-save-code": true
-    "prettier.enable": false
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+        "strings": "on"
+    },
+    "prettier.enable": false, // Not recognized?
+    "editor.formatOnSave": true
 }
