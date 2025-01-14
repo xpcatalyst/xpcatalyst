@@ -1,4 +1,3 @@
-
 # XP Catalyst
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d7aaebf4-bc90-428a-a989-c86ad1247333/deploy-status)](https://app.netlify.com/sites/xpcatalyst/deploys)
