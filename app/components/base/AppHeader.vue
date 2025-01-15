@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import CtaButton from '../ui/button/CtaButton.vue'
-</script>
-
 <template>
   <header>
     <BaseAppVersion />
@@ -18,12 +14,7 @@ import CtaButton from '../ui/button/CtaButton.vue'
         <NuxtLink to="/">Guide</NuxtLink>
       </nav>
 
-      <div class="flex gap-4 items-center">
-        <NuxtLink to="/login">Login</NuxtLink>
-        <CtaButton to="/signup">
-          Sign Up
-        </CtaButton>
-      </div>
+      <AuthButtons />
     </div>
   </header>
 </template>
