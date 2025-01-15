@@ -6,5 +6,10 @@
         "strings": "on"
     },
     "prettier.enable": false, // Not recognized?
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false,
+    // Auto fix
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.organizeImports": "never"
+    },
 }

@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/fonts',
     '@nuxt/eslint',
+    '@nuxtjs/supabase',
   ],
   devtools: { enabled: true },
   runtimeConfig: {
