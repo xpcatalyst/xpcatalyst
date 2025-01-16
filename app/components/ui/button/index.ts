@@ -33,3 +33,9 @@ export const buttonVariants = cva(
 )
 
 export type ButtonVariants = VariantProps<typeof buttonVariants>
+
+export interface BaseButtonProps {
+  variant?: ButtonVariants['variant']
+  size?: ButtonVariants['size']
+  class?: string
+}
