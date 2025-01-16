@@ -14,7 +14,7 @@
         <NuxtLink to="/">Guide</NuxtLink>
       </nav>
 
-      <AuthButtons />
+      <AuthButton />
     </div>
   </header>
 </template>
