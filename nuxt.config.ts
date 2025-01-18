@@ -37,4 +37,7 @@ export default defineNuxtConfig({
     prefix: '',
     componentDir: 'app/components/ui',
   },
+  supabase: {
+    redirect: false,
+  },
 })

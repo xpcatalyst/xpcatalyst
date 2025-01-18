@@ -1,28 +1,29 @@
 <script lang="ts" setup>
 import type { BaseButtonProps } from '~/components/ui/button'
 
-const supabase = useSupabaseClient()
+const { user, avatarUrl, loading, signInWithGithub, logout } = useAuth()
 
-const signInWithGithub = async () => {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'github',
-  })
-  console.log(data)
-  if (error) console.log(error)
-}
-
-const { label = 'Sign In', ...buttonProps } = defineProps<{ label?: string } & BaseButtonProps>()
+const { label = 'Login', ...buttonProps } = defineProps<{ label?: string } & BaseButtonProps>()
 </script>
 
 <template>
+  <UserNav
+    v-if="user"
+    :avatar-url="avatarUrl"
+    @logout="logout"
+  />
   <Button
+    v-else
     v-bind="buttonProps"
     class="rounded-full text-lg font-light"
+    :disabled="loading"
     @click="signInWithGithub"
   >
-    {{ label }}
+    {{ loading ? 'Loading...' : label }}
     <Icon
-      name="ph:github-logo-fill"
+      v-if="loading || !user"
+      :name="loading ? 'ph:circle-notch-bold' : 'ph:github-logo-fill'"
+      :class="loading ? 'animate-spin' : ''"
       class="ms-1"
     />
   </Button>
