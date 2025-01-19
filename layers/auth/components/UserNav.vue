@@ -17,7 +17,14 @@ import {
 } from '@/components/ui/dropdown-menu'
 
 defineEmits(['logout'])
-defineProps<{ avatarUrl?: string }>()
+
+type UserDataType = {
+  avatarUrl: string
+  fullName: string
+  email: string
+}
+
+defineProps<{ user?: UserDataType }>()
 </script>
 
 <template>
@@ -29,7 +36,7 @@ defineProps<{ avatarUrl?: string }>()
       >
         <Avatar class="h-8 w-8 border">
           <AvatarImage
-            :src="avatarUrl ? avatarUrl : '/PhUserBold.png'"
+            :src="user?.avatarUrl ? user.avatarUrl : '/PhUserBold.png'"
             alt="@shadcn"
           />
           <AvatarFallback>SC</AvatarFallback>
@@ -43,10 +50,10 @@ defineProps<{ avatarUrl?: string }>()
       <DropdownMenuLabel class="font-normal flex">
         <div class="flex flex-col space-y-1">
           <p class="text-sm font-medium leading-none">
-            shadcn
+            {{ user?.fullName }}
           </p>
           <p class="text-xs leading-none text-muted-foreground">
-            m@example.com
+            {{ user?.email }}
           </p>
         </div>
       </DropdownMenuLabel>

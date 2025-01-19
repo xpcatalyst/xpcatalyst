@@ -2,7 +2,12 @@ export function useAuth() {
   const supabase = useSupabaseClient()
   const loading = ref(false)
   const user = useSupabaseUser()
-  const avatarUrl = computed(() => user?.value?.user_metadata?.avatar_url)
+
+  const userData = computed(() => ({
+    fullName: user?.value?.user_metadata?.full_name,
+    avatarUrl: user?.value?.user_metadata?.avatar_url,
+    email: user?.value?.email,
+  }))
 
   const logout = async () => {
     try {
@@ -31,7 +36,7 @@ export function useAuth() {
 
   return {
     user,
-    avatarUrl,
+    userData,
     loading,
     signInWithGithub,
     logout,
