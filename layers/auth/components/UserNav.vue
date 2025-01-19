@@ -29,7 +29,7 @@ defineProps<{ avatarUrl?: string }>()
       >
         <Avatar class="h-8 w-8 border">
           <AvatarImage
-            :src="avatarUrl ? avatarUrl : '/01.png'"
+            :src="avatarUrl ? avatarUrl : '/PhUserBold.png'"
             alt="@shadcn"
           />
           <AvatarFallback>SC</AvatarFallback>
