@@ -2,6 +2,8 @@
 definePageMeta({
   layout: false,
 })
+
+const { loading, signInWithGithub } = useAuth()
 </script>
 
 <template>
@@ -46,8 +48,10 @@ definePageMeta({
       <p class=" mb-6 text-lg">
         Welcome back! Please sign in using your GitHub account.
       </p>
-      <AuthButton
+      <LoginButton
         label="Sign in with GitHub"
+        :loading="loading"
+        @login="signInWithGithub"
       />
       <NuxtLink
         to="/"
