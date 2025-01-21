@@ -14,7 +14,9 @@
         <NuxtLink to="/">Guide</NuxtLink>
       </nav>
 
-      <AuthButton />
+      <div>
+        <ToggleColorMode />
+      </div>
     </div>
   </header>
 </template>

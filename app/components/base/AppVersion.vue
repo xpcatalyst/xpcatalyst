@@ -6,7 +6,7 @@ const open = ref(true)
 <template>
   <div
     v-if="open"
-    class="w-screen bg-purple-100 flex py-4 px-8 text-black items-center"
+    class="w-screen bg-purple-100 dark:bg-gray-950 flex py-4 px-8 text-black dark:text-gray-200 items-center"
   >
     <div class="container flex justify-center">
       <p>
@@ -14,7 +14,7 @@ const open = ref(true)
       </p>
     </div>
 
-    <div class="h-8 w-8 group hover:bg-white/50 hover:cursor-pointer flex justify-center items-center rounded-full">
+    <div class="h-8 w-8 group hover:bg-white/20 hover:cursor-pointer flex justify-center items-center rounded-full">
       <Icon
         name="ph:x"
         size="20"

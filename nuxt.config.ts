@@ -11,6 +11,11 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
   ],
   devtools: { enabled: true },
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
+    classSuffix: '',
+  },
   runtimeConfig: {
     public: {
       version: pkg.version,

@@ -76,9 +76,18 @@
   * {
     @apply border-border;
   }
+  /* body {
+    @apply bg-foreground text-background;
+  } */
+
+  /* body {
+    @apply  bg-white dark:bg-gray-800 dark:text-gray-200;
+  } */
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-200
   }
+  
   a[target=_blank] {
     @apply underline;
   }
