@@ -5,6 +5,7 @@
         "vue.volar", // https://volarjs.dev/
         "bradlc.vscode-tailwindcss",
         "eamodio.gitlens",
-        "usernamehw.errorlens"
+        "usernamehw.errorlens",
+        "vitest.explorer"
     ]
 }
