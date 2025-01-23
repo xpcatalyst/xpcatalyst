@@ -11,7 +11,7 @@ import CtaButton from '~/components/ui/button/CtaButton.vue'
       <div class="flex gap-8">
         <CtaButton
           to="/"
-          variant="outline"
+          variant="secondary"
           size="lg"
         >
           Explore Projects
