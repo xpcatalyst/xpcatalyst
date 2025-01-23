@@ -78,7 +78,7 @@
   }
 
   body {
-    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-200
+    @apply bg-background text-foreground
   }
   
   a[target=_blank] {
