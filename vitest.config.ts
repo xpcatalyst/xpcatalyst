@@ -2,15 +2,8 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    workspace: [
-      'layers/*',
-      {
-        test: {
-          include: ['__tests__/unit/**/*.spec.ts'],
-          name: 'unit',
-          environment: 'node',
-        },
-      },
-    ],
+    globals: true,
+    include: ['layers/*/__tests__/unit/*.spec.ts'],
+    environment: 'node',
   },
 })
