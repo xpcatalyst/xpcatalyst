@@ -19,12 +19,12 @@ import CtaButton from '~/components/ui/button/CtaButton.vue'
         <CtaButton
           to="/"
           size="lg"
-          class="group"
+          class="group flex items-center"
         >
           Get started
           <Icon
             name="ph:arrow-right"
-            class="ms-2 group-hover:translate-x-2 transition-transform"
+            class="group-hover:translate-x-2 transition-transform"
             size="24"
           />
         </CtaButton>

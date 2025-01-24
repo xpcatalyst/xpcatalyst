@@ -10,7 +10,7 @@ const { loginGithubText, loading, signIn } = useAuth()
 
 <template>
   <div class="relative h-screen w-screen flex items-center justify-center bg-gradient-to-r from-black to-purple-950">
-    <div class="p-24 rounded-2xl bg-purple-800 text-white shadow-lg max-w-2xl text-center z-10">
+    <div class="px-24 pt-16 pb-16 rounded-2xl bg-purple-800 text-white shadow-lg max-w-2xl text-center z-10">
       <h1 class="flex items-center justify-center text-3xl font-semibold mb-2">
         <Icon
           name="xpc:logo"
@@ -21,12 +21,12 @@ const { loginGithubText, loading, signIn } = useAuth()
       <p class="text-lg mb-8">
         Welcome back! <br> Please sign in using your GitHub account.
       </p>
-      <div class="flex flex-col items-center justify-center gap-4">
+      <div class="flex flex-col items-center justify-center gap-8">
         <LoginButton
           :loading="loading"
           :label="loginGithubText"
-          classes="text-xl font-light"
           size="lg"
+          class="gap-4"
           @login="signIn"
         />
         <NuxtLink

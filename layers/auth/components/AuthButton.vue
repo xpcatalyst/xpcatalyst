@@ -18,7 +18,6 @@ onMounted(() => {
     v-else
     :loading="loading"
     :label="loginText"
-    classes="text-lg"
     @login="signIn"
   />
 </template>
