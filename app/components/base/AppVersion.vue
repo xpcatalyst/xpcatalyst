@@ -6,7 +6,7 @@ const open = ref(true)
 <template>
   <div
     v-if="open"
-    class="w-screen bg-purple-100 dark:bg-gray-950 flex py-4 px-8 text-black dark:text-gray-200 items-center"
+    class="w-screen bg-purple-100 dark:bg-purple-700 flex py-4 px-8 text-black dark:text-gray-200 items-center"
   >
     <div class="container flex justify-center">
       <p>

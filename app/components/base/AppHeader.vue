@@ -14,8 +14,9 @@
         <NuxtLink to="/">Guide</NuxtLink>
       </nav>
 
-      <div>
+      <div class="flex gap-6 items-center">
         <ToggleColorMode />
+        <AuthButton />
       </div>
     </div>
   </header>
