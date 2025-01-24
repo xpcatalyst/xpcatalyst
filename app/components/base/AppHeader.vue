@@ -15,7 +15,7 @@
       </nav>
 
       <div class="flex gap-6 items-center">
-        <ToggleColorMode />
+        <BaseToggleColorMode />
         <AuthButton />
       </div>
     </div>
