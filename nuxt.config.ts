@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/eslint',
     '@nuxtjs/supabase',
+    '@prisma/nuxt',
   ],
   devtools: { enabled: true },
   colorMode: {

@@ -1,0 +1,37 @@
+// 1. Prisma Setup
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_DATABASE_URL")
+  extensions = [pgcrypto]
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+// 2. Enums
+enum UserRole {
+  USER
+  DEMO
+  ADMIN
+}
+
+// ============ User ============
+model User {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  authId        String   @unique @db.Uuid //  Maps to Supabase auth.users
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  email         String   @unique
+  name          String?
+  headline      String?
+  bio           String?
+  country       String?
+  languages     String[]
+  experienceYrs Int?
+  role          UserRole @default(USER)
+
+  @@map("user")
+}

@@ -9,10 +9,12 @@ definePageMeta({
 })
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const schema = shallowRef<z.ZodObject< any, any, any > | null>(null)
+const schema = shallowRef<z.ZodObject< any, any, any > | null>(null) // ? avoid any
 
 onMounted (async () => {
   await checkAuth()
+
+  // Wait to set default values
   schema.value = z.object({
     username: z
       .string()

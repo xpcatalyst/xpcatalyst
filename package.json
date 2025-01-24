@@ -26,6 +26,8 @@
     "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/supabase": "1.4.5",
     "@nuxtjs/tailwindcss": "6.12.2",
+    "@prisma/client": "6.2.1",
+    "@prisma/nuxt": "0.3.0",
     "@vee-validate/zod": "^4.15.0",
     "@vueuse/core": "^12.5.0",
     "class-variance-authority": "^0.7.1",
@@ -51,6 +53,7 @@
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^16.7.2",
     "playwright-core": "^1.49.1",
+    "prisma": "6.2.1",
     "typescript": "^5.7.3",
     "vitest": "^3.0.4"
   }
