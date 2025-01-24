@@ -7,7 +7,7 @@ export const BUTTON_TEXT = {
 }
 
 const user = ref<User | null> (null)
-const loading = ref(false)
+const loading = ref(true)
 const isAuthenticated = computed(() => !!user.value)
 const loginText = computed(() => loading.value && !isAuthenticated.value ? BUTTON_TEXT.LOADING : BUTTON_TEXT.LOGIN)
 const loginGithubText = computed(() => loading.value && !isAuthenticated.value ? BUTTON_TEXT.LOADING : BUTTON_TEXT.LOGIN_GITHUB)
@@ -30,7 +30,7 @@ export const useAuth = () => {
     const { error } = await client.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `${window.location.origin}/confirm`,
+        redirectTo: `/confirm`,
       },
     })
     if (error) throw error
