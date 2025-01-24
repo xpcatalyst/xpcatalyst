@@ -66,6 +66,9 @@ importers:
       '@playwright/test':
         specifier: ^1.49.1
         version: 1.49.1
+      '@supabase/supabase-js':
+        specifier: ^2.48.0
+        version: 2.48.0
       '@vitest/ui':
         specifier: ^3.0.4
         version: 3.0.4(vitest@3.0.4)
