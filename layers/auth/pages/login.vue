@@ -5,7 +5,11 @@ definePageMeta({
   layout: false,
 })
 
-const { loginGithubText, loading, signIn } = useAuth()
+const { loginGithubText, loading, signIn, checkAuth } = useAuth()
+
+onMounted(async () => {
+  await checkAuth()
+})
 </script>
 
 <template>
