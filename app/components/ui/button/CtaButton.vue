@@ -20,6 +20,7 @@ const sizeClass = computed(() => props.size ? `text-${props.size}` : 'text-base'
       ]"
       :variant="variant"
       :size="size"
+      :disabled="disabled"
     >
       <slot />
     </Button>
